@@ -1,50 +1,53 @@
 .study-note-editor {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  padding: 1rem;
+  gap: var(--space-4);
+  padding: var(--space-4);
 }
 
 .study-note-editor__field {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: var(--space-2);
 }
 
 .study-note-editor__label {
-  font-size: 0.72rem;
-  font-weight: 600;
+  font-size: 0.68rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  color: var(--color-text-subtle);
 }
 
 .study-note-editor__input,
 .study-note-editor__textarea {
   width: 100%;
-  padding: 0.5rem 0.65rem;
+  padding: var(--input-padding-y) var(--input-padding-x);
   font-family: var(--font-sans);
-  font-size: 0.88rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  font-size: 0.9rem;
+  border: var(--input-border);
+  border-radius: var(--input-radius);
   background: var(--color-bg-elevated);
   color: var(--color-text);
   resize: vertical;
+  line-height: 1.55;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .study-note-editor__textarea {
-  min-height: 8rem;
-  line-height: 1.55;
+  min-height: 10rem;
 }
 
 .study-note-editor__input:focus,
 .study-note-editor__textarea:focus {
-  outline: 2px solid var(--color-accent-light);
-  outline-offset: 1px;
+  outline: none;
   border-color: var(--color-accent-light);
+  box-shadow: 0 0 0 3px rgba(117, 96, 72, 0.12);
 }
 
 .study-note-editor__hint {
   font-size: 0.72rem;
-  color: var(--color-text-muted);
+  color: var(--color-text-subtle);
 }

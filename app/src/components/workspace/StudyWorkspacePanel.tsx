@@ -25,19 +25,22 @@ export function StudyWorkspacePanel() {
         onTabChange={workspace.setActiveTab}
       />
 
-      <StudyToolbar
-        showNoteActions={workspace.activeTab === 'study-notes'}
-        canSave={workspace.canSave}
-        canEdit={workspace.canEdit}
-        canDelete={workspace.canDelete}
-        canCancel={workspace.canCancel}
-        onNewNote={workspace.startCreate}
-        onSave={workspace.saveDraft}
-        onEdit={workspace.startEdit}
-        onDelete={workspace.removeSelected}
-        onRefresh={workspace.handleRefresh}
-        onCancel={workspace.cancelEditing}
-      />
+      {(workspace.activeTab === 'study-notes' ||
+        workspace.activeTab === 'cross-references') && (
+        <StudyToolbar
+          showNoteActions={workspace.activeTab === 'study-notes'}
+          canSave={workspace.canSave}
+          canEdit={workspace.canEdit}
+          canDelete={workspace.canDelete}
+          canCancel={workspace.canCancel}
+          onNewNote={workspace.startCreate}
+          onSave={workspace.saveDraft}
+          onEdit={workspace.startEdit}
+          onDelete={workspace.removeSelected}
+          onRefresh={workspace.handleRefresh}
+          onCancel={workspace.cancelEditing}
+        />
+      )}
 
       <div
         className="study-workspace__content"
@@ -45,7 +48,9 @@ export function StudyWorkspacePanel() {
         id={`study-panel-${workspace.activeTab}`}
         aria-labelledby={`study-tab-${workspace.activeTab}`}
       >
-        <StudyTabContent workspace={workspace} passageLabel={passageLabel} />
+        <div className="study-workspace__tab-body">
+          <StudyTabContent workspace={workspace} passageLabel={passageLabel} />
+        </div>
       </div>
     </aside>
   );

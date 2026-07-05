@@ -1,5 +1,6 @@
 import { useSearch } from '@/context/SearchContext';
 import { formatReference } from '@/types/bible';
+import { stripKjvEditorialMarkup } from '@/utils/kjvVerseMarkup';
 import './SearchResultsPanel.css';
 
 interface SearchResultsPanelProps {
@@ -43,7 +44,9 @@ export function SearchResultsPanel({ onClose }: SearchResultsPanelProps) {
             <span className="search-results__ref">
               {formatReference(result.reference)}
             </span>
-            <p className="search-results__text">{result.text}</p>
+            <p className="search-results__text">
+              {stripKjvEditorialMarkup(result.text)}
+            </p>
           </li>
         ))}
       </ul>

@@ -1,5 +1,6 @@
+.study-tab-content__scroll,
+.study-tab-content__panel,
 .study-tab-content__notes {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
+  display: block;
+  min-height: min-content;
 }

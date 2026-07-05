@@ -1,58 +1,72 @@
 .study-notes-list {
   list-style: none;
   margin: 0;
-  padding: 0.5rem;
+  padding: var(--space-3);
+  padding-bottom: var(--space-2);
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: var(--space-2);
+  flex-shrink: 0;
 }
 
 .study-notes-list__item {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.25rem;
+  gap: var(--space-1);
   width: 100%;
-  padding: 0.65rem 0.75rem;
+  padding: var(--space-3) var(--space-4);
   text-align: left;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius);
-  background: var(--color-bg-elevated);
+  background: var(--color-card);
   cursor: pointer;
+  box-shadow: var(--shadow-card);
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .study-notes-list__item:hover {
-  border-color: var(--color-accent-light);
-  background: var(--color-bg-muted);
+  border-color: var(--color-gold-muted);
+  background: var(--color-highlight);
+  box-shadow: var(--shadow-sm);
 }
 
 .study-notes-list__item--selected {
-  border-color: var(--color-accent);
-  background: var(--color-bg-muted);
-  box-shadow: inset 3px 0 0 var(--color-accent);
+  border-color: var(--color-gold-muted);
+  background: var(--color-highlight-active);
+  box-shadow: inset 3px 0 0 var(--color-gold);
+}
+
+.study-notes-list__item:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 1px;
 }
 
 .study-notes-list__title {
   font-family: var(--font-serif);
-  font-size: 0.95rem;
+  font-size: 0.975rem;
   font-weight: 600;
   color: var(--color-text);
 }
 
 .study-notes-list__excerpt {
-  font-size: 0.8rem;
-  line-height: 1.45;
+  font-size: 0.8125rem;
+  line-height: 1.5;
   color: var(--color-text-muted);
 }
 
 .study-notes-list__meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
-  font-size: 0.7rem;
-  color: var(--color-text-muted);
+  gap: var(--space-2);
+  font-size: 0.68rem;
+  color: var(--color-text-subtle);
 }
 
 .study-notes-list__tags {
   color: var(--color-accent-light);
+  font-weight: 500;
 }

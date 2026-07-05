@@ -1,105 +1,144 @@
 .scripture-reader {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
-  background: var(--color-bg-elevated);
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  background: var(--color-bg-scripture);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
 }
 
 .scripture-reader__header {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 0.75rem 1rem;
-  padding: 0.75rem 1.25rem;
-  border-bottom: 1px solid var(--color-border);
-  background: var(--color-bg-muted);
+  gap: var(--space-3) var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: linear-gradient(to bottom, var(--color-card), var(--color-bg-scripture));
   flex-shrink: 0;
 }
 
 .scripture-reader__chapter-nav {
   display: flex;
-  gap: 0.4rem;
+  gap: var(--space-2);
 }
 
 .scripture-reader__chapter-btn {
-  padding: 0.4rem 0.65rem;
+  padding: var(--btn-padding-y) var(--space-4);
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: var(--btn-font-size);
   font-weight: 500;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  background: var(--color-bg-elevated);
+  border-radius: var(--radius-pill);
+  background: var(--color-card);
   color: var(--color-text);
   cursor: pointer;
   white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .scripture-reader__chapter-btn:hover:not(:disabled) {
-  background: var(--color-bg);
-  border-color: var(--color-accent-light);
+  background: var(--color-highlight);
+  border-color: var(--color-gold-muted);
+  box-shadow: var(--shadow-card);
 }
 
 .scripture-reader__chapter-btn:disabled {
-  opacity: 0.45;
+  opacity: 0.4;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .scripture-reader__heading {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   text-align: center;
   min-width: 0;
+  color: var(--color-gold-deep);
+  letter-spacing: 0.01em;
 }
 
 .scripture-reader__badge {
-  font-size: 0.7rem;
-  font-weight: 600;
+  font-size: 0.62rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 0.15rem 0.5rem;
-  background: var(--color-accent);
+  letter-spacing: 0.1em;
+  padding: var(--space-1) var(--space-3);
+  background: linear-gradient(to bottom, var(--color-gold-light), var(--color-gold));
   color: #fff;
-  border-radius: 3px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
 }
 
 .scripture-reader__text {
-  flex: 1;
-  padding: 1.5rem 1.75rem;
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-x: hidden;
   overflow-y: auto;
+  padding: var(--space-6) var(--space-8);
+  padding-bottom: var(--scroll-padding-bottom);
+  max-width: 44rem;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .scripture-reader__verse {
   font-family: var(--font-serif);
-  font-size: 1.2rem;
-  line-height: 1.8;
+  font-size: var(--font-size-scripture);
+  line-height: var(--line-height-scripture);
   color: var(--color-scripture);
-  margin: 0 0 0.9rem;
+  margin: 0 0 1.2rem;
+  text-align: left;
 }
 
 .scripture-reader__verse-num {
   font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 600;
-  color: var(--color-accent-light);
-  margin-right: 0.35rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  margin-right: 0.45rem;
   vertical-align: super;
+  letter-spacing: 0.02em;
+}
+
+.scripture-reader__divine-name {
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+}
+
+.scripture-reader__supplied {
+  font-style: italic;
+}
+
+.scripture-reader__xref {
+  font-family: var(--font-sans);
+  font-size: 0.58em;
+  font-weight: 500;
+  color: var(--color-text-subtle);
+  margin-left: 0.2em;
+  vertical-align: super;
+  opacity: 0.85;
 }
 
 .scripture-reader__verse--active {
-  background: var(--color-bg-muted);
-  margin-left: -0.5rem;
-  margin-right: -0.5rem;
-  padding: 0.5rem;
+  background: var(--color-highlight);
+  margin-left: calc(-1 * var(--space-3));
+  margin-right: calc(-1 * var(--space-3));
+  padding: var(--space-3) var(--space-4);
   border-radius: var(--radius);
-  border-left: 3px solid var(--color-accent);
+  border-left: 3px solid var(--color-gold);
+  box-shadow: inset 0 0 0 1px var(--color-gold-muted);
 }
 
 .scripture-reader__empty {
-  padding: 1.5rem 1.75rem;
+  padding: var(--scroll-padding-y) var(--space-6);
   margin: 0;
   color: var(--color-text-muted);
   font-style: italic;
@@ -112,12 +151,13 @@
     grid-template-areas:
       'heading badge'
       'nav nav';
+    padding: var(--space-4);
   }
 
   .scripture-reader__heading {
     grid-area: heading;
     text-align: left;
-    font-size: 1.15rem;
+    font-size: 1.25rem;
   }
 
   .scripture-reader__badge {
@@ -132,5 +172,12 @@
   .scripture-reader__chapter-btn {
     flex: 1;
     text-align: center;
+    border-radius: var(--radius);
+  }
+
+  .scripture-reader__text {
+    padding: var(--space-5) var(--space-4);
+    padding-bottom: var(--space-8);
+    max-width: none;
   }
 }

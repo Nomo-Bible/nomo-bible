@@ -3,7 +3,7 @@ import { StudyNoteDetail } from './StudyNoteDetail';
 import { StudyNoteEditor } from './StudyNoteEditor';
 import { StudyNotesList } from './StudyNotesList';
 import { CrossReferencePanel } from './CrossReferencePanel';
-import { StrongsPanel } from './StrongsPanel';
+import { ConcordancePanel } from './ConcordancePanel';
 import { KnowledgeBaseEmptyPanel } from './KnowledgeBaseEmptyPanel';
 import type { useStudyWorkspace } from '@/hooks/useStudyWorkspace';
 import './StudyTabContent.css';
@@ -32,23 +32,27 @@ export function StudyTabContent({ workspace, passageLabel }: StudyTabContentProp
     case 'study-notes':
       if (editorMode === 'create' || editorMode === 'edit') {
         return (
-          <StudyNoteEditor
-            draft={draft}
-            mode={editorMode}
-            onChange={updateDraftField}
-          />
+          <div className="study-tab-content__scroll">
+            <StudyNoteEditor
+              draft={draft}
+              mode={editorMode}
+              onChange={updateDraftField}
+            />
+          </div>
         );
       }
 
       if (notes.length === 0) {
         return (
-          <EmptyState
-            icon="📖"
-            title="No Study Notes"
-            message={`There are currently no study notes for ${passageLabel}. Click below to begin building your study library.`}
-            actionLabel="+ New Note"
-            onAction={startCreate}
-          />
+          <div className="study-tab-content__scroll">
+            <EmptyState
+              icon="📖"
+              title="No Study Notes"
+              message={`There are currently no study notes for ${passageLabel}. Click below to begin building your study library.`}
+              actionLabel="+ New Note"
+              onAction={startCreate}
+            />
+          </div>
         );
       }
 
@@ -67,40 +71,54 @@ export function StudyTabContent({ workspace, passageLabel }: StudyTabContentProp
 
     case 'cross-references':
       return (
-        <CrossReferencePanel
-          references={crossReferences}
-          passageLabel={passageLabel}
-        />
+        <div className="study-tab-content__panel">
+          <CrossReferencePanel
+            sourceReference={workspace.passageKey}
+            passageLabel={passageLabel}
+            references={crossReferences}
+            onRefresh={workspace.handleRefresh}
+          />
+        </div>
       );
 
-    case 'strongs':
-      return <StrongsPanel />;
+    case 'concordance':
+      return (
+        <div className="study-tab-content__panel">
+          <ConcordancePanel />
+        </div>
+      );
 
     case 'topics':
       return (
-        <KnowledgeBaseEmptyPanel
-          icon="🏷"
-          title="No Topics"
-          message={`No topics have yet been connected to ${passageLabel}. Topics will become part of the Knowledge Base.`}
-        />
+        <div className="study-tab-content__scroll">
+          <KnowledgeBaseEmptyPanel
+            icon="🏷"
+            title="No Topics"
+            message={`No topics have yet been connected to ${passageLabel}. Topics will become part of the Knowledge Base.`}
+          />
+        </div>
       );
 
     case 'doctrine':
       return (
-        <KnowledgeBaseEmptyPanel
-          icon="📜"
-          title="No Doctrine Articles"
-          message={`No doctrine articles have been linked to ${passageLabel}. Doctrinal studies will be drawn from the Knowledge Base.`}
-        />
+        <div className="study-tab-content__scroll">
+          <KnowledgeBaseEmptyPanel
+            icon="📜"
+            title="No Doctrine Articles"
+            message={`No doctrine articles have been linked to ${passageLabel}. Doctrinal studies will be drawn from the Knowledge Base.`}
+          />
+        </div>
       );
 
     case 'charts':
       return (
-        <KnowledgeBaseEmptyPanel
-          icon="📊"
-          title="No Charts"
-          message={`No charts have been connected to ${passageLabel}. Visual study resources will appear here from the Knowledge Base.`}
-        />
+        <div className="study-tab-content__scroll">
+          <KnowledgeBaseEmptyPanel
+            icon="📊"
+            title="No Charts"
+            message={`No charts have been connected to ${passageLabel}. Visual study resources will appear here from the Knowledge Base.`}
+          />
+        </div>
       );
 
     default:

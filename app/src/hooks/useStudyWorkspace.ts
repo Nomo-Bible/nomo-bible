@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useReader } from '@/context/ReaderContext';
-import { loadCrossReferencesForPassage } from '@/services/crossReferencesService';
+import { loadCrossReferencesForSource } from '@/services/crossReferenceService';
 import {
   formatTagsForInput,
   passageKeyFromLocation,
@@ -24,7 +24,7 @@ export function useStudyWorkspace() {
   const [activeTab, setActiveTab] = useState<StudyWorkspaceTabId>('study-notes');
   const [notes, setNotes] = useState<StudyNote[]>([]);
   const [crossReferences, setCrossReferences] = useState(
-    loadCrossReferencesForPassage(passageKey),
+    loadCrossReferencesForSource(passageKey),
   );
   const [selectedNoteId, setSelectedNoteId] = useState<string | null>(null);
   const [editorMode, setEditorMode] = useState<StudyNoteEditorMode>('idle');
@@ -41,7 +41,7 @@ export function useStudyWorkspace() {
   }, [passageKey]);
 
   const refreshCrossReferences = useCallback(() => {
-    setCrossReferences(loadCrossReferencesForPassage(passageKey));
+    setCrossReferences(loadCrossReferencesForSource(passageKey));
   }, [passageKey]);
 
   useEffect(() => {

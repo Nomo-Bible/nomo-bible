@@ -1,44 +1,49 @@
 .study-workspace {
   display: flex;
   flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
   height: 100%;
-  background: var(--color-panel);
+  background: var(--color-card);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
 }
 
 .study-workspace__header {
-  padding: 0.85rem 1rem 0.75rem;
-  border-bottom: 1px solid var(--color-border);
-  background: linear-gradient(
-    to bottom,
-    var(--color-bg-muted),
-    var(--color-bg-elevated)
-  );
+  padding: var(--space-3) var(--space-4) var(--space-2);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: linear-gradient(to bottom, var(--color-bg-muted), var(--color-card));
+  flex-shrink: 0;
 }
 
 .study-workspace__title {
   margin: 0;
-  font-size: 0.78rem;
-  font-weight: 600;
+  font-size: 0.68rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--color-text-muted);
+  letter-spacing: 0.08em;
+  color: var(--color-gold-deep);
 }
 
 .study-workspace__passage {
-  margin: 0.35rem 0 0;
+  margin: var(--space-1) 0 0;
   font-family: var(--font-serif);
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--color-accent);
+  color: var(--color-gold-deep);
   line-height: 1.25;
 }
 
 .study-workspace__content {
-  flex: 1;
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-x: hidden;
   overflow-y: auto;
-  background: var(--color-bg);
+  padding-bottom: var(--scroll-padding-bottom);
+  background: var(--color-bg-elevated);
+}
+
+.study-workspace__tab-body {
+  min-height: min-content;
 }

@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { SearchProvider } from '@/context/SearchContext';
 import { App } from '@/App';
 import '@/styles/global.css';
+import '@/styles/forms.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

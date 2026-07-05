@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useReader } from '@/context/ReaderContext';
 import { getChapter } from '@/services/bibleService';
 import { formatReaderLocation } from '@/types/bible';
+import { formatVerseText } from '@/utils/formatVerseText';
 import './ScriptureReaderPanel.css';
 
 export function ScriptureReaderPanel() {
@@ -81,7 +82,7 @@ export function ScriptureReaderPanel() {
               id={isActive ? 'scripture-active-verse' : undefined}
             >
               <sup className="scripture-reader__verse-num">{number}</sup>
-              {text}
+              {formatVerseText(text)}
             </p>
           );
         })}
