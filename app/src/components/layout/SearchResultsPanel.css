@@ -1,0 +1,107 @@
+.search-results {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  width: 360px;
+  max-height: 420px;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.search-results__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg-muted);
+}
+
+.search-results__title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.search-results__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.search-results__close:hover {
+  background: var(--color-border);
+  color: var(--color-text);
+}
+
+.search-results__count {
+  margin: 0;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.search-results__truncated {
+  font-style: italic;
+}
+
+.search-results__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.search-results__item {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.search-results__item:last-child {
+  border-bottom: none;
+}
+
+.search-results__ref {
+  display: block;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  margin-bottom: 0.2rem;
+}
+
+.search-results__text {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  line-height: 1.45;
+}
+
+@media (max-width: 768px) {
+  .search-results {
+    position: fixed;
+    top: auto;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+  }
+}
