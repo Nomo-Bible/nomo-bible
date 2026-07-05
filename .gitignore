@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Extracted USFM (regenerate from eng-kjv2006_usfm.zip)
+knowledge-base/bible/kjv/source/eng-kjv2006_usfm/
+
+# Environment
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,12 @@
+{
+  "name": "nomomartyria-bible-platform",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "npm ci --prefix app && npm run build --prefix app",
+    "kjv:download": "node scripts/kjv/download-kjv.mjs",
+    "kjv:convert": "node scripts/kjv/convert-usfm-to-json.mjs",
+    "kjv:import": "npm run kjv:download && npm run kjv:convert"
+  }
+}

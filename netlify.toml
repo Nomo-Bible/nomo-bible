@@ -1,0 +1,15 @@
+# Netlify build configuration for the Vite app in app/
+# Requires app/ and knowledge-base/ to be committed in the repository.
+
+[build]
+  base = "app"
+  command = "npm ci && npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
