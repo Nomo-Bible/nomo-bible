@@ -1,0 +1,5 @@
+.study-tab-content__notes {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}

@@ -20,6 +20,7 @@ interface ReaderContextValue {
   setBook: (book: string) => void;
   setChapter: (chapter: number) => void;
   setVerse: (verse: number | null) => void;
+  goToPassage: (location: ReaderLocation) => void;
   goToPreviousChapter: () => void;
   goToNextChapter: () => void;
   canGoPrevious: boolean;
@@ -57,6 +58,13 @@ export function ReaderProvider({ children }: { children: ReactNode }) {
     setLocation((current) => normalizeLocation({ ...current, verse }));
   }, []);
 
+  const goToPassage = useCallback(
+    (target: ReaderLocation) => {
+      updateLocation(target);
+    },
+    [updateLocation],
+  );
+
   const goToPreviousChapter = useCallback(() => {
     const prev = getPreviousChapter(location.book, location.chapter);
     if (!prev) return;
@@ -75,6 +83,7 @@ export function ReaderProvider({ children }: { children: ReactNode }) {
       setBook,
       setChapter,
       setVerse,
+      goToPassage,
       goToPreviousChapter,
       goToNextChapter,
       canGoPrevious: getPreviousChapter(location.book, location.chapter) !== null,
@@ -85,6 +94,7 @@ export function ReaderProvider({ children }: { children: ReactNode }) {
       setBook,
       setChapter,
       setVerse,
+      goToPassage,
       goToPreviousChapter,
       goToNextChapter,
     ],

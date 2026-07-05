@@ -1,0 +1,61 @@
+.scripture-workspace {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr) 340px;
+  gap: 1rem;
+  align-items: stretch;
+  min-height: calc(100vh - 12rem);
+}
+
+.scripture-workspace__nav,
+.scripture-workspace__scripture,
+.scripture-workspace__study {
+  min-height: 32rem;
+}
+
+.scripture-workspace__scripture {
+  min-width: 0;
+}
+
+@media (max-width: 1100px) {
+  .scripture-workspace {
+    grid-template-columns: 220px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      'nav scripture'
+      'study study';
+    min-height: auto;
+  }
+
+  .scripture-workspace__nav {
+    grid-area: nav;
+  }
+
+  .scripture-workspace__scripture {
+    grid-area: scripture;
+  }
+
+  .scripture-workspace__study {
+    grid-area: study;
+    min-height: 20rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .scripture-workspace {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'nav'
+      'scripture'
+      'study';
+  }
+
+  .scripture-workspace__nav,
+  .scripture-workspace__scripture,
+  .scripture-workspace__study {
+    min-height: auto;
+  }
+
+  .scripture-workspace__scripture {
+    min-height: 24rem;
+  }
+}

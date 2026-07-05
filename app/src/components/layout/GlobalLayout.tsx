@@ -17,7 +17,7 @@ export function GlobalLayout() {
               Home
             </NavLink>
             <NavLink to="/reader" className="site-header__link">
-              Bible Reader
+              Scripture Workspace
             </NavLink>
           </nav>
 

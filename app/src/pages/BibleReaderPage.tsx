@@ -1,62 +1,20 @@
 import { ReaderProvider } from '@/context/ReaderContext';
-
-import { ScripturePanel } from '@/components/reader/ScripturePanel';
-
-import { StudyNotesPanel } from '@/components/reader/StudyNotesPanel';
-
-import { CrossReferencesPanel } from '@/components/reader/CrossReferencesPanel';
-
-import { ReaderNavigation } from '@/components/reader/ReaderNavigation';
-
+import { ScriptureWorkspace } from '@/components/workspace/ScriptureWorkspace';
 import './BibleReaderPage.css';
 
-
-
 export function BibleReaderPage() {
-
   return (
-
     <ReaderProvider>
-
-      <div className="bible-reader">
-
-        <header className="bible-reader__header">
-
-          <h1>Bible Reader</h1>
-
-          <p className="bible-reader__subtitle">
-
-            King James Version · Sample passages
-
+      <div className="bible-reader-page">
+        <header className="bible-reader-page__header">
+          <h1>Scripture Workspace</h1>
+          <p className="bible-reader-page__subtitle">
+            King James Version · Read, navigate, and study
           </p>
-
         </header>
 
-
-
-        <ReaderNavigation />
-
-
-
-        <div className="bible-reader__content">
-
-          <ScripturePanel />
-
-          <aside className="bible-reader__sidebar">
-
-            <StudyNotesPanel />
-
-            <CrossReferencesPanel />
-
-          </aside>
-
-        </div>
-
+        <ScriptureWorkspace />
       </div>
-
     </ReaderProvider>
-
   );
-
 }
-

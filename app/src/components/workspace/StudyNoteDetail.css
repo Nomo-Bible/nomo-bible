@@ -1,0 +1,58 @@
+.study-note-detail {
+  padding: 1rem;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+}
+
+.study-note-detail__header {
+  margin-bottom: 0.65rem;
+}
+
+.study-note-detail__title {
+  margin: 0 0 0.25rem;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.study-note-detail__date {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.study-note-detail__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+}
+
+.study-note-detail__tag {
+  padding: 0.15rem 0.45rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  border-radius: 999px;
+  background: var(--color-bg-muted);
+  color: var(--color-accent);
+}
+
+.study-note-detail__body p {
+  margin: 0 0 0.75rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  white-space: pre-wrap;
+}
+
+.study-note-detail__body p:last-child {
+  margin-bottom: 0;
+}
+
+.study-note-detail__empty {
+  margin: 0;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
