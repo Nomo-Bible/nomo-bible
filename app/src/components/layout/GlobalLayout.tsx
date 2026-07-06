@@ -1,11 +1,13 @@
 import { Home, BookOpen } from 'lucide-react';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { BibleSearch } from './BibleSearch';
 import './GlobalLayout.css';
 
 export function GlobalLayout() {
+  const isReaderRoute = useLocation().pathname.startsWith('/reader');
+
   return (
-    <div className="global-layout">
+    <div className={`global-layout${isReaderRoute ? ' global-layout--reader' : ''}`}>
       <header className="site-header">
         <div className="site-header__inner">
           <Link to="/" className="site-header__brand">
@@ -37,9 +39,11 @@ export function GlobalLayout() {
         <Outlet />
       </main>
 
-      <footer className="site-footer">
-        <p>Nomomartyria Bible Platform · Version 0.1</p>
-      </footer>
+      {!isReaderRoute && (
+        <footer className="site-footer">
+          <p>Nomomartyria Bible Platform · Version 0.1</p>
+        </footer>
+      )}
     </div>
   );
 }

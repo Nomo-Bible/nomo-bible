@@ -25,6 +25,8 @@
 
 .scripture-nav__title {
   margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
   font-family: var(--font-sans);
   font-size: var(--font-size-xs);
   font-weight: 600;

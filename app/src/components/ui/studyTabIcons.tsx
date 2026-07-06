@@ -1,8 +1,8 @@
 import {
   BarChart3,
   BookOpen,
+  GraduationCap,
   Link2,
-  ScrollText,
   Search,
   Tags,
   type LucideIcon,
@@ -14,7 +14,7 @@ export const STUDY_TAB_ICONS: Record<StudyWorkspaceTabId, LucideIcon> = {
   'cross-references': Link2,
   concordance: Search,
   topics: Tags,
-  doctrine: ScrollText,
+  'how-to-study': GraduationCap,
   charts: BarChart3,
 };
 

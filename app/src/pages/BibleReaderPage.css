@@ -1,19 +1,36 @@
 .bible-reader-page {
   display: flex;
   flex-direction: column;
+  flex: 1 1 0;
   min-height: 0;
-  flex: 1;
+  overflow: hidden;
+  gap: var(--space-3);
+}
+
+.bible-reader-page .page-banner {
+  flex-shrink: 0;
+  margin-bottom: 0;
 }
 
 .bible-reader-page .scripture-workspace {
   flex: 1 1 0;
-  min-height: 24rem;
+  min-height: 0;
   height: auto;
-  max-height: calc(100vh - 15rem);
+  max-height: none;
 }
 
-@media (max-width: 768px) {
-  .bible-reader-page .scripture-workspace {
-    max-height: none;
-  }
+.bible-reader-page:has(
+  .scripture-workspace--expanded-nav,
+  .scripture-workspace--expanded-scripture,
+  .scripture-workspace--expanded-study
+) {
+  gap: 0;
+}
+
+.bible-reader-page:has(
+  .scripture-workspace--expanded-nav,
+  .scripture-workspace--expanded-scripture,
+  .scripture-workspace--expanded-study
+) .page-banner {
+  display: none;
 }

@@ -1,5 +1,6 @@
 import { BookMarked, Hash, ListOrdered, Compass } from 'lucide-react';
 import { useReader } from '@/context/ReaderContext';
+import { WorkspaceExpandButton } from '@/components/workspace/WorkspaceExpandButton';
 import {
   getAvailableBooks,
   getChaptersForBook,
@@ -28,6 +29,7 @@ export function ScriptureNavigationPanel() {
       <header className="scripture-nav__header">
         <Compass className="scripture-nav__header-icon" aria-hidden="true" size={16} strokeWidth={2} />
         <h2 className="scripture-nav__title">Navigate</h2>
+        <WorkspaceExpandButton panelId="nav" label="Navigation" />
       </header>
 
       <div className="scripture-nav__reference" aria-live="polite">

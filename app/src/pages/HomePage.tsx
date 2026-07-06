@@ -64,10 +64,13 @@ export function HomePage() {
           </li>
           <li className="home-modules__card">
             <Library className="home-modules__icon" aria-hidden="true" size={24} strokeWidth={1.75} />
-            <h3>Doctrine Library</h3>
-            <p>Organized doctrinal studies in the doctrine workspace tab.</p>
-            <Link to="/reader?tab=doctrine" className="home-modules__link">
-              Open Doctrine
+            <h3>How to Study the Bible</h3>
+            <p>
+              A lesson guide on letting Scripture interpret itself—Christ-centered,
+              line-upon-line study principles.
+            </p>
+            <Link to="/reader?tab=how-to-study" className="home-modules__link">
+              Open Guide
               <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
             </Link>
           </li>

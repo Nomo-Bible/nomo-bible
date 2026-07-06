@@ -1,10 +1,11 @@
-import { BarChart3, BookOpen, ScrollText, Tags } from 'lucide-react';
+import { BarChart3, BookOpen, Tags } from 'lucide-react';
 import { EmptyState } from './EmptyState';
 import { StudyNoteDetail } from './StudyNoteDetail';
 import { StudyNoteEditor } from './StudyNoteEditor';
 import { StudyNotesList } from './StudyNotesList';
 import { CrossReferencePanel } from './CrossReferencePanel';
 import { ConcordancePanel } from './ConcordancePanel';
+import { HowToStudyBiblePanel } from './HowToStudyBiblePanel';
 import { KnowledgeBaseEmptyPanel } from './KnowledgeBaseEmptyPanel';
 import type { useStudyWorkspace } from '@/hooks/useStudyWorkspace';
 import './StudyTabContent.css';
@@ -100,14 +101,10 @@ export function StudyTabContent({ workspace, passageLabel }: StudyTabContentProp
         </div>
       );
 
-    case 'doctrine':
+    case 'how-to-study':
       return (
-        <div className="study-tab-content__body nm-fade-in">
-          <KnowledgeBaseEmptyPanel
-            icon={<ScrollText size={22} strokeWidth={1.75} />}
-            title="No Doctrine Articles"
-            message={`No doctrine articles have been linked to ${passageLabel}. Doctrinal studies will be drawn from the Knowledge Base.`}
-          />
+        <div className="study-tab-content__body study-tab-content__body--how-to-study nm-fade-in">
+          <HowToStudyBiblePanel />
         </div>
       );
 

@@ -126,7 +126,18 @@
   padding: var(--space-5) var(--space-5);
 }
 
-.site-main:has(.bible-reader-page) {
+.global-layout--reader {
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+}
+
+.global-layout--reader .site-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
   padding-top: var(--space-4);
   padding-bottom: var(--space-4);
 }

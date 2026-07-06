@@ -3,7 +3,7 @@ export type StudyWorkspaceTabId =
   | 'cross-references'
   | 'concordance'
   | 'topics'
-  | 'doctrine'
+  | 'how-to-study'
   | 'charts';
 
 export interface StudyWorkspaceTab {
@@ -16,6 +16,6 @@ export const STUDY_WORKSPACE_TABS: StudyWorkspaceTab[] = [
   { id: 'cross-references', label: 'Cross References' },
   { id: 'concordance', label: 'Concordance' },
   { id: 'topics', label: 'Topics' },
-  { id: 'doctrine', label: 'Doctrine' },
+  { id: 'how-to-study', label: 'How to Study the Bible' },
   { id: 'charts', label: 'Charts' },
 ];

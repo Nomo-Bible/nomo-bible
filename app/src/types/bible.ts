@@ -22,6 +22,13 @@ export interface ReaderLocation {
   verse: number | null;
 }
 
+export interface ConcordanceHighlight {
+  query: string;
+  book: string;
+  chapter: number;
+  verse: number;
+}
+
 export interface KjvVerse {
   translation: 'KJV';
   testament: 'Old Testament' | 'New Testament';

@@ -1,6 +1,5 @@
 import { BookOpen, Library, Search, StickyNote } from 'lucide-react';
 import {
-  CONCORDANCE_PAGE_SIZE,
   searchConcordance,
   splitTextHighlight,
 } from '@/services/concordanceService';
@@ -70,7 +69,7 @@ function StrongsResultCard({
 }
 
 export function ConcordancePanel() {
-  const { goToPassage, location } = useReader();
+  const { goToConcordanceResult, location } = useReader();
   const { syncedWordStudy } = useWordStudy();
   const [searchParams, setSearchParams] = useSearchParams();
   const strongsResultsRef = useRef<HTMLDivElement>(null);
@@ -81,7 +80,6 @@ export function ConcordancePanel() {
     null,
   );
   const [searched, setSearched] = useState(false);
-  const [page, setPage] = useState(0);
 
   const [strongsQuery, setStrongsQuery] = useState('');
   const [strongsResponse, setStrongsResponse] = useState<StrongsSearchResponse | null>(
@@ -132,7 +130,6 @@ export function ConcordancePanel() {
 
     setResponse(searchConcordance(trimmed));
     setSearched(true);
-    setPage(0);
     scrollToKjvResults();
   };
 
@@ -153,7 +150,6 @@ export function ConcordancePanel() {
     setQuery(search);
     setResponse(searchConcordance(search));
     setSearched(true);
-    setPage(0);
     scrollToKjvResults();
   }, [searchParams]);
 
@@ -197,17 +193,7 @@ export function ConcordancePanel() {
     setSearchParams({ tab: 'study-notes', note: note.id });
   };
 
-  const totalCount = response?.totalCount ?? 0;
-  const totalPages = Math.max(1, Math.ceil(totalCount / CONCORDANCE_PAGE_SIZE));
-  const pageStart = page * CONCORDANCE_PAGE_SIZE;
-  const pageEnd = Math.min(pageStart + CONCORDANCE_PAGE_SIZE, totalCount);
-  const pageResults = response?.results.slice(pageStart, pageEnd) ?? [];
-
-  const goToPage = (nextPage: number) => {
-    const clamped = Math.max(0, Math.min(nextPage, totalPages - 1));
-    setPage(clamped);
-    scrollToKjvResults();
-  };
+  const results = response?.results ?? [];
 
   const strongsInstalled = isStrongsDataInstalled();
 
@@ -382,7 +368,6 @@ export function ConcordancePanel() {
                 if (!next.trim()) {
                   setSearched(false);
                   setResponse(null);
-                  setPage(0);
                 }
               }}
               onKeyDown={handleInputKeyDown}
@@ -421,45 +406,11 @@ export function ConcordancePanel() {
             <div className="concordance-panel__count-row">
               <p className="concordance-panel__count">
                 {response.totalCount} KJV passage{response.totalCount !== 1 ? 's' : ''}{' '}
-                found
-                {totalPages > 1 && (
-                  <span className="concordance-panel__range">
-                    {' '}
-                    · showing {pageStart + 1}–{pageEnd}
-                  </span>
-                )}
+                found · scroll to browse all results
               </p>
-              {totalPages > 1 && (
-                <nav
-                  className="concordance-panel__pager"
-                  aria-label="Concordance result pages"
-                >
-                  <button
-                    type="button"
-                    className="concordance-panel__pager-btn"
-                    onClick={() => goToPage(page - 1)}
-                    disabled={page === 0}
-                    aria-label="Previous page"
-                  >
-                    ‹ Prev
-                  </button>
-                  <span className="concordance-panel__pager-status">
-                    Page {page + 1} of {totalPages}
-                  </span>
-                  <button
-                    type="button"
-                    className="concordance-panel__pager-btn"
-                    onClick={() => goToPage(page + 1)}
-                    disabled={page >= totalPages - 1}
-                    aria-label="Next page"
-                  >
-                    Next ›
-                  </button>
-                </nav>
-              )}
             </div>
             <ul className="concordance-panel__results" aria-label="KJV concordance results">
-              {pageResults.map((result) => {
+              {results.map((result) => {
                 const displayText = stripKjvEditorialMarkup(result.text);
                 const highlight = splitTextHighlight(displayText, response.query);
                 const resultKey = `${result.reference.book}-${result.reference.chapter}-${result.reference.verse}`;
@@ -468,7 +419,9 @@ export function ConcordancePanel() {
                     <button
                       type="button"
                       className="concordance-panel__result"
-                      onClick={() => goToPassage(result.reference)}
+                      onClick={() =>
+                        goToConcordanceResult(result.reference, response.query)
+                      }
                     >
                       <span className="concordance-panel__ref">
                         {result.referenceLabel}
@@ -491,34 +444,6 @@ export function ConcordancePanel() {
                 );
               })}
             </ul>
-            {totalPages > 1 && (
-              <nav
-                className="concordance-panel__pager concordance-panel__pager--footer"
-                aria-label="Concordance result pages"
-              >
-                <button
-                  type="button"
-                  className="concordance-panel__pager-btn"
-                  onClick={() => goToPage(page - 1)}
-                  disabled={page === 0}
-                  aria-label="Previous page"
-                >
-                  ‹ Prev
-                </button>
-                <span className="concordance-panel__pager-status">
-                  Page {page + 1} of {totalPages}
-                </span>
-                <button
-                  type="button"
-                  className="concordance-panel__pager-btn"
-                  onClick={() => goToPage(page + 1)}
-                  disabled={page >= totalPages - 1}
-                  aria-label="Next page"
-                >
-                  Next ›
-                </button>
-              </nav>
-            )}
           </div>
         )}
       </section>

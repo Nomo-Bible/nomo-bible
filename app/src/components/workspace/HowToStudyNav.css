@@ -1,0 +1,116 @@
+.how-to-study-nav {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.how-to-study-nav__title {
+  margin: 0 0 var(--space-3);
+  padding: 0 var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+.how-to-study-nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.how-to-study-nav__item {
+  display: flex;
+  flex-direction: column;
+}
+
+.how-to-study-nav__link,
+.how-to-study-nav__section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-2) var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.how-to-study-nav__link:hover,
+.how-to-study-nav__section:hover,
+.how-to-study-nav__item--open .how-to-study-nav__section {
+  color: var(--color-accent);
+  background: var(--color-highlight);
+}
+
+.how-to-study-nav__link:focus-visible,
+.how-to-study-nav__section:focus-visible,
+.how-to-study-nav__chapter:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 1px;
+}
+
+.how-to-study-nav__chevron {
+  flex-shrink: 0;
+  opacity: 0.65;
+  transition: transform var(--transition-fast);
+}
+
+.how-to-study-nav__item--open .how-to-study-nav__chevron {
+  transform: rotate(180deg);
+}
+
+.how-to-study-nav__chapters {
+  display: none;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: var(--space-1) 0 0;
+  padding: 0 0 var(--space-2);
+  padding-left: var(--space-2);
+  list-style: none;
+  border-left: 2px solid var(--color-border-subtle);
+}
+
+.how-to-study-nav__item--open .how-to-study-nav__chapters {
+  display: flex;
+}
+
+.how-to-study-nav__chapter {
+  display: block;
+  width: 100%;
+  padding: var(--space-2) var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: left;
+  color: var(--color-text);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.how-to-study-nav__chapter:hover {
+  color: var(--color-accent);
+  background: var(--color-highlight);
+}

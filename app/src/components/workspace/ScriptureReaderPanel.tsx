@@ -2,15 +2,18 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { useReader } from '@/context/ReaderContext';
 import { useWordStudy } from '@/context/WordStudyContext';
+import { WorkspaceExpandButton } from '@/components/workspace/WorkspaceExpandButton';
 import { getChapter } from '@/services/bibleService';
+import { getConcordanceHighlightTokenIndexes } from '@/services/concordanceService';
 import { getVerseWordTokens } from '@/services/kjvStrongsTokenService';
 import { formatReaderLocation, formatReference } from '@/types/bible';
-import { renderVerseContent } from '@/utils/formatVerseText';
+import { renderVerseContent, buildDisplayWordTokens } from '@/utils/formatVerseText';
 import './ScriptureReaderPanel.css';
 
 export function ScriptureReaderPanel() {
   const {
     location,
+    concordanceHighlight,
     goToPreviousChapter,
     goToNextChapter,
     canGoPrevious,
@@ -26,6 +29,24 @@ export function ScriptureReaderPanel() {
       activeVerseRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   }, [location.book, location.chapter, location.verse]);
+
+  useEffect(() => {
+    if (!concordanceHighlight) return;
+    if (
+      location.book !== concordanceHighlight.book ||
+      location.chapter !== concordanceHighlight.chapter ||
+      location.verse !== concordanceHighlight.verse
+    ) {
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      const match = document.querySelector(
+        '#scripture-active-verse .scripture-reader__word--search-match',
+      );
+      match?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  }, [concordanceHighlight, location.book, location.chapter, location.verse]);
 
   const header = (
     <header className="scripture-reader__header">
@@ -54,7 +75,10 @@ export function ScriptureReaderPanel() {
 
       <h2 className="scripture-reader__heading">{heading}</h2>
 
-      <span className="scripture-reader__badge">KJV</span>
+      <div className="scripture-reader__header-actions">
+        <WorkspaceExpandButton panelId="scripture" label="Scripture reader" compact />
+        <span className="scripture-reader__badge">KJV</span>
+      </div>
     </header>
   );
 
@@ -78,6 +102,16 @@ export function ScriptureReaderPanel() {
           const isActive = location.verse === number;
           const tokenIdPrefix = `${location.book}:${location.chapter}:${number}`;
           const tokens = getVerseWordTokens(location.book, location.chapter, number);
+          const highlightedTokenIndexes =
+            concordanceHighlight &&
+            concordanceHighlight.book === location.book &&
+            concordanceHighlight.chapter === location.chapter &&
+            concordanceHighlight.verse === number
+              ? getConcordanceHighlightTokenIndexes(
+                  tokens ?? buildDisplayWordTokens(text),
+                  concordanceHighlight.query,
+                )
+              : undefined;
           return (
             <p
               key={number}
@@ -93,6 +127,7 @@ export function ScriptureReaderPanel() {
               {renderVerseContent(text, tokens, {
                 tokenIdPrefix,
                 activeTokenId,
+                highlightedTokenIndexes,
                 onWordClick: (token, tokenIndex, event) => {
                   openWordStudy(
                     token,

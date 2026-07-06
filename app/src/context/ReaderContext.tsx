@@ -13,14 +13,17 @@ import {
   getPreviousChapter,
   normalizeLocation,
 } from '@/services/bibleService';
-import type { ReaderLocation } from '@/types/bible';
+import type { ReaderLocation, ConcordanceHighlight, ScriptureReference } from '@/types/bible';
 
 interface ReaderContextValue {
   location: ReaderLocation;
+  concordanceHighlight: ConcordanceHighlight | null;
   setBook: (book: string) => void;
   setChapter: (chapter: number) => void;
   setVerse: (verse: number | null) => void;
   goToPassage: (location: ReaderLocation) => void;
+  goToConcordanceResult: (reference: ScriptureReference, query: string) => void;
+  clearConcordanceHighlight: () => void;
   goToPreviousChapter: () => void;
   goToNextChapter: () => void;
   canGoPrevious: boolean;
@@ -31,6 +34,8 @@ const ReaderContext = createContext<ReaderContextValue | null>(null);
 
 export function ReaderProvider({ children }: { children: ReactNode }) {
   const [location, setLocation] = useState<ReaderLocation>(getDefaultLocation);
+  const [concordanceHighlight, setConcordanceHighlight] =
+    useState<ConcordanceHighlight | null>(null);
 
   const updateLocation = useCallback((next: ReaderLocation) => {
     setLocation(normalizeLocation(next));
@@ -40,6 +45,7 @@ export function ReaderProvider({ children }: { children: ReactNode }) {
     (book: string) => {
       const chapters = getChaptersForBook(book);
       const chapter = chapters[0] ?? 1;
+      setConcordanceHighlight(null);
       updateLocation({ book, chapter, verse: null });
     },
     [updateLocation],
@@ -47,6 +53,7 @@ export function ReaderProvider({ children }: { children: ReactNode }) {
 
   const setChapter = useCallback(
     (chapter: number) => {
+      setConcordanceHighlight(null);
       setLocation((current) =>
         normalizeLocation({ ...current, chapter, verse: null }),
       );
@@ -65,25 +72,53 @@ export function ReaderProvider({ children }: { children: ReactNode }) {
     [updateLocation],
   );
 
+  const goToConcordanceResult = useCallback(
+    (reference: ScriptureReference, query: string) => {
+      const trimmed = query.trim();
+      if (!trimmed) {
+        goToPassage(reference);
+        return;
+      }
+
+      setConcordanceHighlight({
+        query: trimmed,
+        book: reference.book,
+        chapter: reference.chapter,
+        verse: reference.verse,
+      });
+      updateLocation(reference);
+    },
+    [goToPassage, updateLocation],
+  );
+
+  const clearConcordanceHighlight = useCallback(() => {
+    setConcordanceHighlight(null);
+  }, []);
+
   const goToPreviousChapter = useCallback(() => {
     const prev = getPreviousChapter(location.book, location.chapter);
     if (!prev) return;
+    setConcordanceHighlight(null);
     updateLocation({ ...prev, verse: null });
   }, [location, updateLocation]);
 
   const goToNextChapter = useCallback(() => {
     const next = getNextChapter(location.book, location.chapter);
     if (!next) return;
+    setConcordanceHighlight(null);
     updateLocation({ ...next, verse: null });
   }, [location, updateLocation]);
 
   const value = useMemo(
     () => ({
       location,
+      concordanceHighlight,
       setBook,
       setChapter,
       setVerse,
       goToPassage,
+      goToConcordanceResult,
+      clearConcordanceHighlight,
       goToPreviousChapter,
       goToNextChapter,
       canGoPrevious: getPreviousChapter(location.book, location.chapter) !== null,
@@ -91,10 +126,13 @@ export function ReaderProvider({ children }: { children: ReactNode }) {
     }),
     [
       location,
+      concordanceHighlight,
       setBook,
       setChapter,
       setVerse,
       goToPassage,
+      goToConcordanceResult,
+      clearConcordanceHighlight,
       goToPreviousChapter,
       goToNextChapter,
     ],

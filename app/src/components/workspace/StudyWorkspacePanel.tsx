@@ -1,6 +1,7 @@
 import { useReader } from '@/context/ReaderContext';
 import { useStudyWorkspace } from '@/hooks/useStudyWorkspace';
 import { formatReaderLocation } from '@/types/bible';
+import { WorkspaceExpandButton } from '@/components/workspace/WorkspaceExpandButton';
 import { StudyTabContent } from './StudyTabContent';
 import { StudyToolbar } from './StudyToolbar';
 import { StudyWorkspaceTabs } from './StudyWorkspaceTabs';
@@ -14,7 +15,10 @@ export function StudyWorkspacePanel() {
   return (
     <aside className="study-workspace" aria-label="Study workspace">
       <header className="study-workspace__header">
-        <h2 className="study-workspace__title">Study Workspace</h2>
+        <div className="study-workspace__header-row">
+          <h2 className="study-workspace__title">Study Workspace</h2>
+          <WorkspaceExpandButton panelId="study" label="Study workspace" />
+        </div>
         <p className="study-workspace__passage" aria-live="polite">
           {passageLabel}
         </p>

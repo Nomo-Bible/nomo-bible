@@ -14,6 +14,7 @@ export interface RenderVerseOptions {
   ) => void;
   activeTokenId?: string | null;
   tokenIdPrefix?: string;
+  highlightedTokenIndexes?: Set<number>;
 }
 
 function renderTokenButton(
@@ -23,9 +24,14 @@ function renderTokenButton(
 ): ReactNode {
   const tokenId = `${options.tokenIdPrefix ?? 'token'}:${tokenIndex}`;
   const isActive = options.activeTokenId === tokenId;
-  const className = isActive
-    ? 'scripture-reader__word scripture-reader__word--active'
-    : 'scripture-reader__word';
+  const isSearchMatch = options.highlightedTokenIndexes?.has(tokenIndex) ?? false;
+  const className = [
+    'scripture-reader__word',
+    isActive ? 'scripture-reader__word--active' : '',
+    isSearchMatch ? 'scripture-reader__word--search-match' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <button
@@ -59,6 +65,19 @@ export function renderTaggedVerseTokens(
 }
 
 const CLICKABLE_WORD_PATTERN = /[A-Za-z\u2019'][A-Za-z'\u2019-]*/g;
+
+export function buildDisplayWordTokens(text: string): VerseWordToken[] {
+  const displayText = prepareKjvVerseDisplayText(text);
+  const tokens: VerseWordToken[] = [];
+  let match: RegExpExecArray | null;
+
+  CLICKABLE_WORD_PATTERN.lastIndex = 0;
+  while ((match = CLICKABLE_WORD_PATTERN.exec(displayText)) !== null) {
+    tokens.push({ text: match[0], strongs: null });
+  }
+
+  return tokens;
+}
 
 function wrapFallbackWords(
   text: string,

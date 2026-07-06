@@ -1,5 +1,7 @@
 import { KJV_VERSES } from '@/data/kjvData';
 import type { ScriptureReference } from '@/types/bible';
+import { normalizeTokenText } from '@/services/wordStudyService';
+import type { VerseWordToken } from '@/types/verseTokens';
 
 /** Default page size for concordance UI pagination */
 export const CONCORDANCE_PAGE_SIZE = 50;
@@ -94,4 +96,49 @@ export function searchConcordance(query: string): ConcordanceResponse {
     totalCount: allMatches.length,
     results: allMatches,
   };
+}
+
+/**
+ * Returns token indexes in a verse that overlap a concordance query match.
+ */
+export function getConcordanceHighlightTokenIndexes(
+  tokens: VerseWordToken[],
+  query: string,
+): Set<number> {
+  const trimmed = query.trim();
+  if (!trimmed || tokens.length === 0) {
+    return new Set();
+  }
+
+  const normalizedQuery = trimmed.toLowerCase();
+  const fullText = tokens.map((token) => token.text).join(' ').toLowerCase();
+  const matchIndex = fullText.indexOf(normalizedQuery);
+
+  if (matchIndex >= 0) {
+    const matchEnd = matchIndex + normalizedQuery.length;
+    const indexes = new Set<number>();
+    let charPos = 0;
+
+    tokens.forEach((token, index) => {
+      if (index > 0) {
+        charPos += 1;
+      }
+      const tokenStart = charPos;
+      const tokenEnd = charPos + token.text.length;
+      if (tokenEnd > matchIndex && tokenStart < matchEnd) {
+        indexes.add(index);
+      }
+      charPos = tokenEnd;
+    });
+
+    return indexes;
+  }
+
+  const indexes = new Set<number>();
+  tokens.forEach((token, index) => {
+    if (normalizeTokenText(token.text) === normalizedQuery) {
+      indexes.add(index);
+    }
+  });
+  return indexes;
 }

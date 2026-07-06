@@ -23,12 +23,13 @@ const STUDY_TABS: StudyWorkspaceTabId[] = [
   'cross-references',
   'concordance',
   'topics',
-  'doctrine',
+  'how-to-study',
   'charts',
 ];
 
 function parseTab(value: string | null): StudyWorkspaceTabId | null {
   if (!value) return null;
+  if (value === 'doctrine') return 'how-to-study';
   return STUDY_TABS.includes(value as StudyWorkspaceTabId)
     ? (value as StudyWorkspaceTabId)
     : null;
