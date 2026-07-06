@@ -5,7 +5,6 @@
   min-height: 0;
   height: 100%;
   background: var(--color-bg-scripture);
-  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-panel);
 }
@@ -15,9 +14,8 @@
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: var(--space-3) var(--space-4);
-  padding: var(--space-4) var(--space-6);
+  padding: var(--space-4) var(--space-5);
   border-bottom: 1px solid var(--color-border-subtle);
-  background: linear-gradient(to bottom, var(--color-card), var(--color-bg-scripture));
   flex-shrink: 0;
 }
 
@@ -27,17 +25,19 @@
 }
 
 .scripture-reader__chapter-btn {
-  padding: var(--btn-padding-y) var(--space-4);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
   font-family: var(--font-sans);
-  font-size: var(--btn-font-size);
+  font-size: var(--font-size-sm);
   font-weight: 500;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius);
   background: var(--color-card);
   color: var(--color-text);
   cursor: pointer;
   white-space: nowrap;
-  box-shadow: var(--shadow-sm);
   transition:
     background var(--transition-fast),
     border-color var(--transition-fast),
@@ -46,35 +46,34 @@
 
 .scripture-reader__chapter-btn:hover:not(:disabled) {
   background: var(--color-highlight);
-  border-color: var(--color-gold-muted);
-  box-shadow: var(--shadow-card);
+  border-color: var(--color-accent-muted);
+  box-shadow: var(--shadow-sm);
 }
 
 .scripture-reader__chapter-btn:disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
-  box-shadow: none;
 }
 
 .scripture-reader__heading {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: var(--font-size-xl);
   text-align: center;
   min-width: 0;
-  color: var(--color-gold-deep);
+  color: var(--color-text);
   letter-spacing: 0.01em;
 }
 
 .scripture-reader__badge {
-  font-size: 0.62rem;
-  font-weight: 700;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   padding: var(--space-1) var(--space-3);
-  background: linear-gradient(to bottom, var(--color-gold-light), var(--color-gold));
-  color: #fff;
+  background: var(--color-bg-secondary);
+  color: var(--color-gold-deep);
+  border: 1px solid var(--color-gold-muted);
   border-radius: var(--radius-pill);
-  box-shadow: var(--shadow-sm);
 }
 
 .scripture-reader__text {
@@ -82,9 +81,9 @@
   min-height: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: var(--space-6) var(--space-8);
+  padding: var(--space-6) var(--space-7);
   padding-bottom: var(--scroll-padding-bottom);
-  max-width: 44rem;
+  max-width: 46rem;
   margin: 0 auto;
   width: 100%;
 }
@@ -94,18 +93,30 @@
   font-size: var(--font-size-scripture);
   line-height: var(--line-height-scripture);
   color: var(--color-scripture);
-  margin: 0 0 1.2rem;
+  margin: 0 0 1.35rem;
   text-align: left;
+  padding: var(--space-2) var(--space-3);
+  margin-left: calc(-1 * var(--space-3));
+  margin-right: calc(-1 * var(--space-3));
+  border-radius: var(--radius);
+  border-left: 3px solid transparent;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.scripture-reader__verse:hover {
+  background: var(--color-highlight);
 }
 
 .scripture-reader__verse-num {
   font-family: var(--font-sans);
-  font-size: 0.65rem;
-  font-weight: 700;
-  color: var(--color-gold);
-  margin-right: 0.45rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: var(--color-gold-deep);
+  margin-right: 0.5rem;
   vertical-align: super;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
 }
 
 .scripture-reader__divine-name {
@@ -128,17 +139,12 @@
 }
 
 .scripture-reader__verse--active {
-  background: var(--color-highlight);
-  margin-left: calc(-1 * var(--space-3));
-  margin-right: calc(-1 * var(--space-3));
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--radius);
-  border-left: 3px solid var(--color-gold);
-  box-shadow: inset 0 0 0 1px var(--color-gold-muted);
+  background: var(--color-highlight-active);
+  border-left-color: var(--color-accent);
 }
 
 .scripture-reader__empty {
-  padding: var(--scroll-padding-y) var(--space-6);
+  padding: var(--scroll-padding-y) var(--space-5);
   margin: 0;
   color: var(--color-text-muted);
   font-style: italic;
@@ -151,13 +157,13 @@
     grid-template-areas:
       'heading badge'
       'nav nav';
-    padding: var(--space-4);
+    padding: var(--space-3);
   }
 
   .scripture-reader__heading {
     grid-area: heading;
     text-align: left;
-    font-size: 1.25rem;
+    font-size: var(--font-size-lg);
   }
 
   .scripture-reader__badge {
@@ -171,13 +177,12 @@
 
   .scripture-reader__chapter-btn {
     flex: 1;
-    text-align: center;
-    border-radius: var(--radius);
+    justify-content: center;
   }
 
   .scripture-reader__text {
-    padding: var(--space-5) var(--space-4);
-    padding-bottom: var(--space-8);
+    padding: var(--space-4) var(--space-3);
+    padding-bottom: var(--space-5);
     max-width: none;
   }
 }

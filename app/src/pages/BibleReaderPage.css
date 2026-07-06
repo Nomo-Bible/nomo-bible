@@ -1,24 +1,19 @@
-.bible-reader-page__header {
-  margin-bottom: var(--space-5);
-  padding-bottom: var(--space-4);
-  border-bottom: 1px solid var(--color-border-subtle);
+.bible-reader-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
 }
 
-.bible-reader-page__header h1 {
-  margin: 0 0 var(--space-2);
-  font-size: 1.9rem;
-  color: var(--color-gold-deep);
-  letter-spacing: 0.01em;
-}
-
-.bible-reader-page__subtitle {
-  margin: 0;
-  font-size: 0.925rem;
-  color: var(--color-text-muted);
+.bible-reader-page .scripture-workspace {
+  flex: 1 1 0;
+  min-height: 24rem;
+  height: auto;
+  max-height: calc(100vh - 15rem);
 }
 
 @media (max-width: 768px) {
-  .bible-reader-page__header h1 {
-    font-size: 1.55rem;
+  .bible-reader-page .scripture-workspace {
+    max-height: none;
   }
 }

@@ -1,7 +1,8 @@
+import type { ReactNode } from 'react';
 import { EmptyState } from './EmptyState';
 
 interface KnowledgeBaseEmptyPanelProps {
-  icon: string;
+  icon: ReactNode;
   title: string;
   message: string;
 }

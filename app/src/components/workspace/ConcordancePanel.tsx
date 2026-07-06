@@ -1,3 +1,4 @@
+import { Search, Library } from 'lucide-react';
 import {
   CONCORDANCE_PAGE_SIZE,
   searchConcordance,
@@ -104,7 +105,7 @@ export function ConcordancePanel() {
       {!searched && (
         <div className="concordance-panel__body">
           <EmptyState
-            icon="📚"
+            icon={<Library size={22} strokeWidth={1.75} />}
             title="KJV Concordance"
             message="Search the local King James Version for a word or phrase. Results will appear here with verse references."
           />
@@ -114,7 +115,7 @@ export function ConcordancePanel() {
       {searched && response && response.totalCount === 0 && (
         <div className="concordance-panel__body">
           <EmptyState
-            icon="🔍"
+            icon={<Search size={22} strokeWidth={1.75} />}
             title="No Results"
             message={`No KJV verses matched "${response.query}". Try a different word or phrase.`}
           />

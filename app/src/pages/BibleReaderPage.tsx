@@ -1,17 +1,17 @@
 import { ReaderProvider } from '@/context/ReaderContext';
+import { PageBanner } from '@/components/ui/PageBanner';
 import { ScriptureWorkspace } from '@/components/workspace/ScriptureWorkspace';
+import scriptureWorkspaceBanner from '@/assets/banners/scripture-workspace.png';
 import './BibleReaderPage.css';
 
 export function BibleReaderPage() {
   return (
     <ReaderProvider>
       <div className="bible-reader-page">
-        <header className="bible-reader-page__header">
-          <h1>Scripture Workspace</h1>
-          <p className="bible-reader-page__subtitle">
-            King James Version · Read, navigate, and study
-          </p>
-        </header>
+        <PageBanner
+          imageSrc={scriptureWorkspaceBanner}
+          imageAlt="Scripture Workspace — Per Legem et Testimonium, Christus Revelatur. Nomomartyria Bible Platform."
+        />
 
         <ScriptureWorkspace />
       </div>

@@ -1,5 +1,4 @@
-.study-tab-content__scroll,
-.study-tab-content__panel,
+.study-tab-content__body,
 .study-tab-content__notes {
   display: block;
   min-height: min-content;

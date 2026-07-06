@@ -1,12 +1,13 @@
 .scripture-workspace {
   display: grid;
-  grid-template-columns: 12rem minmax(0, 1.35fr) var(--study-panel-width);
-  gap: var(--space-5);
+  grid-template-columns: var(--nav-panel-width) minmax(0, 1.55fr) var(--study-panel-width);
+  gap: var(--space-4);
   align-items: stretch;
-  height: calc(100vh - 11rem);
+  height: calc(100vh - 14rem);
   min-height: 32rem;
 }
 
+/* Height overridden on bible-reader-page via flex layout */
 .scripture-workspace__nav,
 .scripture-workspace__scripture,
 .scripture-workspace__study {
@@ -16,16 +17,18 @@
   flex-direction: column;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1320px) {
   .scripture-workspace {
-    grid-template-columns: 11.5rem minmax(0, 1.25fr) 28rem;
+    grid-template-columns: var(--nav-panel-width) minmax(0, 1.35fr) 32rem;
   }
 }
 
 @media (max-width: 1100px) {
   .scripture-workspace {
-    grid-template-columns: 11.5rem minmax(0, 1fr);
-    grid-template-rows: auto auto;
+    height: auto;
+    min-height: calc(100vh - 14rem);
+    grid-template-columns: var(--nav-panel-width) minmax(0, 1fr);
+    grid-template-rows: minmax(28rem, 1fr) minmax(24rem, 1fr);
     grid-template-areas:
       'nav scripture'
       'study study';
@@ -41,16 +44,19 @@
 
   .scripture-workspace__study {
     grid-area: study;
+    min-height: 28rem;
   }
 }
 
 @media (max-width: 768px) {
   .scripture-workspace {
     grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(24rem, 1fr) minmax(28rem, 1fr);
     grid-template-areas:
       'nav'
       'scripture'
       'study';
-    gap: var(--space-4);
+    gap: var(--space-3);
+    height: auto;
   }
 }

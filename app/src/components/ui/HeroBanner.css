@@ -1,0 +1,80 @@
+.hero-banner {
+  position: relative;
+  margin-bottom: var(--space-5);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-card);
+  box-shadow: var(--shadow-panel);
+}
+
+.hero-banner__art {
+  position: relative;
+  height: 7.5rem;
+  background: linear-gradient(
+    135deg,
+    var(--color-bg-secondary) 0%,
+    var(--color-accent-muted) 45%,
+    var(--color-gold-muted) 100%
+  );
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-banner__art--image {
+  height: 9rem;
+}
+
+.hero-banner__art-placeholder {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(27, 75, 130, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 80% 40%, rgba(168, 136, 74, 0.1) 0%, transparent 65%);
+}
+
+.hero-banner__content {
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.hero-banner__title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--color-text);
+}
+
+.hero-banner__subtitle {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-ui);
+}
+
+.hero-banner__motto {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--font-size-base);
+  color: var(--color-gold-deep);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 768px) {
+  .hero-banner__art {
+    height: 5.5rem;
+  }
+
+  .hero-banner__art--image {
+    height: 6.5rem;
+  }
+
+  .hero-banner__content {
+    padding: var(--space-3) var(--space-4) var(--space-4);
+  }
+
+  .hero-banner__title {
+    font-size: var(--font-size-xl);
+  }
+}

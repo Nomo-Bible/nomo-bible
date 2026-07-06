@@ -1,3 +1,4 @@
+import { Search, Loader2 } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
 import { useSearch } from '@/context/SearchContext';
 import { searchBible } from '@/services/searchService';
@@ -24,22 +25,29 @@ export function BibleSearch() {
         <label htmlFor="bible-search-input" className="visually-hidden">
           Search the Bible
         </label>
-        <input
-          id="bible-search-input"
-          type="search"
-          className="bible-search__input"
-          placeholder="Search KJV…"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          aria-label="Search the King James Bible"
-        />
+        <div className="bible-search__field">
+          <Search className="bible-search__field-icon" aria-hidden="true" size={16} strokeWidth={2} />
+          <input
+            id="bible-search-input"
+            type="search"
+            className="bible-search__input"
+            placeholder="Search KJV…"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            aria-label="Search the King James Bible"
+          />
+        </div>
         <button
           type="submit"
-          className="bible-search__button"
+          className="bible-search__button nm-btn nm-btn--primary nm-btn--pill"
           disabled={isLoading}
           aria-label="Submit search"
         >
-          {isLoading ? '…' : 'Search'}
+          {isLoading ? (
+            <Loader2 className="bible-search__spinner" aria-hidden="true" size={16} strokeWidth={2} />
+          ) : (
+            'Search'
+          )}
         </button>
       </form>
 

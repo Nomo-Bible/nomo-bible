@@ -1,3 +1,4 @@
+import { Link2 } from 'lucide-react';
 import { useState } from 'react';
 import { useReader } from '@/context/ReaderContext';
 import {
@@ -123,10 +124,10 @@ export function CrossReferencePanel({
           !showSearch &&
           !pendingTarget && (
             <EmptyState
-              icon="🔗"
+              icon={<Link2 size={22} strokeWidth={1.75} />}
               title="No Cross References"
               message={`There are no cross references connected to ${passageLabel} yet. Search for a related passage and add your first connection.`}
-              actionLabel="+ Add Cross Reference"
+              actionLabel="Add Cross Reference"
               onAction={() => setShowSearch(true)}
             />
           )

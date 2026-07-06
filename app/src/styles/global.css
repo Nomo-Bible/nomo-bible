@@ -1,99 +1,120 @@
 :root {
   /*
-   * Nomomartyria design language
-   * Warm parchment workspace · soft gold accents · ivory cards
-   * Inspired by serious study tools — original palette, not copied trade dress
+   * Nomomartyria Design System v1
+   * Warm ivory workspace · sapphire accent · antique gold sparingly
+   * 8-point spacing · premium study application feel
    */
 
-  /* Surfaces */
-  --color-bg: #faf6ef;
-  --color-bg-elevated: #fffdf9;
-  --color-bg-muted: #f5efe3;
-  --color-bg-scripture: #fffefb;
-  --color-panel: #faf7f0;
-  --color-panel-sidebar: #f7f2e8;
-  --color-card: #ffffff;
+  /* ── Color: surfaces ── */
+  --color-bg: #f9f7f2;
+  --color-bg-secondary: #f3efe6;
+  --color-bg-muted: #f3efe6;
+  --color-bg-elevated: #fefefe;
+  --color-bg-scripture: #fdfcf9;
+  --color-panel: #faf8f4;
+  --color-panel-sidebar: #f5f1ea;
+  --color-card: #fefefe;
 
-  /* Text — warm ink, never cold gray */
-  --color-text: #3a3228;
-  --color-text-muted: #736758;
-  --color-text-subtle: #a09484;
-  --color-scripture: #2a2318;
+  /* ── Color: text ── */
+  --color-text: #2a2926;
+  --color-text-muted: #5c574f;
+  --color-text-subtle: #8a847a;
+  --color-scripture: #1f1e1b;
 
-  /* Gold / amber accent family */
-  --color-gold: #c4922a;
-  --color-gold-light: #dbb45a;
-  --color-gold-muted: #ecd9a8;
-  --color-gold-deep: #8a6620;
-  --color-gold-glow: rgba(196, 146, 42, 0.18);
+  /* ── Color: primary accent (sapphire) ── */
+  --color-accent: #1b4b82;
+  --color-accent-hover: #163d6e;
+  --color-accent-light: #2a6cb8;
+  --color-accent-muted: #d4e3f5;
+  --color-accent-glow: rgba(27, 75, 130, 0.14);
+  --color-focus-ring: #1b4b82;
 
-  --color-accent: #7a5c1e;
-  --color-accent-light: #c4922a;
-  --color-accent-muted: #dbb45a;
+  /* ── Color: secondary accent (antique gold — use sparingly) ── */
+  --color-gold: #a8884a;
+  --color-gold-light: #c4a86a;
+  --color-gold-muted: #e8dac0;
+  --color-gold-deep: #7a6535;
+  --color-gold-glow: rgba(168, 136, 74, 0.16);
 
-  /* Borders & highlights */
-  --color-border: #e6dcc8;
-  --color-border-strong: #d4c4a8;
-  --color-border-subtle: #f0e8da;
+  /* Legacy alias */
+  --color-accent-muted-gold: var(--color-gold-muted);
 
-  --color-highlight: #faf3e0;
-  --color-highlight-active: #f5eacc;
-  --color-mark: #fceec8;
-  --color-danger: #a04545;
+  /* ── Color: semantic ── */
+  --color-success: #6b7b52;
+  --color-warning: #c4883a;
+  --color-danger: #9e4545;
   --color-danger-hover: #b85555;
-  --color-focus-ring: #c4922a;
 
-  /* Spacing */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
+  /* ── Color: borders & highlights ── */
+  --color-border: rgba(42, 41, 38, 0.1);
+  --color-border-strong: rgba(42, 41, 38, 0.16);
+  --color-border-subtle: rgba(42, 41, 38, 0.06);
+  --color-highlight: rgba(27, 75, 130, 0.06);
+  --color-highlight-active: rgba(27, 75, 130, 0.1);
+  --color-mark: rgba(196, 168, 106, 0.35);
+
+  /* ── Spacing (8-point) ── */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 1rem; /* 16px */
+  --space-4: 1.5rem; /* 24px */
+  --space-5: 2rem; /* 32px */
+  --space-6: 3rem; /* 48px */
+  --space-7: 4rem; /* 64px */
 
   /* Scrollable panel padding */
-  --scroll-padding-y: var(--space-5);
-  --scroll-padding-x: var(--space-5);
-  --scroll-padding-bottom: var(--space-8);
+  --scroll-padding-y: var(--space-4);
+  --scroll-padding-x: var(--space-4);
+  --scroll-padding-bottom: var(--space-6);
 
-  /* Search result cards — 5 visible before scroll */
-  --search-card-height: 4.625rem;
+  /* Search & concordance cards */
+  --search-card-height: 4.75rem;
   --search-card-gap: var(--space-2);
-
-  /* Concordance result cards (panel scroll — no nested list scroll) */
   --concordance-card-gap: var(--search-card-gap);
-  --concordance-scroll-padding-y: var(--space-4);
-  --concordance-scroll-padding-x: var(--space-5);
-  --concordance-scroll-padding-bottom: var(--space-6);
+  --concordance-scroll-padding-y: var(--space-3);
+  --concordance-scroll-padding-x: var(--space-4);
+  --concordance-scroll-padding-bottom: var(--space-5);
 
-  /* Typography */
-  --font-serif: 'Crimson Pro', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Source Sans 3', system-ui, sans-serif;
-  --font-size-scripture: 1.125rem;
-  --line-height-scripture: 1.92;
+  /* ── Typography ── */
+  --font-serif: 'Cormorant Garamond', 'Crimson Pro', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-size-xs: 0.6875rem;
+  --font-size-sm: 0.8125rem;
+  --font-size-base: 0.9375rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-scripture: 1.1875rem;
+  --line-height-ui: 1.55;
+  --line-height-scripture: 2;
+  --line-height-heading: 1.25;
 
-  /* Layout */
-  --radius-sm: 6px;
-  --radius: 10px;
-  --radius-lg: 14px;
+  /* ── Layout ── */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
   --radius-pill: 999px;
   --max-width: 1280px;
-  --max-width-wide: 1540px;
-  --study-panel-width: 32rem;
+  --max-width-wide: 1600px;
+  --nav-panel-width: 9.5rem;
+  --study-panel-width: 36rem;
 
-  /* Elevation — warm-tinted shadows */
-  --shadow-sm: 0 1px 3px rgba(90, 68, 28, 0.06), 0 1px 2px rgba(90, 68, 28, 0.04);
-  --shadow-md: 0 6px 20px rgba(90, 68, 28, 0.1), 0 2px 6px rgba(90, 68, 28, 0.05);
-  --shadow-panel:
-    0 2px 8px rgba(90, 68, 28, 0.07),
-    0 1px 2px rgba(90, 68, 28, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.75);
-  --shadow-card: 0 2px 6px rgba(90, 68, 28, 0.06);
+  /* Compact page banner (not hero) */
+  --page-banner-height: 11.25rem;
+  --page-banner-height-mobile: 8.75rem;
 
-  --transition-fast: 0.12s ease;
-  --transition-base: 0.2s ease;
+  /* ── Elevation ── */
+  --shadow-sm: 0 1px 2px rgba(26, 25, 22, 0.04), 0 1px 3px rgba(26, 25, 22, 0.03);
+  --shadow-md: 0 4px 16px rgba(26, 25, 22, 0.06), 0 2px 6px rgba(26, 25, 22, 0.04);
+  --shadow-panel: 0 1px 3px rgba(26, 25, 22, 0.05), 0 4px 12px rgba(26, 25, 22, 0.04);
+  --shadow-card: 0 1px 2px rgba(26, 25, 22, 0.04);
+  --shadow-hover: 0 6px 20px rgba(26, 25, 22, 0.08);
+
+  /* ── Motion ── */
+  --transition-fast: 0.14s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fade: 0.18s ease;
 }
 
 *,
@@ -111,10 +132,10 @@ html {
 body {
   margin: 0;
   font-family: var(--font-sans);
+  font-size: var(--font-size-base);
   color: var(--color-text);
-  background: linear-gradient(165deg, #faf6ef 0%, #f3ebe0 48%, #f7f0e4 100%);
-  background-attachment: fixed;
-  line-height: 1.6;
+  background: var(--color-bg);
+  line-height: var(--line-height-ui);
 }
 
 h1,
@@ -123,17 +144,18 @@ h3,
 h4 {
   font-family: var(--font-serif);
   font-weight: 600;
-  line-height: 1.3;
+  line-height: var(--line-height-heading);
+  color: var(--color-text);
 }
 
 a {
   color: var(--color-accent);
   text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
 a:hover {
-  color: var(--color-gold);
-  text-decoration: underline;
+  color: var(--color-accent-hover);
 }
 
 button,
@@ -164,6 +186,33 @@ a:focus-visible {
   border: 0;
 }
 
+/* Shared scroll styling */
+.scroll-pane,
+.scripture-reader__text,
+.study-workspace__content,
+.scripture-nav__controls,
+.search-results__list {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
+}
+
+.scroll-pane::-webkit-scrollbar,
+.scripture-reader__text::-webkit-scrollbar,
+.study-workspace__content::-webkit-scrollbar,
+.scripture-nav__controls::-webkit-scrollbar,
+.search-results__list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-pane::-webkit-scrollbar-thumb,
+.scripture-reader__text::-webkit-scrollbar-thumb,
+.study-workspace__content::-webkit-scrollbar-thumb,
+.scripture-nav__controls::-webkit-scrollbar-thumb,
+.search-results__list::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: var(--radius-pill);
+}
+
 .scroll-pane {
   overflow-y: auto;
   padding: var(--scroll-padding-y) var(--scroll-padding-x);
@@ -172,24 +221,34 @@ a:focus-visible {
 }
 
 .scroll-pane--flush-top {
-  padding-top: var(--space-3);
+  padding-top: var(--space-2);
 }
 
-.scroll-pane,
-.search-results__list {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-gold-muted) transparent;
+/* Tab content fade */
+@keyframes nm-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.scroll-pane::-webkit-scrollbar,
-.search-results__list::-webkit-scrollbar {
-  width: 8px;
+.nm-fade-in {
+  animation: nm-fade-in var(--transition-fade) ease forwards;
 }
 
-.scroll-pane::-webkit-scrollbar-thumb,
-.search-results__list::-webkit-scrollbar-thumb {
-  background: var(--color-gold-muted);
-  border-radius: var(--radius-pill);
-  border: 2px solid transparent;
-  background-clip: padding-box;
+@media (prefers-reduced-motion: reduce) {
+  .nm-fade-in {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

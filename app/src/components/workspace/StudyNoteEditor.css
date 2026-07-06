@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  padding: var(--space-4);
+  padding: var(--space-4) var(--space-5);
 }
 
 .study-note-editor__field {
@@ -12,8 +12,8 @@
 }
 
 .study-note-editor__label {
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--color-text-subtle);
@@ -24,30 +24,33 @@
   width: 100%;
   padding: var(--input-padding-y) var(--input-padding-x);
   font-family: var(--font-sans);
-  font-size: 0.9rem;
+  font-size: var(--font-size-base);
   border: var(--input-border);
   border-radius: var(--input-radius);
-  background: var(--color-bg-elevated);
+  background: var(--color-card);
   color: var(--color-text);
   resize: vertical;
-  line-height: 1.55;
+  line-height: 1.6;
   transition:
     border-color var(--transition-fast),
     box-shadow var(--transition-fast);
 }
 
 .study-note-editor__textarea {
-  min-height: 10rem;
+  min-height: 12rem;
+  font-family: var(--font-serif);
+  font-size: var(--font-size-base);
+  line-height: 1.75;
 }
 
 .study-note-editor__input:focus,
 .study-note-editor__textarea:focus {
   outline: none;
   border-color: var(--color-accent-light);
-  box-shadow: 0 0 0 3px rgba(117, 96, 72, 0.12);
+  box-shadow: 0 0 0 3px var(--color-accent-glow);
 }
 
 .study-note-editor__hint {
-  font-size: 0.72rem;
+  font-size: var(--font-size-xs);
   color: var(--color-text-subtle);
 }

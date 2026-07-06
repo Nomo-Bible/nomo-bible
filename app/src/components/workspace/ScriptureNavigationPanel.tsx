@@ -1,3 +1,4 @@
+import { BookMarked, Hash, ListOrdered, Compass } from 'lucide-react';
 import { useReader } from '@/context/ReaderContext';
 import {
   getAvailableBooks,
@@ -25,7 +26,8 @@ export function ScriptureNavigationPanel() {
   return (
     <nav className="scripture-nav" aria-label="Scripture navigation">
       <header className="scripture-nav__header">
-        <h2 className="scripture-nav__title">Navigation</h2>
+        <Compass className="scripture-nav__header-icon" aria-hidden="true" size={16} strokeWidth={2} />
+        <h2 className="scripture-nav__title">Navigate</h2>
       </header>
 
       <div className="scripture-nav__reference" aria-live="polite">
@@ -37,6 +39,7 @@ export function ScriptureNavigationPanel() {
       <div className="scripture-nav__controls">
         <div className="scripture-nav__group">
           <label htmlFor="workspace-book-select" className="scripture-nav__label">
+            <BookMarked className="scripture-nav__label-icon" aria-hidden="true" size={13} strokeWidth={2} />
             Book
           </label>
           <select
@@ -55,6 +58,7 @@ export function ScriptureNavigationPanel() {
 
         <div className="scripture-nav__group">
           <label htmlFor="workspace-chapter-select" className="scripture-nav__label">
+            <Hash className="scripture-nav__label-icon" aria-hidden="true" size={13} strokeWidth={2} />
             Chapter
           </label>
           <select
@@ -73,6 +77,7 @@ export function ScriptureNavigationPanel() {
 
         <div className="scripture-nav__group">
           <label htmlFor="workspace-verse-select" className="scripture-nav__label">
+            <ListOrdered className="scripture-nav__label-icon" aria-hidden="true" size={13} strokeWidth={2} />
             Verse
           </label>
           <select

@@ -3,38 +3,37 @@
 }
 
 .concordance-panel__notice {
-  padding: var(--space-2) var(--space-4);
-  border-bottom: 1px solid var(--color-border);
-  background: var(--color-bg-muted);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-secondary);
 }
 
 .concordance-panel__notice strong {
   display: block;
   margin-bottom: var(--space-1);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--color-gold-deep);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
 }
 
 .concordance-panel__notice p {
   margin: 0;
-  font-size: 0.72rem;
-  line-height: 1.45;
+  font-size: var(--font-size-xs);
+  line-height: 1.5;
   color: var(--color-text-muted);
 }
 
 .concordance-panel__form {
-  padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid var(--color-border);
-  background: var(--color-bg-elevated);
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-card);
 }
 
 .concordance-panel__label {
   display: block;
   margin-bottom: var(--space-2);
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--color-text-subtle);
@@ -50,7 +49,7 @@
   min-width: 0;
   padding: var(--input-padding-y) var(--input-padding-x);
   font-family: var(--font-sans);
-  font-size: 0.875rem;
+  font-size: var(--font-size-base);
   border: var(--input-border);
   border-radius: var(--input-radius);
   background: var(--color-bg);
@@ -62,30 +61,29 @@
 
 .concordance-panel__input:focus {
   outline: none;
-  border-color: var(--color-gold-light);
-  box-shadow: 0 0 0 3px var(--color-gold-glow);
+  border-color: var(--color-accent-light);
+  box-shadow: 0 0 0 3px var(--color-accent-glow);
 }
 
 .concordance-panel__btn {
   padding: var(--btn-padding-y) var(--space-4);
   font-family: var(--font-sans);
-  font-size: 0.8125rem;
+  font-size: var(--font-size-sm);
   font-weight: 600;
-  border: 1px solid var(--color-gold);
-  border-radius: var(--radius-pill);
-  background: linear-gradient(to bottom, var(--color-gold-light), var(--color-gold));
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius);
+  background: var(--color-accent);
   color: #fff;
   cursor: pointer;
   white-space: nowrap;
-  box-shadow: var(--shadow-sm);
   transition:
     background var(--transition-fast),
     border-color var(--transition-fast);
 }
 
 .concordance-panel__btn:hover {
-  background: linear-gradient(to bottom, #e4c06a, var(--color-gold-light));
-  border-color: var(--color-gold-light);
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
 }
 
 .concordance-panel__btn:focus-visible {
@@ -99,13 +97,13 @@
 
 .concordance-panel__count-row {
   border-bottom: 1px solid var(--color-border-subtle);
-  background: var(--color-bg-muted);
+  background: var(--color-bg);
 }
 
 .concordance-panel__count {
   margin: 0;
   padding: var(--space-3) var(--space-4) var(--space-2);
-  font-size: 0.75rem;
+  font-size: var(--font-size-sm);
   font-weight: 500;
   color: var(--color-text-muted);
 }
@@ -125,21 +123,20 @@
 .concordance-panel__pager--footer {
   padding: var(--space-4);
   border-top: 1px solid var(--color-border-subtle);
-  background: var(--color-bg-muted);
+  background: var(--color-bg);
 }
 
 .concordance-panel__pager-btn {
   padding: var(--space-2) var(--space-3);
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   font-weight: 600;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius);
   background: var(--color-card);
   color: var(--color-text);
   cursor: pointer;
   white-space: nowrap;
-  box-shadow: var(--shadow-sm);
   transition:
     background var(--transition-fast),
     border-color var(--transition-fast),
@@ -148,14 +145,13 @@
 
 .concordance-panel__pager-btn:hover:not(:disabled) {
   background: var(--color-highlight);
-  border-color: var(--color-gold-muted);
-  color: var(--color-gold-deep);
+  border-color: var(--color-accent-muted);
+  color: var(--color-accent);
 }
 
 .concordance-panel__pager-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
-  box-shadow: none;
 }
 
 .concordance-panel__pager-btn:focus-visible {
@@ -164,12 +160,11 @@
 }
 
 .concordance-panel__pager-status {
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   font-weight: 500;
   color: var(--color-text-muted);
   text-align: center;
 }
-
 
 .concordance-panel__results {
   list-style: none;
@@ -188,30 +183,28 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: var(--space-1);
+  gap: var(--space-2);
   width: 100%;
   box-sizing: border-box;
-  height: var(--search-card-height);
   min-height: var(--search-card-height);
-  max-height: var(--search-card-height);
-  overflow: hidden;
   padding: var(--space-3) var(--space-4);
   text-align: left;
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius);
   background: var(--color-card);
   cursor: pointer;
-  box-shadow: var(--shadow-card);
   transition:
     border-color var(--transition-fast),
     background var(--transition-fast),
-    box-shadow var(--transition-fast);
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
 }
 
 .concordance-panel__result:hover {
-  border-color: var(--color-gold-muted);
+  border-color: var(--color-accent-muted);
   background: var(--color-highlight);
   box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
 }
 
 .concordance-panel__result:focus-visible {
@@ -221,15 +214,15 @@
 
 .concordance-panel__ref {
   font-family: var(--font-serif);
-  font-size: 0.925rem;
+  font-size: var(--font-size-base);
   font-weight: 600;
-  color: var(--color-gold-deep);
+  color: var(--color-accent);
 }
 
 .concordance-panel__text {
   font-family: var(--font-serif);
-  font-size: 0.8125rem;
-  line-height: 1.55;
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
   color: var(--color-text);
   display: -webkit-box;
   -webkit-line-clamp: 2;

@@ -1,0 +1,20 @@
+.page-banner {
+  margin-bottom: var(--space-4);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.page-banner__img {
+  display: block;
+  width: 100%;
+  height: var(--page-banner-height);
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+@media (max-width: 768px) {
+  .page-banner__img {
+    height: var(--page-banner-height-mobile);
+  }
+}

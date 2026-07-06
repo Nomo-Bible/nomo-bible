@@ -1,3 +1,4 @@
+import { Home, BookOpen } from 'lucide-react';
 import { Link, NavLink, Outlet } from 'react-router-dom';
 import { BibleSearch } from './BibleSearch';
 import './GlobalLayout.css';
@@ -8,25 +9,28 @@ export function GlobalLayout() {
       <header className="site-header">
         <div className="site-header__inner">
           <Link to="/" className="site-header__brand">
-            <span className="site-header__title">Nomomartyria</span>
-            <span className="site-header__subtitle">Bible Platform</span>
+            <span className="site-header__mark" aria-hidden="true">
+              N
+            </span>
+            <span className="site-header__brand-text">
+              <span className="site-header__title">Nomomartyria</span>
+              <span className="site-header__subtitle">Bible Platform</span>
+            </span>
           </Link>
 
           <nav className="site-header__nav" aria-label="Main navigation">
             <NavLink to="/" end className="site-header__link">
+              <Home className="site-header__link-icon" aria-hidden="true" size={16} strokeWidth={2} />
               Home
             </NavLink>
             <NavLink to="/reader" className="site-header__link">
-              Scripture Workspace
+              <BookOpen className="site-header__link-icon" aria-hidden="true" size={16} strokeWidth={2} />
+              Scripture
             </NavLink>
           </nav>
 
           <BibleSearch />
         </div>
-
-        <p className="site-header__motto">
-          Per Legem et Testimonium, Christus Revelatur
-        </p>
       </header>
 
       <main className="site-main">

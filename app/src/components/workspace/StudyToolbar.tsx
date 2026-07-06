@@ -1,3 +1,11 @@
+import {
+  MoreHorizontal,
+  Pencil,
+  Plus,
+  RefreshCw,
+  Save,
+  Trash2,
+} from 'lucide-react';
 import './StudyToolbar.css';
 
 interface StudyToolbarProps {
@@ -37,7 +45,7 @@ export function StudyToolbar({
             onClick={onNewNote}
             title="Create a new study note"
           >
-            <span className="study-toolbar__icon" aria-hidden="true">+</span>
+            <Plus className="study-toolbar__icon" aria-hidden="true" size={14} strokeWidth={2} />
             New Note
           </button>
           <button
@@ -47,7 +55,7 @@ export function StudyToolbar({
             disabled={!canSave}
             title="Save note"
           >
-            <span className="study-toolbar__icon" aria-hidden="true">💾</span>
+            <Save className="study-toolbar__icon" aria-hidden="true" size={14} strokeWidth={2} />
             Save
           </button>
           <button
@@ -57,7 +65,7 @@ export function StudyToolbar({
             disabled={!canEdit}
             title="Edit selected note"
           >
-            <span className="study-toolbar__icon" aria-hidden="true">✎</span>
+            <Pencil className="study-toolbar__icon" aria-hidden="true" size={14} strokeWidth={2} />
             Edit
           </button>
           <button
@@ -67,7 +75,7 @@ export function StudyToolbar({
             disabled={!canDelete}
             title="Delete selected note"
           >
-            <span className="study-toolbar__icon" aria-hidden="true">🗑</span>
+            <Trash2 className="study-toolbar__icon" aria-hidden="true" size={14} strokeWidth={2} />
             Delete
           </button>
           {canCancel && (
@@ -88,7 +96,7 @@ export function StudyToolbar({
         onClick={onRefresh}
         title="Refresh workspace data"
       >
-        <span className="study-toolbar__icon" aria-hidden="true">↻</span>
+        <RefreshCw className="study-toolbar__icon" aria-hidden="true" size={14} strokeWidth={2} />
         Refresh
       </button>
       <button
@@ -97,7 +105,7 @@ export function StudyToolbar({
         disabled
         title="More options (coming soon)"
       >
-        <span className="study-toolbar__icon" aria-hidden="true">⋯</span>
+        <MoreHorizontal className="study-toolbar__icon" aria-hidden="true" size={14} strokeWidth={2} />
         More
       </button>
     </div>

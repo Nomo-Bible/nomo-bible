@@ -1,13 +1,13 @@
 .cross-ref-editor {
   padding: var(--space-4);
-  border-bottom: 1px solid var(--color-border);
-  background: var(--color-bg-elevated);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-card);
   flex-shrink: 0;
 }
 
 .cross-ref-editor__target {
   margin: 0 0 var(--space-4);
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   line-height: 1.5;
   color: var(--color-text);
 }
@@ -20,8 +20,8 @@
 }
 
 .cross-ref-editor__label {
-  font-size: 0.68rem;
-  font-weight: 700;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--color-text-subtle);
@@ -30,7 +30,7 @@
 .cross-ref-editor__input {
   padding: var(--input-padding-y) var(--input-padding-x);
   font-family: var(--font-sans);
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   border: var(--input-border);
   border-radius: var(--input-radius);
   background: var(--color-bg);
@@ -43,12 +43,12 @@
 .cross-ref-editor__input:focus {
   outline: none;
   border-color: var(--color-accent-light);
-  box-shadow: 0 0 0 3px rgba(117, 96, 72, 0.12);
+  box-shadow: 0 0 0 3px var(--color-accent-glow);
 }
 
 .cross-ref-editor__error {
   margin: 0 0 var(--space-3);
-  font-size: 0.8125rem;
+  font-size: var(--font-size-sm);
   color: var(--color-danger);
 }
 
@@ -60,11 +60,11 @@
 .cross-ref-editor__btn {
   padding: var(--btn-padding-y) var(--space-4);
   font-family: var(--font-sans);
-  font-size: 0.8125rem;
+  font-size: var(--font-size-sm);
   font-weight: 500;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-subtle);
   border-radius: var(--btn-radius);
-  background: var(--color-bg-elevated);
+  background: var(--color-bg);
   color: var(--color-text);
   cursor: pointer;
   transition:
@@ -73,20 +73,20 @@
 }
 
 .cross-ref-editor__btn--primary {
-  background: linear-gradient(to bottom, var(--color-gold-light), var(--color-gold));
-  border-color: var(--color-gold);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
   color: #fff;
   font-weight: 600;
 }
 
 .cross-ref-editor__btn--primary:hover {
-  background: linear-gradient(to bottom, #e4c06a, var(--color-gold-light));
-  border-color: var(--color-gold-light);
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
 }
 
 .cross-ref-editor__btn:hover {
-  border-color: var(--color-accent-light);
-  background: var(--color-bg-muted);
+  border-color: var(--color-accent-muted);
+  background: var(--color-highlight);
 }
 
 .cross-ref-editor__btn:focus-visible {

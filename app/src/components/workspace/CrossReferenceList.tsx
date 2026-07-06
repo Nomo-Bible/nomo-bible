@@ -1,3 +1,4 @@
+import { Trash2 } from 'lucide-react';
 import type { CrossReference } from '@/types/crossReferences';
 import './CrossReferenceList.css';
 
@@ -33,7 +34,7 @@ export function CrossReferenceList({
             aria-label={`Delete cross reference to ${ref.targetReference}`}
             title="Delete cross reference"
           >
-            ×
+            <Trash2 size={16} strokeWidth={2} aria-hidden="true" />
           </button>
         </li>
       ))}

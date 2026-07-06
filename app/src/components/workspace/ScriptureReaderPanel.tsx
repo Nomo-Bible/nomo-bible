@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { useReader } from '@/context/ReaderContext';
 import { getChapter } from '@/services/bibleService';
@@ -33,7 +34,8 @@ export function ScriptureReaderPanel() {
           disabled={!canGoPrevious}
           aria-label="Previous chapter"
         >
-          ← Previous
+          <ChevronLeft size={16} strokeWidth={2} aria-hidden="true" />
+          Previous
         </button>
         <button
           type="button"
@@ -42,7 +44,8 @@ export function ScriptureReaderPanel() {
           disabled={!canGoNext}
           aria-label="Next chapter"
         >
-          Next →
+          Next
+          <ChevronRight size={16} strokeWidth={2} aria-hidden="true" />
         </button>
       </div>
 

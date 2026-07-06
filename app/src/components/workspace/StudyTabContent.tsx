@@ -1,3 +1,4 @@
+import { BarChart3, BookOpen, ScrollText, Tags } from 'lucide-react';
 import { EmptyState } from './EmptyState';
 import { StudyNoteDetail } from './StudyNoteDetail';
 import { StudyNoteEditor } from './StudyNoteEditor';
@@ -32,7 +33,7 @@ export function StudyTabContent({ workspace, passageLabel }: StudyTabContentProp
     case 'study-notes':
       if (editorMode === 'create' || editorMode === 'edit') {
         return (
-          <div className="study-tab-content__scroll">
+          <div className="study-tab-content__body nm-fade-in">
             <StudyNoteEditor
               draft={draft}
               mode={editorMode}
@@ -44,12 +45,12 @@ export function StudyTabContent({ workspace, passageLabel }: StudyTabContentProp
 
       if (notes.length === 0) {
         return (
-          <div className="study-tab-content__scroll">
+          <div className="study-tab-content__body nm-fade-in">
             <EmptyState
-              icon="📖"
+              icon={<BookOpen size={22} strokeWidth={1.75} />}
               title="No Study Notes"
               message={`There are currently no study notes for ${passageLabel}. Click below to begin building your study library.`}
-              actionLabel="+ New Note"
+              actionLabel="New Note"
               onAction={startCreate}
             />
           </div>
@@ -57,7 +58,7 @@ export function StudyTabContent({ workspace, passageLabel }: StudyTabContentProp
       }
 
       return (
-        <div className="study-tab-content__notes">
+        <div className="study-tab-content__notes nm-fade-in">
           <StudyNotesList
             notes={notes}
             selectedNoteId={selectedNoteId}
@@ -71,7 +72,7 @@ export function StudyTabContent({ workspace, passageLabel }: StudyTabContentProp
 
     case 'cross-references':
       return (
-        <div className="study-tab-content__panel">
+        <div className="study-tab-content__body nm-fade-in">
           <CrossReferencePanel
             sourceReference={workspace.passageKey}
             passageLabel={passageLabel}
@@ -83,16 +84,16 @@ export function StudyTabContent({ workspace, passageLabel }: StudyTabContentProp
 
     case 'concordance':
       return (
-        <div className="study-tab-content__panel">
+        <div className="study-tab-content__body nm-fade-in">
           <ConcordancePanel />
         </div>
       );
 
     case 'topics':
       return (
-        <div className="study-tab-content__scroll">
+        <div className="study-tab-content__body nm-fade-in">
           <KnowledgeBaseEmptyPanel
-            icon="🏷"
+            icon={<Tags size={22} strokeWidth={1.75} />}
             title="No Topics"
             message={`No topics have yet been connected to ${passageLabel}. Topics will become part of the Knowledge Base.`}
           />
@@ -101,9 +102,9 @@ export function StudyTabContent({ workspace, passageLabel }: StudyTabContentProp
 
     case 'doctrine':
       return (
-        <div className="study-tab-content__scroll">
+        <div className="study-tab-content__body nm-fade-in">
           <KnowledgeBaseEmptyPanel
-            icon="📜"
+            icon={<ScrollText size={22} strokeWidth={1.75} />}
             title="No Doctrine Articles"
             message={`No doctrine articles have been linked to ${passageLabel}. Doctrinal studies will be drawn from the Knowledge Base.`}
           />
@@ -112,9 +113,9 @@ export function StudyTabContent({ workspace, passageLabel }: StudyTabContentProp
 
     case 'charts':
       return (
-        <div className="study-tab-content__scroll">
+        <div className="study-tab-content__body nm-fade-in">
           <KnowledgeBaseEmptyPanel
-            icon="📊"
+            icon={<BarChart3 size={22} strokeWidth={1.75} />}
             title="No Charts"
             message={`No charts have been connected to ${passageLabel}. Visual study resources will appear here from the Knowledge Base.`}
           />

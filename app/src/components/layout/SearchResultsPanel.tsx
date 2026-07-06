@@ -1,3 +1,4 @@
+import { X } from 'lucide-react';
 import { useSearch } from '@/context/SearchContext';
 import { formatReference } from '@/types/bible';
 import { stripKjvEditorialMarkup } from '@/utils/kjvVerseMarkup';
@@ -24,7 +25,7 @@ export function SearchResultsPanel({ onClose }: SearchResultsPanelProps) {
           onClick={onClose}
           aria-label="Close search results"
         >
-          ×
+          <X size={16} strokeWidth={2} aria-hidden="true" />
         </button>
       </div>
 

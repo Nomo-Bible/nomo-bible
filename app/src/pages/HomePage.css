@@ -1,77 +1,25 @@
-.home-hero {
-  text-align: center;
-  padding: var(--space-10) var(--space-4) var(--space-10);
-}
-
-.home-hero__title {
-  font-size: 2.85rem;
-  color: var(--color-gold-deep);
-  margin: 0 0 var(--space-3);
-  letter-spacing: 0.01em;
-}
-
-.home-hero__motto {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1.25rem;
-  color: var(--color-text-muted);
-  margin: 0 0 var(--space-2);
-}
-
-.home-hero__tagline {
-  font-size: 0.975rem;
-  color: var(--color-text-subtle);
-  margin: 0 0 var(--space-6);
-}
-
-.home-hero__cta {
-  display: inline-block;
-  padding: var(--space-3) var(--space-6);
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: #fff;
-  background: linear-gradient(to bottom, var(--color-gold-light), var(--color-gold));
-  border: 1px solid var(--color-gold);
-  border-radius: var(--radius-pill);
-  text-decoration: none;
-  box-shadow: var(--shadow-md);
-  transition:
-    background var(--transition-base),
-    transform var(--transition-fast),
-    box-shadow var(--transition-base);
-}
-
-.home-hero__cta:hover {
-  background: linear-gradient(to bottom, #e4c06a, var(--color-gold-light));
-  text-decoration: none;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
 .home-intro {
   max-width: 42rem;
-  margin: 0 auto var(--space-10);
+  margin: 0 auto var(--space-7);
   text-align: center;
-  padding: 0 var(--space-4);
+  padding: 0 var(--space-3);
 }
 
 .home-intro h2 {
-  font-size: 1.6rem;
-  margin-bottom: var(--space-4);
-  color: var(--color-text);
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-3);
 }
 
 .home-intro p {
   color: var(--color-text-muted);
-  font-size: 1.05rem;
+  font-size: var(--font-size-base);
   line-height: 1.75;
 }
 
 .home-modules h2 {
   text-align: center;
-  font-size: 1.6rem;
-  margin-bottom: var(--space-6);
-  color: var(--color-text);
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-5);
 }
 
 .home-modules__grid {
@@ -80,13 +28,15 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: var(--space-5);
+  gap: var(--space-4);
 }
 
 .home-modules__card {
-  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-5);
   background: var(--color-card);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-panel);
   transition:
@@ -96,45 +46,61 @@
 }
 
 .home-modules__card:hover {
-  border-color: var(--color-gold-muted);
-  box-shadow: var(--shadow-md);
+  border-color: var(--color-accent-muted);
+  box-shadow: var(--shadow-hover);
   transform: translateY(-2px);
+}
+
+.home-modules__icon {
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
 }
 
 .home-modules__card h3 {
   margin: 0 0 var(--space-2);
-  font-size: 1.15rem;
-  color: var(--color-gold-deep);
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
 }
 
 .home-modules__card p {
   margin: 0 0 var(--space-4);
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: var(--font-size-sm);
+  line-height: 1.65;
   color: var(--color-text-muted);
+  flex: 1;
 }
 
-.home-modules__card a {
-  font-size: 0.875rem;
+.home-modules__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
   font-weight: 600;
-  color: var(--color-gold-deep);
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.home-modules__link:hover {
+  color: var(--color-accent-hover);
+  text-decoration: none;
 }
 
 .home-modules__card--active {
-  border-color: var(--color-gold-muted);
-  background: linear-gradient(to bottom, var(--color-card), var(--color-bg-elevated));
+  border-color: var(--color-accent-muted);
+  background: linear-gradient(to bottom, var(--color-card), var(--color-bg));
 }
 
 .home-modules__card--placeholder {
-  opacity: 0.75;
+  opacity: 0.72;
+}
+
+.home-modules__card--placeholder:hover {
+  transform: none;
+  box-shadow: var(--shadow-panel);
 }
 
 @media (max-width: 768px) {
-  .home-hero {
-    padding: var(--space-8) var(--space-2);
-  }
-
-  .home-hero__title {
-    font-size: 2.1rem;
+  .home-intro {
+    margin-bottom: var(--space-6);
   }
 }

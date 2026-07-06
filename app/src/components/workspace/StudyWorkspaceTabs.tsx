@@ -1,5 +1,6 @@
 import type { StudyWorkspaceTabId } from '@/types/studyWorkspace';
 import { STUDY_WORKSPACE_TABS } from '@/types/studyWorkspace';
+import { STUDY_TAB_ICONS, STUDY_TAB_ICON_SIZE } from '@/components/ui/studyTabIcons';
 import './StudyWorkspaceTabs.css';
 
 interface StudyWorkspaceTabsProps {
@@ -19,6 +20,7 @@ export function StudyWorkspaceTabs({
     >
       {STUDY_WORKSPACE_TABS.map((tab) => {
         const isActive = tab.id === activeTab;
+        const Icon = STUDY_TAB_ICONS[tab.id];
         return (
           <button
             key={tab.id}
@@ -32,7 +34,8 @@ export function StudyWorkspaceTabs({
             aria-controls={`study-panel-${tab.id}`}
             onClick={() => onTabChange(tab.id)}
           >
-            {tab.label}
+            <Icon className="study-tabs__icon" aria-hidden="true" size={STUDY_TAB_ICON_SIZE} strokeWidth={2} />
+            <span className="study-tabs__label">{tab.label}</span>
           </button>
         );
       })}
