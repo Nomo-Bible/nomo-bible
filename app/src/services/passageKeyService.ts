@@ -59,3 +59,24 @@ export function parseTagsInput(input: string): string[] {
 export function formatTagsForInput(tags: string[]): string {
   return tags.join(', ');
 }
+
+/** Whether a stored note belongs to the active passage (chapter or verse scope). */
+export function noteMatchesPassage(
+  notePassageKey: PassageKey,
+  activePassageKey: PassageKey,
+): boolean {
+  if (notePassageKey === activePassageKey) return true;
+
+  const noteLoc = parseScriptureReference(notePassageKey);
+  const activeLoc = parseScriptureReference(activePassageKey);
+  if (!noteLoc || !activeLoc) return false;
+  if (noteLoc.book !== activeLoc.book || noteLoc.chapter !== activeLoc.chapter) {
+    return false;
+  }
+
+  if (activeLoc.verse === null) {
+    return true;
+  }
+
+  return noteLoc.verse === null || noteLoc.verse === activeLoc.verse;
+}

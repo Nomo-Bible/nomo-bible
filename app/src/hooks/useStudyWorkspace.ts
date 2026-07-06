@@ -10,6 +10,7 @@ import {
 import {
   createNote,
   deleteNote,
+  getNoteById,
   loadNotesForPassage,
   updateNote,
 } from '@/services/studyNotesService';
@@ -54,10 +55,12 @@ export function useStudyWorkspace() {
   const [draft, setDraft] = useState<StudyNoteDraft>(EMPTY_DRAFT);
   const [draftBaseline, setDraftBaseline] = useState<StudyNoteDraft>(EMPTY_DRAFT);
 
-  const selectedNote = useMemo(
-    () => notes.find((note) => note.id === selectedNoteId) ?? null,
-    [notes, selectedNoteId],
-  );
+  const selectedNote = useMemo(() => {
+    if (!selectedNoteId) return null;
+    const fromPassage = notes.find((note) => note.id === selectedNoteId);
+    if (fromPassage) return fromPassage;
+    return getNoteById(selectedNoteId) ?? null;
+  }, [notes, selectedNoteId]);
 
   const refreshNotes = useCallback(() => {
     setNotes(loadNotesForPassage(passageKey));

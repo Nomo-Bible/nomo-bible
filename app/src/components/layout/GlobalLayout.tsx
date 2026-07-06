@@ -1,4 +1,4 @@
-import { Home, BookOpen } from 'lucide-react';
+import { Home, BookOpen, Library, Users } from 'lucide-react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { BibleSearch } from './BibleSearch';
 import './GlobalLayout.css';
@@ -28,6 +28,14 @@ export function GlobalLayout() {
             <NavLink to="/reader" className="site-header__link">
               <BookOpen className="site-header__link-icon" aria-hidden="true" size={16} strokeWidth={2} />
               Scripture
+            </NavLink>
+            <NavLink to="/repository" className="site-header__link">
+              <Library className="site-header__link-icon" aria-hidden="true" size={16} strokeWidth={2} />
+              Repository
+            </NavLink>
+            <NavLink to="/about" className="site-header__link">
+              <Users className="site-header__link-icon" aria-hidden="true" size={16} strokeWidth={2} />
+              About
             </NavLink>
           </nav>
 

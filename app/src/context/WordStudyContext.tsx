@@ -137,7 +137,12 @@ export function WordStudyProvider({ children }: { children: ReactNode }) {
         selection.referenceLabel,
         noteEntry ?? entry,
       );
-      setSearchParams({ tab: 'study-notes', note: note.id });
+      setSearchParams((current) => {
+        const next = new URLSearchParams(current);
+        next.set('tab', 'study-notes');
+        next.set('note', note.id);
+        return next;
+      });
       closeWordStudy();
     },
     [closeWordStudy, entry, selection, setSearchParams],

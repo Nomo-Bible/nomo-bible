@@ -7,12 +7,14 @@ interface WorkspaceExpandButtonProps {
   panelId: WorkspacePanelId;
   label: string;
   compact?: boolean;
+  restoreLabel?: string;
 }
 
 export function WorkspaceExpandButton({
   panelId,
   label,
   compact = false,
+  restoreLabel = 'Restore layout',
 }: WorkspaceExpandButtonProps) {
   const { isExpanded, togglePanel } = useWorkspaceExpand();
   const expanded = isExpanded(panelId);
@@ -27,8 +29,8 @@ export function WorkspaceExpandButton({
       }
       onClick={() => togglePanel(panelId)}
       aria-pressed={expanded}
-      aria-label={expanded ? `Restore layout from ${label}` : `Expand ${label} to full workspace`}
-      title={expanded ? 'Restore layout' : `Expand ${label}`}
+      aria-label={expanded ? `${restoreLabel} from ${label}` : `Expand ${label} to full workspace`}
+      title={expanded ? restoreLabel : `Expand ${label}`}
     >
       {expanded ? (
         <Minimize2 size={compact ? 13 : 15} strokeWidth={2} aria-hidden="true" />
@@ -37,7 +39,7 @@ export function WorkspaceExpandButton({
       )}
       {!compact && (
         <span className="workspace-expand-btn__label">
-          {expanded ? 'Restore layout' : 'Expand'}
+          {expanded ? restoreLabel : 'Expand'}
         </span>
       )}
     </button>

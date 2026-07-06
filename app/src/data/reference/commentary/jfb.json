@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "sourceId": "jfb",
+    "sourceName": "Jamieson-Fausset-Brown Bible Commentary",
+    "sourceUrl": "https://www.ccel.org/j/jfb/jfb/",
+    "license": "Public Domain",
+    "redistributionAllowed": true,
+    "attributionRequired": false,
+    "attribution": "Jamieson, Fausset & Brown (1871), Christian Classics Ethereal Library",
+    "dateChecked": "2026-07-06",
+    "notes": "Short excerpts only. Full commentary available via external link."
+  },
+  "entries": {
+    "John 5:39": [
+      {
+        "id": "jfb-john-5-39",
+        "sourceId": "jfb",
+        "sourceName": "Jamieson-Fausset-Brown",
+        "reference": "John 5:39",
+        "summary": "The Scriptures are the appointed witness to Christ; searching them leads to the knowledge of eternal life in him.",
+        "excerpt": "Search the scriptures — implying that the Jews professed to derive their hope of eternal life from them. They are they which testify of me — not that they testify of nothing else, but that their principal scope is to bear witness to the Messiah.",
+        "textEmbedded": true,
+        "externalUrl": "https://www.ccel.org/ccel/jfb/jfb/jfb43.html",
+        "license": "Public Domain",
+        "attribution": "Jamieson, Fausset & Brown (1871)",
+        "attributionRequired": false,
+        "redistributionAllowed": true
+      }
+    ],
+    "Romans 8:28": [
+      {
+        "id": "jfb-romans-8-28",
+        "sourceId": "jfb",
+        "sourceName": "Jamieson-Fausset-Brown",
+        "reference": "Romans 8:28",
+        "summary": "God sovereignly works all circumstances together for the good of those who love him and are called according to his purpose.",
+        "excerpt": "And we know that all things work together for good to them that love God, to them who are the called according to his purpose — not all things without exception, but all things that befall the children of God are overruled by Him for their good.",
+        "textEmbedded": true,
+        "externalUrl": "https://www.ccel.org/ccel/jfb/jfb/jfb45.html",
+        "license": "Public Domain",
+        "attribution": "Jamieson, Fausset & Brown (1871)",
+        "attributionRequired": false,
+        "redistributionAllowed": true
+      }
+    ]
+  }
+}

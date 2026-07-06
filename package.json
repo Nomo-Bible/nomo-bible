@@ -10,6 +10,8 @@
     "kjv:import": "npm run kjv:download && npm run kjv:convert",
     "kjv:build-strongs-tokens": "node scripts/kjv/build-kjv-strongs-tokens.mjs",
     "validate:strongs": "node scripts/kjv/validate-strongs.mjs",
-    "validate:strongs:repair": "node scripts/kjv/validate-strongs.mjs --repair"
+    "validate:strongs:repair": "node scripts/kjv/validate-strongs.mjs --repair",
+    "study:build-repository-edition": "node scripts/study/build-repository-edition-md.mjs",
+    "reference:build-tsk": "node scripts/reference/build-tsk-crossrefs.mjs"
   }
 }

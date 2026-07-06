@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpen, Link2, Library, Search } from 'lucide-react';
+import { ArrowRight, BookOpen, Link2, Library, Search, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { PageBanner } from '@/components/ui/PageBanner';
 import homeBanner from '@/assets/banners/home.png';
@@ -64,6 +64,18 @@ export function HomePage() {
           </li>
           <li className="home-modules__card">
             <Library className="home-modules__icon" aria-hidden="true" size={24} strokeWidth={1.75} />
+            <h3>Repository Edition</h3>
+            <p>
+              Nomomartyria Repository Edition 1.0 — platform documentation and
+              knowledge-base reference.
+            </p>
+            <Link to="/repository" className="home-modules__link">
+              Read Repository Edition
+              <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
+            </Link>
+          </li>
+          <li className="home-modules__card">
+            <Library className="home-modules__icon" aria-hidden="true" size={24} strokeWidth={1.75} />
             <h3>How to Study the Bible</h3>
             <p>
               A lesson guide on letting Scripture interpret itself—Christ-centered,
@@ -71,6 +83,15 @@ export function HomePage() {
             </p>
             <Link to="/reader?tab=how-to-study" className="home-modules__link">
               Open Guide
+              <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
+            </Link>
+          </li>
+          <li className="home-modules__card">
+            <Users className="home-modules__icon" aria-hidden="true" size={24} strokeWidth={1.75} />
+            <h3>About Us</h3>
+            <p>Learn about Nomomartyria and our mission to glorify God through His Word.</p>
+            <Link to="/about" className="home-modules__link">
+              About Nomomartyria
               <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
             </Link>
           </li>

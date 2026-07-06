@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "sourceId": "tsk-openbible",
+    "sourceName": "Treasury of Scripture Knowledge (OpenBible.info derivative)",
+    "sourceUrl": "https://www.openbible.info/labs/cross-references/",
+    "license": "CC BY 3.0 (derivative); underlying TSK public domain",
+    "redistributionAllowed": true,
+    "attributionRequired": true,
+    "attribution": "Cross-reference data derived from the Treasury of Scripture Knowledge via OpenBible.info (CC BY).",
+    "dateChecked": "2026-07-06"
+  },
+  "verses": {
+    "5:39": [
+      {
+        "targetReference": "Luke 24:27",
+        "note": "Scriptures testify of Christ",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      },
+      {
+        "targetReference": "Luke 24:44",
+        "note": "All things concerning Christ",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      },
+      {
+        "targetReference": "Acts 17:11",
+        "note": "Search the scriptures daily",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      },
+      {
+        "targetReference": "Romans 15:4",
+        "note": "Scriptures written for our learning",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      },
+      {
+        "targetReference": "2 Timothy 3:15",
+        "note": "Scriptures make wise unto salvation",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      }
+    ],
+    "1:1": [
+      {
+        "targetReference": "Genesis 1:1",
+        "note": "In the beginning",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      },
+      {
+        "targetReference": "1 John 1:1",
+        "note": "The Word of life",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      },
+      {
+        "targetReference": "Revelation 19:13",
+        "note": "The Word of God",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      }
+    ],
+    "3:16": [
+      {
+        "targetReference": "Romans 5:8",
+        "note": "God's love demonstrated",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      },
+      {
+        "targetReference": "1 John 4:9-10",
+        "note": "God sent his Son",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      }
+    ]
+  }
+}

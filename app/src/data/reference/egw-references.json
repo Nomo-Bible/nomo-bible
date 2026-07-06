@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "sourceId": "egw-reference-index",
+    "sourceName": "Ellen G. White Reference Index (link-only)",
+    "sourceUrl": "https://whiteestate.org/",
+    "license": "Reference links only — Ellen G. White writings © Ellen G. White Estate",
+    "redistributionAllowed": false,
+    "attributionRequired": true,
+    "attribution": "Ellen G. White Estate",
+    "dateChecked": "2026-07-06",
+    "notes": "No EGW book text is embedded. Summaries are original reference notes. External links point to official EGW Writings resources where permitted."
+  },
+  "entries": {
+    "John 5:39": [
+      {
+        "id": "egw-john-5-39-da",
+        "egwReference": "The Desire of Ages, p. 390",
+        "summary": "Christ taught that the Scriptures testify of Him and that searching them leads to the knowledge of eternal life in the Son.",
+        "sourceType": "EGW Reference",
+        "externalUrl": "https://text.egwwritings.org/publication.php?pubtype=Book&bookCode=DA&pagenumber=390&lang=1&collection=2&pstart=1&pend=1",
+        "attribution": "Ellen G. White Estate",
+        "licenseNote": "Text not embedded. Reference link only. Ellen G. White writings © Ellen G. White Estate.",
+        "textEmbedded": false
+      }
+    ],
+    "Isaiah 8:20": [
+      {
+        "id": "egw-isaiah-8-20-gc",
+        "egwReference": "The Great Controversy, p. 595",
+        "summary": "The law and the testimony remain the standard by which every teaching and spiritual claim must be tested.",
+        "sourceType": "EGW Reference",
+        "externalUrl": "https://text.egwwritings.org/publication.php?pubtype=Book&bookCode=GC&pagenumber=595&lang=1&collection=2&pstart=1&pend=1",
+        "attribution": "Ellen G. White Estate",
+        "licenseNote": "Text not embedded. Reference link only. Ellen G. White writings © Ellen G. White Estate.",
+        "textEmbedded": false
+      }
+    ],
+    "Genesis 1:1": [
+      {
+        "id": "egw-genesis-1-1-pp",
+        "egwReference": "Patriarchs and Prophets, p. 44",
+        "summary": "Creation reveals God's power and establishes the foundation of the Sabbath and the Creator's authority over all things.",
+        "sourceType": "EGW Reference",
+        "externalUrl": "https://text.egwwritings.org/publication.php?pubtype=Book&bookCode=PP&pagenumber=44&lang=1&collection=2&pstart=1&pend=1",
+        "attribution": "Ellen G. White Estate",
+        "licenseNote": "Text not embedded. Reference link only. Ellen G. White writings © Ellen G. White Estate.",
+        "textEmbedded": false
+      }
+    ]
+  }
+}

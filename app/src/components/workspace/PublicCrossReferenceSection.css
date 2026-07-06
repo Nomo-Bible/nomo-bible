@@ -1,0 +1,101 @@
+.public-cross-ref-section + .public-cross-ref-section {
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.public-cross-ref-section__header {
+  margin-bottom: var(--space-3);
+}
+
+.public-cross-ref-section__title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.public-cross-ref-section__attribution {
+  margin: var(--space-2) 0 0;
+  font-size: var(--font-size-xs);
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+
+.public-cross-ref-section__toolbar {
+  margin-bottom: var(--space-3);
+}
+
+.public-cross-ref-section__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.public-cross-ref-section__item {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-2);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.public-cross-ref-section__item:last-child {
+  border-bottom: none;
+}
+
+.public-cross-ref-section__link {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+  padding: var(--space-3) 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-sans);
+}
+
+.public-cross-ref-section__link:hover .public-cross-ref-section__ref {
+  color: var(--color-accent);
+}
+
+.public-cross-ref-section__ref {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.public-cross-ref-section__note {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.public-cross-ref-section__insert {
+  flex-shrink: 0;
+  align-self: center;
+  padding: var(--space-1) var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm, 4px);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.public-cross-ref-section__insert:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.public-cross-ref-section__link:focus-visible,
+.public-cross-ref-section__insert:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}

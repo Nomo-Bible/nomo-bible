@@ -4,7 +4,7 @@ import {
   splitTextHighlight,
 } from '@/services/concordanceService';
 import { passageKeyFromLocation } from '@/services/passageKeyService';
-import { insertStrongsIntoStudyNotes } from '@/services/strongsNoteService';
+import { insertStrongsIntoStudyNotes, insertWordStudyIntoStudyNotes } from '@/services/strongsNoteService';
 import {
   isStrongsDataInstalled,
   looksLikeStrongsQuery,
@@ -186,11 +186,29 @@ export function ConcordancePanel() {
   };
 
   const handleInsertStrongs = (entry: StrongsEntry) => {
-    const note = insertStrongsIntoStudyNotes(
-      passageKeyFromLocation(location),
-      entry,
-    );
-    setSearchParams({ tab: 'study-notes', note: note.id });
+    const passageKey = syncedWordStudy
+      ? passageKeyFromLocation({
+          book: syncedWordStudy.selection.reference.book,
+          chapter: syncedWordStudy.selection.reference.chapter,
+          verse: syncedWordStudy.selection.reference.verse,
+        })
+      : passageKeyFromLocation(location);
+
+    const note = syncedWordStudy
+      ? insertWordStudyIntoStudyNotes(
+          passageKey,
+          syncedWordStudy.selection.word,
+          syncedWordStudy.selection.referenceLabel,
+          entry,
+        )
+      : insertStrongsIntoStudyNotes(passageKey, entry);
+
+    setSearchParams((current) => {
+      const next = new URLSearchParams(current);
+      next.set('tab', 'study-notes');
+      next.set('note', note.id);
+      return next;
+    });
   };
 
   const results = response?.results ?? [];

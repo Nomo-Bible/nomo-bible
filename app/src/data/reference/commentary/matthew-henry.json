@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "sourceId": "matthew-henry",
+    "sourceName": "Matthew Henry's Commentary on the Whole Bible",
+    "sourceUrl": "https://www.ccel.org/h/henry/mhc2/MHC00000.HTM",
+    "license": "Public Domain",
+    "redistributionAllowed": true,
+    "attributionRequired": false,
+    "attribution": "Matthew Henry (1706–1721), Christian Classics Ethereal Library",
+    "dateChecked": "2026-07-06",
+    "notes": "Short excerpts only. Full commentary available via external link."
+  },
+  "entries": {
+    "John 5:39": [
+      {
+        "id": "mhc-john-5-39",
+        "sourceId": "matthew-henry",
+        "sourceName": "Matthew Henry's Commentary",
+        "reference": "John 5:39",
+        "summary": "Christ sends searchers to the Scriptures because they testify of him; eternal life is found in knowing the Son whom the written word reveals.",
+        "excerpt": "Search the scriptures; for in them ye think ye have eternal life: and they are they which testify of me. Christ sends us to the scripture, because that testifies of him. The scripture is the great repository of divine truth, and we must have recourse to it.",
+        "textEmbedded": true,
+        "externalUrl": "https://www.ccel.org/ccel/henry/mhc6.John.v.html",
+        "license": "Public Domain",
+        "attribution": "Matthew Henry (1706–1721)",
+        "attributionRequired": false,
+        "redistributionAllowed": true
+      }
+    ],
+    "Genesis 1:1": [
+      {
+        "id": "mhc-genesis-1-1",
+        "sourceId": "matthew-henry",
+        "sourceName": "Matthew Henry's Commentary",
+        "reference": "Genesis 1:1",
+        "summary": "The opening verse establishes God as eternal Creator, refuting atheism and setting the foundation for all subsequent revelation.",
+        "excerpt": "In the beginning God created the heaven and the earth. The first verse of the Bible gives us a surer and better, a more satisfying and useful, knowledge of the origin of the universe, than all the disquisitions of philosophers.",
+        "textEmbedded": true,
+        "externalUrl": "https://www.ccel.org/ccel/henry/mhc1.Gen.i.html",
+        "license": "Public Domain",
+        "attribution": "Matthew Henry (1706–1721)",
+        "attributionRequired": false,
+        "redistributionAllowed": true
+      }
+    ],
+    "Isaiah 8:20": [
+      {
+        "id": "mhc-isaiah-8-20",
+        "sourceId": "matthew-henry",
+        "sourceName": "Matthew Henry's Commentary",
+        "reference": "Isaiah 8:20",
+        "summary": "Isaiah sets the law and testimony as the fixed standard for judging every teaching; what departs from Scripture lacks true light.",
+        "excerpt": "To the law and to the testimony: if they speak not according to this word, it is because there is no light in them. Those that consult the law and the testimony shall find what they seek; those that do not shall be left in darkness.",
+        "textEmbedded": true,
+        "externalUrl": "https://www.ccel.org/ccel/henry/mhc4.Isa.viii.html",
+        "license": "Public Domain",
+        "attribution": "Matthew Henry (1706–1721)",
+        "attributionRequired": false,
+        "redistributionAllowed": true
+      }
+    ]
+  }
+}

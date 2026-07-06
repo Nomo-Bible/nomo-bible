@@ -226,7 +226,6 @@ export function WordStudyPopover() {
             type="button"
             className="word-study-popover__btn word-study-popover__btn--primary"
             onClick={() => insertWordStudyNote(entry)}
-            disabled={!entry}
           >
             <StickyNote size={14} strokeWidth={2} aria-hidden="true" />
             Insert into Study Notes

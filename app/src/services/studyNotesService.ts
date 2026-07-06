@@ -1,4 +1,5 @@
 import type { PassageKey, StudyNote, StudyNoteInput } from '@/types/study';
+import { noteMatchesPassage } from '@/services/passageKeyService';
 
 const STORAGE_KEY = 'nomomartyria-study-notes-v1';
 
@@ -53,7 +54,7 @@ function generateId(): string {
 
 export function loadNotesForPassage(passageKey: PassageKey): StudyNote[] {
   return readAll()
-    .filter((note) => note.passageKey === passageKey)
+    .filter((note) => noteMatchesPassage(note.passageKey, passageKey))
     .sort(
       (a, b) =>
         new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),

@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "sourceId": "tsk-openbible",
+    "sourceName": "Treasury of Scripture Knowledge (OpenBible.info derivative)",
+    "sourceUrl": "https://www.openbible.info/labs/cross-references/",
+    "license": "CC BY 3.0 (derivative); underlying TSK public domain",
+    "redistributionAllowed": true,
+    "attributionRequired": true,
+    "attribution": "Cross-reference data derived from the Treasury of Scripture Knowledge via OpenBible.info (CC BY).",
+    "dateChecked": "2026-07-06"
+  },
+  "verses": {
+    "1:1": [
+      {
+        "targetReference": "John 1:1-3",
+        "note": "Creation through the Word",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      },
+      {
+        "targetReference": "Hebrews 11:3",
+        "note": "Creation by faith",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      },
+      {
+        "targetReference": "Psalm 33:9",
+        "note": "God spoke and it was",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      },
+      {
+        "targetReference": "Isaiah 45:18",
+        "note": "God formed the earth",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      }
+    ],
+    "1:26": [
+      {
+        "targetReference": "Genesis 5:1",
+        "note": "Image of God",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      },
+      {
+        "targetReference": "Ephesians 4:24",
+        "note": "Renewed in righteousness",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      }
+    ]
+  }
+}

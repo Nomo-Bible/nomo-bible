@@ -78,7 +78,14 @@ export function StudyTabContent({ workspace, passageLabel }: StudyTabContentProp
             sourceReference={workspace.passageKey}
             passageLabel={passageLabel}
             references={crossReferences}
+            notes={notes}
+            selectedNoteId={selectedNoteId}
             onRefresh={workspace.handleRefresh}
+            onSelectNote={workspace.selectNote}
+            onStartCreateNote={() => {
+              workspace.startCreate();
+              workspace.setActiveTab('study-notes');
+            }}
           />
         </div>
       );

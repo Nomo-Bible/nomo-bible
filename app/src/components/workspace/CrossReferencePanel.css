@@ -1,5 +1,87 @@
 .cross-ref-panel {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.cross-ref-panel__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-card);
+  flex-shrink: 0;
+}
+
+.cross-ref-panel__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm, 4px);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.cross-ref-panel__tab:hover {
+  color: var(--color-text);
+  background: var(--color-surface-muted);
+}
+
+.cross-ref-panel__tab--active {
+  color: var(--color-accent);
+  border-color: var(--color-border-subtle);
+  background: var(--color-surface-muted);
+}
+
+.cross-ref-panel__tab:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.cross-ref-panel__toast {
+  margin: 0;
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.cross-ref-panel__hint,
+.cross-ref-panel__error {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+.cross-ref-panel__hint {
+  color: var(--color-text-muted);
+}
+
+.cross-ref-panel__error {
+  color: var(--color-danger, #b42318);
+}
+
+.cross-ref-panel__notes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.cross-ref-panel__notes-toolbar {
+  padding: var(--space-3) var(--space-4) 0;
 }
 
 .cross-ref-panel__toolbar {
@@ -36,5 +118,8 @@
 }
 
 .cross-ref-panel__scroll {
-  padding-bottom: var(--space-4);
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
 }

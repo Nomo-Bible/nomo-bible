@@ -18,6 +18,7 @@ export function ScriptureReaderPanel() {
     goToNextChapter,
     canGoPrevious,
     canGoNext,
+    setVerse,
   } = useReader();
   const { openWordStudy, activeTokenId } = useWordStudy();
   const activeVerseRef = useRef<HTMLParagraphElement>(null);
@@ -129,6 +130,7 @@ export function ScriptureReaderPanel() {
                 activeTokenId,
                 highlightedTokenIndexes,
                 onWordClick: (token, tokenIndex, event) => {
+                  setVerse(number);
                   openWordStudy(
                     token,
                     tokenIndex,

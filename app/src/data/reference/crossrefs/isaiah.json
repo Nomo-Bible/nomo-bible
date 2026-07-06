@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "sourceId": "tsk-openbible",
+    "sourceName": "Treasury of Scripture Knowledge (OpenBible.info derivative)",
+    "sourceUrl": "https://www.openbible.info/labs/cross-references/",
+    "license": "CC BY 3.0 (derivative); underlying TSK public domain",
+    "redistributionAllowed": true,
+    "attributionRequired": true,
+    "attribution": "Cross-reference data derived from the Treasury of Scripture Knowledge via OpenBible.info (CC BY).",
+    "dateChecked": "2026-07-06"
+  },
+  "verses": {
+    "8:20": [
+      {
+        "targetReference": "Isaiah 8:16",
+        "note": "Bind up the testimony",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      },
+      {
+        "targetReference": "Deuteronomy 13:1-5",
+        "note": "Test prophets by the law",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      },
+      {
+        "targetReference": "Galatians 1:8",
+        "note": "No other gospel",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      },
+      {
+        "targetReference": "1 John 4:1",
+        "note": "Try the spirits",
+        "sourceId": "tsk-openbible",
+        "sourceName": "Treasury of Scripture Knowledge"
+      }
+    ]
+  }
+}
