@@ -1,9 +1,11 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { useReader } from '@/context/ReaderContext';
+import { useWordStudy } from '@/context/WordStudyContext';
 import { getChapter } from '@/services/bibleService';
-import { formatReaderLocation } from '@/types/bible';
-import { formatVerseText } from '@/utils/formatVerseText';
+import { getVerseWordTokens } from '@/services/kjvStrongsTokenService';
+import { formatReaderLocation, formatReference } from '@/types/bible';
+import { renderVerseContent } from '@/utils/formatVerseText';
 import './ScriptureReaderPanel.css';
 
 export function ScriptureReaderPanel() {
@@ -14,6 +16,7 @@ export function ScriptureReaderPanel() {
     canGoPrevious,
     canGoNext,
   } = useReader();
+  const { openWordStudy, activeTokenId } = useWordStudy();
   const activeVerseRef = useRef<HTMLParagraphElement>(null);
   const chapter = getChapter(location.book, location.chapter);
   const heading = formatReaderLocation(location);
@@ -73,6 +76,8 @@ export function ScriptureReaderPanel() {
       <div className="scripture-reader__text">
         {chapter.verses.map(({ number, text }) => {
           const isActive = location.verse === number;
+          const tokenIdPrefix = `${location.book}:${location.chapter}:${number}`;
+          const tokens = getVerseWordTokens(location.book, location.chapter, number);
           return (
             <p
               key={number}
@@ -85,7 +90,27 @@ export function ScriptureReaderPanel() {
               id={isActive ? 'scripture-active-verse' : undefined}
             >
               <sup className="scripture-reader__verse-num">{number}</sup>
-              {formatVerseText(text)}
+              {renderVerseContent(text, tokens, {
+                tokenIdPrefix,
+                activeTokenId,
+                onWordClick: (token, tokenIndex, event) => {
+                  openWordStudy(
+                    token,
+                    tokenIndex,
+                    {
+                      book: location.book,
+                      chapter: location.chapter,
+                      verse: number,
+                    },
+                    formatReference({
+                      book: location.book,
+                      chapter: location.chapter,
+                      verse: number,
+                    }),
+                    event,
+                  );
+                },
+              })}
             </p>
           );
         })}

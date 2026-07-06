@@ -1,3 +1,9 @@
+.home-page__banner .page-banner__img {
+  height: auto;
+  object-fit: contain;
+  object-position: center center;
+}
+
 .home-intro {
   max-width: 42rem;
   margin: 0 auto var(--space-7);

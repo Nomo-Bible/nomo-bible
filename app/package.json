@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "validate:strongs": "node ../scripts/kjv/validate-strongs.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.23.0",

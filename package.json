@@ -7,6 +7,9 @@
     "build": "npm ci --prefix app && npm run build --prefix app",
     "kjv:download": "node scripts/kjv/download-kjv.mjs",
     "kjv:convert": "node scripts/kjv/convert-usfm-to-json.mjs",
-    "kjv:import": "npm run kjv:download && npm run kjv:convert"
+    "kjv:import": "npm run kjv:download && npm run kjv:convert",
+    "kjv:build-strongs-tokens": "node scripts/kjv/build-kjv-strongs-tokens.mjs",
+    "validate:strongs": "node scripts/kjv/validate-strongs.mjs",
+    "validate:strongs:repair": "node scripts/kjv/validate-strongs.mjs --repair"
   }
 }

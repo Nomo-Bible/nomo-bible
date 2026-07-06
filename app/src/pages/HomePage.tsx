@@ -1,15 +1,16 @@
-import { ArrowRight, BookOpen, Link2, Library } from 'lucide-react';
+import { ArrowRight, BookOpen, Link2, Library, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { HeroBanner } from '@/components/ui/HeroBanner';
+import { PageBanner } from '@/components/ui/PageBanner';
+import homeBanner from '@/assets/banners/home.png';
 import './HomePage.css';
 
 export function HomePage() {
   return (
     <div className="home-page">
-      <HeroBanner
-        title="Nomomartyria Bible Platform"
-        subtitle="Through the Law and the Testimony, Christ is revealed."
-        motto="Per Legem et Testimonium, Christus Revelatur"
+      <PageBanner
+        imageSrc={homeBanner}
+        imageAlt="Nomomartyria Bible Platform — Per Legem et Testimonium, Christus Revelatur"
+        className="home-page__banner"
       />
 
       <section className="home-intro">
@@ -34,20 +35,41 @@ export function HomePage() {
               <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
             </Link>
           </li>
-          <li className="home-modules__card home-modules__card--placeholder">
+          <li className="home-modules__card">
             <Library className="home-modules__icon" aria-hidden="true" size={24} strokeWidth={1.75} />
             <h3>Study Notes</h3>
-            <p>Verse-by-verse educational commentary. Coming soon.</p>
+            <p>Verse-by-verse educational commentary in your study workspace.</p>
+            <Link to="/reader?tab=study-notes" className="home-modules__link">
+              Open Study Notes
+              <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
+            </Link>
           </li>
-          <li className="home-modules__card home-modules__card--placeholder">
+          <li className="home-modules__card">
             <Link2 className="home-modules__icon" aria-hidden="true" size={24} strokeWidth={1.75} />
             <h3>Cross References</h3>
-            <p>Biblical relationships between passages. Coming soon.</p>
+            <p>Biblical relationships between passages for connected study.</p>
+            <Link to="/reader?tab=cross-references" className="home-modules__link">
+              Open Cross References
+              <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
+            </Link>
           </li>
-          <li className="home-modules__card home-modules__card--placeholder">
+          <li className="home-modules__card">
+            <Search className="home-modules__icon" aria-hidden="true" size={24} strokeWidth={1.75} />
+            <h3>Strong&apos;s Concordance</h3>
+            <p>Look up Hebrew and Greek Strong&apos;s numbers, or search KJV verses by word.</p>
+            <Link to="/reader?tab=concordance" className="home-modules__link">
+              Open Concordance
+              <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
+            </Link>
+          </li>
+          <li className="home-modules__card">
             <Library className="home-modules__icon" aria-hidden="true" size={24} strokeWidth={1.75} />
             <h3>Doctrine Library</h3>
-            <p>Organized doctrinal studies. Coming soon.</p>
+            <p>Organized doctrinal studies in the doctrine workspace tab.</p>
+            <Link to="/reader?tab=doctrine" className="home-modules__link">
+              Open Doctrine
+              <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
+            </Link>
           </li>
         </ul>
       </section>

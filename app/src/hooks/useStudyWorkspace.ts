@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useReader } from '@/context/ReaderContext';
 import { loadCrossReferencesForSource } from '@/services/crossReferenceService';
 import {
@@ -17,11 +18,32 @@ import type { StudyNote, StudyNoteDraft, StudyNoteEditorMode } from '@/types/stu
 
 const EMPTY_DRAFT: StudyNoteDraft = { title: '', body: '', tags: '' };
 
+const STUDY_TABS: StudyWorkspaceTabId[] = [
+  'study-notes',
+  'cross-references',
+  'concordance',
+  'topics',
+  'doctrine',
+  'charts',
+];
+
+function parseTab(value: string | null): StudyWorkspaceTabId | null {
+  if (!value) return null;
+  return STUDY_TABS.includes(value as StudyWorkspaceTabId)
+    ? (value as StudyWorkspaceTabId)
+    : null;
+}
+
 export function useStudyWorkspace() {
   const { location } = useReader();
+  const [searchParams] = useSearchParams();
   const passageKey = passageKeyFromLocation(location);
+  const requestedTab = parseTab(searchParams.get('tab'));
+  const requestedNoteId = searchParams.get('note');
 
-  const [activeTab, setActiveTab] = useState<StudyWorkspaceTabId>('study-notes');
+  const [activeTab, setActiveTab] = useState<StudyWorkspaceTabId>(
+    requestedTab ?? 'study-notes',
+  );
   const [notes, setNotes] = useState<StudyNote[]>([]);
   const [crossReferences, setCrossReferences] = useState(
     loadCrossReferencesForSource(passageKey),
@@ -52,6 +74,22 @@ export function useStudyWorkspace() {
     setDraft(EMPTY_DRAFT);
     setDraftBaseline(EMPTY_DRAFT);
   }, [passageKey, refreshNotes, refreshCrossReferences]);
+
+  useEffect(() => {
+    if (requestedTab) {
+      setActiveTab(requestedTab);
+    }
+  }, [requestedTab]);
+
+  useEffect(() => {
+    if (!requestedNoteId) return;
+    refreshNotes();
+    setSelectedNoteId(requestedNoteId);
+    setEditorMode('view');
+    setActiveTab('study-notes');
+    setDraft(EMPTY_DRAFT);
+    setDraftBaseline(EMPTY_DRAFT);
+  }, [requestedNoteId, refreshNotes]);
 
   const hasDraftChanges = useMemo(
     () =>

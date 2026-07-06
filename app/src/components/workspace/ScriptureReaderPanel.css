@@ -128,6 +128,49 @@
   font-style: italic;
 }
 
+.scripture-reader__word {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  font-variant: inherit;
+  cursor: pointer;
+  text-align: inherit;
+  transition:
+    background var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.scripture-reader__word:hover {
+  background: var(--color-highlight-active);
+  box-shadow: inset 0 -1px 0 var(--color-accent-muted);
+}
+
+.scripture-reader__word:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 1px;
+  background: var(--color-highlight-active);
+}
+
+.scripture-reader__divine-name .scripture-reader__word {
+  font-variant: small-caps;
+}
+
+.scripture-reader__supplied .scripture-reader__word {
+  font-style: italic;
+}
+
+.scripture-reader__word--active {
+  background: var(--color-accent-glow);
+  box-shadow: inset 0 -2px 0 var(--color-accent);
+  color: var(--color-accent);
+}
+
 .scripture-reader__xref {
   font-family: var(--font-sans);
   font-size: 0.58em;

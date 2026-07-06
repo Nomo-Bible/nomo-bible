@@ -237,3 +237,197 @@
   border-radius: var(--radius-sm);
   font-weight: 500;
 }
+
+.concordance-panel__strongs {
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-bg);
+}
+
+.concordance-panel__strongs--primary {
+  border-top: none;
+}
+
+.concordance-panel__kjv {
+  background: var(--color-bg-scripture);
+}
+
+.concordance-panel__kjv-intro {
+  padding: var(--space-4) var(--space-4) var(--space-2);
+}
+
+.concordance-panel__kjv-title {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-serif);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.concordance-panel__kjv-desc {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.concordance-panel__strongs-intro {
+  padding: var(--space-4) var(--space-4) var(--space-2);
+}
+
+.concordance-panel__strongs-title {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-serif);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.concordance-panel__strongs-desc {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.concordance-panel__synced {
+  padding: 0 var(--space-4) var(--space-3);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.concordance-panel__synced-label {
+  margin: 0 0 var(--space-1);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-subtle);
+}
+
+.concordance-panel__synced-word {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-serif);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.concordance-panel__synced-ref {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-accent);
+}
+
+.concordance-panel__strongs-results {
+  padding-bottom: var(--space-4);
+}
+
+.concordance-panel__strongs-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: 0 var(--space-4) var(--space-4);
+}
+
+.concordance-panel__strongs-card {
+  padding: var(--space-4);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius);
+  background: var(--color-card);
+  box-shadow: var(--shadow-sm);
+}
+
+.concordance-panel__strongs-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.concordance-panel__strongs-number {
+  font-family: var(--font-serif);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.concordance-panel__strongs-lang {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-subtle);
+}
+
+.concordance-panel__strongs-original {
+  margin: 0 0 var(--space-1);
+  font-family: var(--font-serif);
+  font-size: var(--font-size-lg);
+  line-height: 1.3;
+  color: var(--color-text);
+}
+
+.concordance-panel__strongs-translit,
+.concordance-panel__strongs-pron {
+  margin: 0 0 var(--space-1);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.concordance-panel__strongs-def {
+  margin: var(--space-2) 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.concordance-panel__strongs-kjv,
+.concordance-panel__strongs-root {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-size-xs);
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.concordance-panel__strongs-label {
+  font-weight: 600;
+  color: var(--color-text-subtle);
+}
+
+.concordance-panel__strongs-insert {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  border: 1px solid var(--color-accent-muted);
+  border-radius: var(--radius);
+  background: var(--color-highlight);
+  color: var(--color-accent);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.concordance-panel__strongs-insert:hover {
+  background: var(--color-highlight-active);
+  border-color: var(--color-accent);
+}
+
+.concordance-panel__strongs-empty {
+  margin: 0;
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+  color: var(--color-text-muted);
+}
