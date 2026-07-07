@@ -15,6 +15,7 @@ import {
   updateNote,
 } from '@/services/studyNotesService';
 import type { StudyWorkspaceTabId } from '@/types/studyWorkspace';
+import type { StudyResourceLibrarySection } from '@/types/studyWorkspace';
 import type { StudyNote, StudyNoteDraft, StudyNoteEditorMode } from '@/types/study';
 
 const EMPTY_DRAFT: StudyNoteDraft = { title: '', body: '', tags: '' };
@@ -22,11 +23,27 @@ const EMPTY_DRAFT: StudyNoteDraft = { title: '', body: '', tags: '' };
 const STUDY_TABS: StudyWorkspaceTabId[] = [
   'study-notes',
   'cross-references',
+  'study-resources',
   'concordance',
   'topics',
   'how-to-study',
   'charts',
 ];
+
+function parseResourceSection(value: string | null): StudyResourceLibrarySection | null {
+  if (
+    value === 'overview' ||
+    value === 'commentary' ||
+    value === 'egw' ||
+    value === 'topics' ||
+    value === 'charts' ||
+    value === 'maps' ||
+    value === 'my-notes'
+  ) {
+    return value;
+  }
+  return null;
+}
 
 function parseTab(value: string | null): StudyWorkspaceTabId | null {
   if (!value) return null;
@@ -42,6 +59,8 @@ export function useStudyWorkspace() {
   const passageKey = passageKeyFromLocation(location);
   const requestedTab = parseTab(searchParams.get('tab'));
   const requestedNoteId = searchParams.get('note');
+  const studyResourceSection =
+    parseResourceSection(searchParams.get('resource')) ?? 'overview';
 
   const [activeTab, setActiveTab] = useState<StudyWorkspaceTabId>(
     requestedTab ?? 'study-notes',
@@ -233,5 +252,6 @@ export function useStudyWorkspace() {
     removeSelected,
     handleRefresh,
     updateDraftField,
+    studyResourceSection,
   };
 }

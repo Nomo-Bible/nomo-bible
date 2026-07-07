@@ -40,3 +40,13 @@
   flex: none;
   min-height: min-content;
 }
+
+.study-tab-content__related-wrap {
+  padding: var(--space-3) var(--space-4) 0;
+}
+
+@media (max-width: 768px) {
+  .study-tab-content__related-wrap {
+    padding-inline: var(--space-3);
+  }
+}

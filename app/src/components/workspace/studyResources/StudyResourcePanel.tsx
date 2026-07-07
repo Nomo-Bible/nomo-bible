@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import type { PassageKey } from '@/types/study';
 import type { StudyResourceFieldConfig } from '@/hooks/useStudyResourcePanel';
 import { useStudyResourcePanel } from '@/hooks/useStudyResourcePanel';
@@ -33,6 +33,7 @@ interface StudyResourcePanelProps<TItem extends { id: string; title: string; upd
   toDetailRows: (item: TItem) => Array<{ label: string; value: string }>;
   seedDraft?: (passageKey: PassageKey) => Record<string, string>;
   headerSlot?: ReactNode;
+  autoStartCreateKey?: number;
 }
 
 export function StudyResourcePanel<TItem extends { id: string; title: string; updatedAt: string }, TInput>({
@@ -57,6 +58,7 @@ export function StudyResourcePanel<TItem extends { id: string; title: string; up
   toDetailRows,
   seedDraft,
   headerSlot,
+  autoStartCreateKey,
 }: StudyResourcePanelProps<TItem, TInput>) {
   const panel = useStudyResourcePanel({
     passageKey,
@@ -73,6 +75,13 @@ export function StudyResourcePanel<TItem extends { id: string; title: string; up
     fromDraft,
     seedDraft,
   });
+
+  useEffect(() => {
+    if (autoStartCreateKey) {
+      panel.startCreate();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- trigger only on explicit key change
+  }, [autoStartCreateKey]);
 
   return (
     <div className="study-resource-panel">

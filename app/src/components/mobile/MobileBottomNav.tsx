@@ -41,6 +41,7 @@ export function MobileBottomNav({ active, onSelect }: MobileBottomNavProps) {
 }
 
 export const MORE_TAB_OPTIONS: { id: StudyWorkspaceTabId; label: string }[] = [
+  { id: 'study-resources', label: 'Study Resources' },
   { id: 'topics', label: 'Topics' },
   { id: 'how-to-study', label: 'How to Study' },
   { id: 'charts', label: 'Charts' },

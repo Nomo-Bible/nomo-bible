@@ -26,7 +26,7 @@ export function AuthGate({ compact = false, onDismiss }: AuthGateProps) {
       </p>
       <p className="auth-gate__hint">
         Bible reading remains free. Sign in to unlock Strong&apos;s, Concordance,
-        Study Notes, Cross References, and more.
+        Study Notes, Study Resources, Cross References, and more.
       </p>
       <div className="auth-gate__actions">
         <Link to="/login" className="nm-btn nm-btn--primary">

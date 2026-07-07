@@ -236,19 +236,27 @@ interface CommentaryNotesPanelProps {
   passageKey: PassageKey;
   passageLabel: string;
   headerSlot?: React.ReactNode;
+  filterByPassage?: boolean;
+  libraryMode?: boolean;
 }
 
 export function CommentaryNotesPanel({
   passageKey,
   passageLabel,
   headerSlot,
+  filterByPassage = true,
+  libraryMode = false,
 }: CommentaryNotesPanelProps) {
   return (
     <StudyResourcePanel<CommentaryNote, CommentaryNoteInput>
-      title="My Commentary"
-      hint={`Personal commentary notes for ${passageLabel} and related passages.`}
+      title={libraryMode ? 'Commentary Notes' : 'My Commentary'}
+      hint={
+        libraryMode
+          ? 'Personal commentary notes linked to Bible passages and topics.'
+          : `Personal commentary notes for ${passageLabel} and related passages.`
+      }
       passageKey={passageKey}
-      filterByPassage
+      filterByPassage={filterByPassage}
       emptyIcon={<BookMarked size={22} strokeWidth={1.75} />}
       emptyTitle="No Commentary Notes"
       emptyMessage={`Add your own commentary for ${passageLabel}. Tag Bible references to connect notes across passages.`}
@@ -271,19 +279,44 @@ interface EgwReferencesPanelProps {
   passageKey: PassageKey;
   passageLabel: string;
   headerSlot?: React.ReactNode;
+  filterByPassage?: boolean;
+  libraryMode?: boolean;
+  seedSourceWork?: string;
+  autoStartCreateKey?: number;
+  sectionTitle?: string;
 }
 
 export function EgwReferencesPanel({
   passageKey,
   passageLabel,
   headerSlot,
+  filterByPassage = true,
+  libraryMode = false,
+  seedSourceWork,
+  autoStartCreateKey,
+  sectionTitle,
 }: EgwReferencesPanelProps) {
+  const seedDraft = seedSourceWork
+    ? (pk: PassageKey) => ({
+        ...egwDraftHelpers.seedDraft(pk),
+        sourceWork: seedSourceWork,
+        title: `Note — ${seedSourceWork}`,
+        source: 'Ellen G. White Estate — EGW Writings (read online)',
+        licenseInfo:
+          'User-added linked note. Free to read online; verify license before importing full text.',
+      })
+    : egwDraftHelpers.seedDraft;
+
   return (
     <StudyResourcePanel<EGWReference, EGWReferenceInput>
-      title="My Ellen White References"
-      hint={`Manually entered Ellen G. White references for ${passageLabel}. Do not import unlicensed text.`}
+      title={sectionTitle ?? (libraryMode ? 'My Linked EGW Notes' : 'My Ellen White References')}
+      hint={
+        libraryMode
+          ? 'Manually entered Ellen G. White references with citation and license notes.'
+          : `Manually entered Ellen G. White references for ${passageLabel}. Do not import unlicensed text.`
+      }
       passageKey={passageKey}
-      filterByPassage
+      filterByPassage={filterByPassage}
       emptyIcon={<ScrollText size={22} strokeWidth={1.75} />}
       emptyTitle="No EGW References"
       emptyMessage={`Add Ellen White references with citation, excerpt notes, and license information for ${passageLabel}.`}
@@ -298,6 +331,8 @@ export function EgwReferencesPanel({
       remove={deleteEgwReference}
       headerSlot={headerSlot}
       {...egwDraftHelpers}
+      seedDraft={seedDraft}
+      autoStartCreateKey={autoStartCreateKey}
     />
   );
 }
@@ -306,17 +341,23 @@ interface TopicsPanelProps {
   passageKey: PassageKey;
   passageLabel: string;
   headerSlot?: React.ReactNode;
+  libraryMode?: boolean;
 }
 
 export function TopicsPanel({
   passageKey,
   passageLabel,
   headerSlot,
+  libraryMode = false,
 }: TopicsPanelProps) {
   return (
     <StudyResourcePanel<Topic, TopicInput>
       title="Topics"
-      hint="Doctrine and theme hubs that connect Bible references, commentary, Ellen White references, charts, and study guides."
+      hint={
+        libraryMode
+          ? 'Doctrine and theme hubs connecting Bible references, commentary, Ellen White references, and charts.'
+          : 'Doctrine and theme hubs that connect Bible references, commentary, Ellen White references, charts, and study guides.'
+      }
       passageKey={passageKey}
       filterByPassage={false}
       emptyIcon={<Tags size={22} strokeWidth={1.75} />}
@@ -341,13 +382,23 @@ interface ChartsPanelProps {
   passageKey: PassageKey;
   passageLabel: string;
   headerSlot?: React.ReactNode;
+  libraryMode?: boolean;
 }
 
-export function ChartsPanel({ passageKey, passageLabel, headerSlot }: ChartsPanelProps) {
+export function ChartsPanel({
+  passageKey,
+  passageLabel,
+  headerSlot,
+  libraryMode = false,
+}: ChartsPanelProps) {
   return (
     <StudyResourcePanel<ChartResource, ChartResourceInput>
       title="Charts"
-      hint="Prophecy charts, sanctuary diagrams, and visual study aids. Use local image paths only."
+      hint={
+        libraryMode
+          ? 'Prophecy charts, sanctuary diagrams, and visual study aids stored locally.'
+          : 'Prophecy charts, sanctuary diagrams, and visual study aids. Use local image paths only.'
+      }
       passageKey={passageKey}
       filterByPassage={false}
       emptyIcon={<BarChart3 size={22} strokeWidth={1.75} />}

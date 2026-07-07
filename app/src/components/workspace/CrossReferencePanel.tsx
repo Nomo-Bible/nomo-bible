@@ -42,8 +42,8 @@ import {
 import {
   RelatedResourcesPanel,
   usePassageResourceContext,
+  type RelatedResourceNavigateKind,
 } from './studyResources/RelatedResourcesPanel';
-import type { StudyResourceKind } from '@/types/studyResources';
 import './CrossReferencePanel.css';
 import './ReferenceResourceCard.css';
 import './PublicCrossReferenceSection.css';
@@ -58,7 +58,7 @@ interface CrossReferencePanelProps {
   onRefresh: () => void;
   onSelectNote: (noteId: string) => void;
   onStartCreateNote: () => void;
-  onNavigateResource?: (kind: StudyResourceKind) => void;
+  onNavigateResource?: (kind: RelatedResourceNavigateKind) => void;
 }
 
 const TABS: {
@@ -188,7 +188,7 @@ export function CrossReferencePanel({
   const verseLevel = isVerseLevelPassage(sourceReference);
   const resourceContext = usePassageResourceContext(sourceReference);
 
-  const handleNavigateRelated = (kind: StudyResourceKind) => {
+  const handleNavigateRelated = (kind: RelatedResourceNavigateKind) => {
     onNavigateResource?.(kind);
   };
 

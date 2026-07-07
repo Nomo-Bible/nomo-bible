@@ -274,6 +274,21 @@ export function deleteChart(id: string): void {
 
 // — Related resources —
 
+export function getStudyResourceCounts(): {
+  commentary: number;
+  egw: number;
+  topics: number;
+  charts: number;
+} {
+  const store = readStudyResourcesStore();
+  return {
+    commentary: store.commentaryNotes.length,
+    egw: store.egwReferences.length,
+    topics: store.topics.length,
+    charts: store.charts.length,
+  };
+}
+
 export function getRelatedResources(
   context: RelatedResourcesContext,
 ): RelatedResourceItem[] {

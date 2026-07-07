@@ -10,10 +10,46 @@ export const RESOURCE_KIND_LABELS: Record<StudyResourceKind, string> = {
 };
 
 export const RESOURCE_KIND_TAB: Partial<Record<StudyResourceKind, StudyWorkspaceTabId>> = {
-  commentary: 'cross-references',
-  egw: 'cross-references',
+  commentary: 'study-resources',
+  egw: 'study-resources',
   topic: 'topics',
   chart: 'charts',
+  'study-guide': 'how-to-study',
+};
+
+export const RESOURCE_KIND_LIBRARY_SECTION: Partial<
+  Record<StudyResourceKind, import('@/types/studyWorkspace').StudyResourceLibrarySection>
+> = {
+  commentary: 'commentary',
+  egw: 'egw',
+  topic: 'topics',
+  chart: 'charts',
+};
+
+export const CATALOG_KIND_LABELS: Record<
+  import('@/types/resourceCatalog').CatalogRelatedItem['kind'],
+  string
+> = {
+  'egw-book': 'Ellen White',
+  'egw-note': 'EGW Note',
+  topic: 'Topic',
+  map: 'Map',
+  chart: 'Chart',
+  commentary: 'Commentary',
+};
+
+export const CATALOG_KIND_LIBRARY_SECTION: Partial<
+  Record<
+    import('@/types/resourceCatalog').CatalogRelatedItem['kind'],
+    import('@/types/studyWorkspace').StudyResourceLibrarySection
+  >
+> = {
+  'egw-book': 'egw',
+  'egw-note': 'egw',
+  topic: 'topics',
+  map: 'maps',
+  chart: 'charts',
+  commentary: 'commentary',
 };
 
 export const COMMENTARY_NOTE_FIELDS = [
