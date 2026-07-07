@@ -1,13 +1,13 @@
-import { ChevronRight, GraduationCap } from 'lucide-react';
-import { useMemo } from 'react';
-import articleMarkdown from '@knowledge-base/study/how-to-study-the-bible.md?raw';
+import { ChevronLeft, ChevronRight, GraduationCap } from 'lucide-react';
+import { useEffect, useMemo, useRef } from 'react';
+import { getHowToStudySectionMarkdown } from '@/data/study/howToStudyContent';
 import {
   HOW_TO_STUDY_MOBILE_SECTIONS,
   getHowToStudyMobileSection,
-} from '@/data/study/howToStudyMobileSections';
-import { extractArticleSection } from '@/utils/extractArticleSection';
-import { renderArticleMarkdown } from '@/utils/renderArticleMarkdown';
+  getHowToStudySectionNeighbors,
+} from '@/data/study/howToStudyMobileSections';import { renderArticleMarkdown } from '@/utils/renderArticleMarkdown';
 import './HowToStudyMobilePanel.css';
+import './HowToStudyMobileArticle.css';
 
 function resolveSectionMarkdown(sectionId: string): string {
   const section = getHowToStudyMobileSection(sectionId);
@@ -15,22 +15,14 @@ function resolveSectionMarkdown(sectionId: string): string {
     return `## Section unavailable\n\nThis study section could not be found. Return to the index and choose another topic.`;
   }
 
-  const extracted = extractArticleSection(articleMarkdown, section.targetHeading);
-  if (extracted && hasReadableBody(extracted)) return extracted;
+  const content =
+    section.contentMarkdown.trim() ||
+    getHowToStudySectionMarkdown(section.targetHeading)?.trim() ||
+    '';
 
-  if (section.placeholderMarkdown) return section.placeholderMarkdown;
+  if (content) return content;
 
-  return `## ${section.label}
-
-${section.summary}
-
-This section is being prepared for the mobile study guide. In the meantime, open the full **How to Study the Bible** material on desktop, or explore related workspace tools such as **Cross References**, **Concordance**, and **Study Notes** alongside your current passage.`;
-}
-
-function hasReadableBody(markdown: string): boolean {
-  return markdown
-    .split('\n')
-    .some((line) => line.trim() && !line.trim().startsWith('#'));
+  return `## ${section.label}\n\n[Content unavailable: this section could not be loaded from the study guide manuscript.]`;
 }
 
 interface HowToStudyMobilePanelProps {
@@ -42,6 +34,8 @@ export function HowToStudyMobilePanel({
   selectedSectionId,
   onSelectSection,
 }: HowToStudyMobilePanelProps) {
+  const readingRef = useRef<HTMLDivElement>(null);
+
   const sectionMarkdown = useMemo(
     () => (selectedSectionId ? resolveSectionMarkdown(selectedSectionId) : null),
     [selectedSectionId],
@@ -50,6 +44,19 @@ export function HowToStudyMobilePanel({
   const selectedSection = selectedSectionId
     ? getHowToStudyMobileSection(selectedSectionId)
     : undefined;
+
+  const neighbors = selectedSectionId
+    ? getHowToStudySectionNeighbors(selectedSectionId)
+    : { previous: undefined, next: undefined };
+
+  useEffect(() => {
+    if (!selectedSectionId) return;
+    readingRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [selectedSectionId]);
+
+  const handleSectionChange = (sectionId: string) => {
+    onSelectSection(sectionId);
+  };
 
   if (!selectedSectionId || !selectedSection) {
     return (
@@ -92,10 +99,48 @@ export function HowToStudyMobilePanel({
   }
 
   return (
-    <div className="how-to-study-mobile how-to-study-mobile--reading">
+    <div ref={readingRef} className="how-to-study-mobile how-to-study-mobile--reading">
       <div className="how-to-study-mobile__article study-article">
         {sectionMarkdown ? renderArticleMarkdown(sectionMarkdown) : null}
       </div>
+
+      {(neighbors.previous || neighbors.next) && (
+        <nav className="how-to-study-mobile__chapter-nav" aria-label="Section navigation">
+          {neighbors.previous ? (
+            <button
+              type="button"
+              className="how-to-study-mobile__chapter-link how-to-study-mobile__chapter-link--prev"
+              onClick={() => handleSectionChange(neighbors.previous!.id)}
+            >
+              <ChevronLeft size={18} strokeWidth={2} aria-hidden="true" />
+              <span className="how-to-study-mobile__chapter-link-text">
+                <span className="how-to-study-mobile__chapter-link-kicker">Previous</span>
+                <span className="how-to-study-mobile__chapter-link-label">
+                  {neighbors.previous.label}
+                </span>
+              </span>
+            </button>
+          ) : (
+            <span className="how-to-study-mobile__chapter-spacer" aria-hidden="true" />
+          )}
+
+          {neighbors.next ? (
+            <button
+              type="button"
+              className="how-to-study-mobile__chapter-link how-to-study-mobile__chapter-link--next"
+              onClick={() => handleSectionChange(neighbors.next!.id)}
+            >
+              <span className="how-to-study-mobile__chapter-link-text">
+                <span className="how-to-study-mobile__chapter-link-kicker">Next</span>
+                <span className="how-to-study-mobile__chapter-link-label">
+                  {neighbors.next.label}
+                </span>
+              </span>
+              <ChevronRight size={18} strokeWidth={2} aria-hidden="true" />
+            </button>
+          ) : null}
+        </nav>
+      )}
     </div>
   );
 }

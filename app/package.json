@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "sync:how-to-study": "node ../scripts/sync-how-to-study-manuscript.mjs",
+    "validate:how-to-study": "node ../scripts/generate-how-to-study-mobile-sections.mjs",
+    "prebuild": "npm run sync:how-to-study && npm run validate:how-to-study",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "validate:strongs": "node ../scripts/kjv/validate-strongs.mjs",

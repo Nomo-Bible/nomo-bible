@@ -193,6 +193,87 @@
   line-height: 1.8;
 }
 
+.how-to-study-mobile__chapter-nav {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding: var(--space-4) var(--space-3-5, 0.875rem) var(--space-6);
+  border-top: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-secondary);
+}
+
+.how-to-study-mobile__chapter-spacer {
+  display: block;
+}
+
+.how-to-study-mobile__chapter-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--touch-min, 2.75rem);
+  padding: var(--space-3);
+  text-align: left;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-subtle, 0 1px 2px rgba(44, 42, 38, 0.04));
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.how-to-study-mobile__chapter-link--next {
+  justify-self: end;
+  text-align: right;
+}
+
+.how-to-study-mobile__chapter-link--next:only-child {
+  grid-column: 1 / -1;
+}
+
+.how-to-study-mobile__chapter-link--prev:only-child {
+  grid-column: 1 / -1;
+}
+
+.how-to-study-mobile__chapter-link:hover {
+  border-color: var(--color-accent-light);
+  background: var(--color-highlight);
+}
+
+.how-to-study-mobile__chapter-link:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.how-to-study-mobile__chapter-link-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-0-5, 0.125rem);
+  min-width: 0;
+}
+
+.how-to-study-mobile__chapter-link--next .how-to-study-mobile__chapter-link-text {
+  align-items: flex-end;
+}
+
+.how-to-study-mobile__chapter-link-kicker {
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+.how-to-study-mobile__chapter-link-label {
+  font-family: var(--font-serif);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--color-text);
+}
+
 .study-tab-content__body--how-to-study-mobile {
   display: block;
   min-height: min-content;

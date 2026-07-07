@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useRef } from 'react';
-import articleMarkdown from '@knowledge-base/study/how-to-study-the-bible.md?raw';
+import { HOW_TO_STUDY_ARTICLE_MARKDOWN as articleMarkdown } from '@/data/study/howToStudyContent';
 import { HowToStudyNav } from '@/components/workspace/HowToStudyNav';
 import { buildArticleHeadingIdMap } from '@/utils/articleSlug';
 import { renderArticleMarkdown } from '@/utils/renderArticleMarkdown';

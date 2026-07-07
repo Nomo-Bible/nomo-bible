@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode } from 'react';
+import { Fragment, useState, type ReactNode } from 'react';
 import {
   buildArticleHeadingIdMap,
   slugifyArticleHeading,
@@ -33,6 +33,33 @@ function renderInline(text: string): ReactNode[] {
 
 function headingIdForText(text: string, headingIds: Map<string, string>): string {
   return headingIds.get(text) ?? slugifyArticleHeading(text);
+}
+
+function ArticleMarkdownImage({ src, alt }: { src: string; alt: string }) {
+  const [failed, setFailed] = useState(false);
+  const label = alt.trim() || 'Study guide illustration';
+
+  if (failed) {
+    return (
+      <div
+        className="study-article__image-placeholder"
+        role="img"
+        aria-label={`${label} (image unavailable)`}
+      >
+        {label}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className="study-article__image"
+      loading="lazy"
+      onError={() => setFailed(true)}
+    />
+  );
 }
 
 function renderHeading(
@@ -243,7 +270,7 @@ export function renderArticleMarkdown(markdown: string): ReactNode[] {
       const [, alt, src] = imageMatch;
       nodes.push(
         <figure key={key++} className="study-article__figure">
-          <img src={src} alt={alt} className="study-article__image" loading="lazy" />
+          <ArticleMarkdownImage src={src} alt={alt} />
           {alt ? (
             <figcaption className="study-article__caption">{alt}</figcaption>
           ) : null}
