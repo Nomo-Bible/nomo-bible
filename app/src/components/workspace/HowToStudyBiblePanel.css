@@ -21,7 +21,7 @@
   min-width: 0;
   min-height: 0;
   overflow-y: auto;
-  padding: var(--space-5) var(--space-5) var(--space-6);
+  padding: var(--space-6) clamp(var(--space-4), 4vw, var(--space-6)) var(--space-8);
 }
 
 .study-article {
@@ -80,7 +80,7 @@
 .study-article p {
   margin: 0 0 var(--space-5);
   font-size: var(--font-size-base);
-  line-height: 1.8;
+  line-height: 1.85;
 }
 
 .study-article__quote {
@@ -103,7 +103,7 @@
 .study-article li {
   margin-bottom: var(--space-3);
   font-size: var(--font-size-base);
-  line-height: 1.75;
+  line-height: 1.8;
 }
 
 .study-article__figure {
@@ -189,6 +189,6 @@
   }
 
   .how-to-study-panel__article {
-    padding: var(--space-4) var(--space-3) var(--space-5);
+    padding: var(--space-5) var(--space-4) var(--space-6);
   }
 }

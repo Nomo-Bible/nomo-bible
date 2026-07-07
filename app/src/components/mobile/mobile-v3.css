@@ -386,6 +386,9 @@
 }
 
 .mobile-v3-study__header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
   flex-shrink: 0;
   display: flex;
   align-items: flex-start;

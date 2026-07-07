@@ -94,7 +94,7 @@ export function HowToStudyMobilePanel() {
           onClick={() => setSelectedSectionId(null)}
         >
           <ArrowLeft size={16} strokeWidth={2} aria-hidden="true" />
-          Back to index
+          Back to Index
         </button>
         <p className="how-to-study-mobile__reading-label">{selectedSection.label}</p>
       </div>
