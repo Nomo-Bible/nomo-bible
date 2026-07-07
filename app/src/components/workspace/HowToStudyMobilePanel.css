@@ -105,9 +105,6 @@
 }
 
 .how-to-study-mobile__toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 4;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -118,6 +115,12 @@
   background: color-mix(in srgb, var(--color-bg-elevated) 94%, var(--color-bg));
   border-bottom: 1px solid var(--color-border-subtle);
   box-shadow: 0 2px 10px rgba(44, 42, 38, 0.07);
+}
+
+.how-to-study-mobile__toolbar--docked {
+  position: sticky;
+  top: 0;
+  z-index: 4;
 }
 
 .how-to-study-mobile__back {

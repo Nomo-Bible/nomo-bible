@@ -1,5 +1,5 @@
-import { ArrowLeft, ChevronRight, GraduationCap } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { ChevronRight, GraduationCap } from 'lucide-react';
+import { useMemo } from 'react';
 import articleMarkdown from '@knowledge-base/study/how-to-study-the-bible.md?raw';
 import {
   HOW_TO_STUDY_MOBILE_SECTIONS,
@@ -33,9 +33,15 @@ function hasReadableBody(markdown: string): boolean {
     .some((line) => line.trim() && !line.trim().startsWith('#'));
 }
 
-export function HowToStudyMobilePanel() {
-  const [selectedSectionId, setSelectedSectionId] = useState<string | null>(null);
+interface HowToStudyMobilePanelProps {
+  selectedSectionId: string | null;
+  onSelectSection: (sectionId: string | null) => void;
+}
 
+export function HowToStudyMobilePanel({
+  selectedSectionId,
+  onSelectSection,
+}: HowToStudyMobilePanelProps) {
   const sectionMarkdown = useMemo(
     () => (selectedSectionId ? resolveSectionMarkdown(selectedSectionId) : null),
     [selectedSectionId],
@@ -65,7 +71,7 @@ export function HowToStudyMobilePanel() {
               <button
                 type="button"
                 className="how-to-study-mobile__card"
-                onClick={() => setSelectedSectionId(section.id)}
+                onClick={() => onSelectSection(section.id)}
               >
                 <span className="how-to-study-mobile__card-text">
                   <span className="how-to-study-mobile__card-title">{section.label}</span>
@@ -87,18 +93,6 @@ export function HowToStudyMobilePanel() {
 
   return (
     <div className="how-to-study-mobile how-to-study-mobile--reading">
-      <div className="how-to-study-mobile__toolbar">
-        <button
-          type="button"
-          className="how-to-study-mobile__back"
-          onClick={() => setSelectedSectionId(null)}
-        >
-          <ArrowLeft size={16} strokeWidth={2} aria-hidden="true" />
-          Back to Index
-        </button>
-        <p className="how-to-study-mobile__reading-label">{selectedSection.label}</p>
-      </div>
-
       <div className="how-to-study-mobile__article study-article">
         {sectionMarkdown ? renderArticleMarkdown(sectionMarkdown) : null}
       </div>

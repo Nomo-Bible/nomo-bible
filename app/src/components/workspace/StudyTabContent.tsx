@@ -17,9 +17,16 @@ type StudyWorkspaceState = ReturnType<typeof useStudyWorkspace>;
 interface StudyTabContentProps {
   workspace: StudyWorkspaceState;
   passageLabel: string;
+  howToStudySectionId?: string | null;
+  onHowToStudySectionChange?: (sectionId: string | null) => void;
 }
 
-export function StudyTabContent({ workspace, passageLabel }: StudyTabContentProps) {
+export function StudyTabContent({
+  workspace,
+  passageLabel,
+  howToStudySectionId = null,
+  onHowToStudySectionChange,
+}: StudyTabContentProps) {
   const isMobile = useMediaQuery('(max-width: 768px)');
   const {
     activeTab,
@@ -120,7 +127,14 @@ export function StudyTabContent({ workspace, passageLabel }: StudyTabContentProp
               : 'study-tab-content__body study-tab-content__body--how-to-study nm-fade-in'
           }
         >
-          {isMobile ? <HowToStudyMobilePanel /> : <HowToStudyBiblePanel />}
+          {isMobile ? (
+            <HowToStudyMobilePanel
+              selectedSectionId={howToStudySectionId}
+              onSelectSection={onHowToStudySectionChange ?? (() => undefined)}
+            />
+          ) : (
+            <HowToStudyBiblePanel />
+          )}
         </div>
       );
     case 'charts':

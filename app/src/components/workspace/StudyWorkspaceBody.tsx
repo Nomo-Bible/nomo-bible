@@ -12,12 +12,16 @@ interface StudyWorkspaceBodyProps {
   workspace: StudyWorkspaceState;
   passageLabel: string;
   showToolbar?: boolean;
+  howToStudySectionId?: string | null;
+  onHowToStudySectionChange?: (sectionId: string | null) => void;
 }
 
 export function StudyWorkspaceBody({
   workspace,
   passageLabel,
   showToolbar = true,
+  howToStudySectionId = null,
+  onHowToStudySectionChange,
 }: StudyWorkspaceBodyProps) {
   const { isAuthenticated, loading } = useAuth();
   const canViewTab =
@@ -53,7 +57,12 @@ export function StudyWorkspaceBody({
           {loading ? (
             <p className="study-workspace__auth-loading">Loading…</p>
           ) : canViewTab ? (
-            <StudyTabContent workspace={workspace} passageLabel={passageLabel} />
+            <StudyTabContent
+              workspace={workspace}
+              passageLabel={passageLabel}
+              howToStudySectionId={howToStudySectionId}
+              onHowToStudySectionChange={onHowToStudySectionChange}
+            />
           ) : (
             <AuthGate />
           )}
