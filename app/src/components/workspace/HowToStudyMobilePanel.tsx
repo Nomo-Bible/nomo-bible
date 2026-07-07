@@ -16,7 +16,7 @@ function resolveSectionMarkdown(sectionId: string): string {
   }
 
   const extracted = extractArticleSection(articleMarkdown, section.targetHeading);
-  if (extracted) return extracted;
+  if (extracted && hasReadableBody(extracted)) return extracted;
 
   if (section.placeholderMarkdown) return section.placeholderMarkdown;
 
@@ -25,6 +25,12 @@ function resolveSectionMarkdown(sectionId: string): string {
 ${section.summary}
 
 This section is being prepared for the mobile study guide. In the meantime, open the full **How to Study the Bible** material on desktop, or explore related workspace tools such as **Cross References**, **Concordance**, and **Study Notes** alongside your current passage.`;
+}
+
+function hasReadableBody(markdown: string): boolean {
+  return markdown
+    .split('\n')
+    .some((line) => line.trim() && !line.trim().startsWith('#'));
 }
 
 export function HowToStudyMobilePanel() {

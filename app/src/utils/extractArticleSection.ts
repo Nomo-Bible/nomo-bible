@@ -19,20 +19,42 @@ function headingsMatch(a: string, b: string): boolean {
   );
 }
 
-/** Extract markdown from a heading through the next heading of equal or higher level. */
+function isTableOfContentsHeading(line: string): boolean {
+  return line.startsWith('## TABLE OF CONTENTS');
+}
+
+/**
+ * Extract markdown from a heading through the next heading of equal or higher level.
+ * Uses the last matching heading so table-of-contents entries are not mistaken for body content.
+ */
 export function extractArticleSection(markdown: string, targetHeading: string): string | null {
   const lines = markdown.split('\n');
   let startIndex = -1;
   let startLevel = 0;
+  let inTableOfContents = false;
 
   for (let i = 0; i < lines.length; i++) {
-    const level = headingLevel(lines[i]);
-    const text = headingText(lines[i]);
+    const line = lines[i];
+
+    if (isTableOfContentsHeading(line)) {
+      inTableOfContents = true;
+      continue;
+    }
+
+    if (inTableOfContents) {
+      if (line.startsWith('## ') && !isTableOfContentsHeading(line)) {
+        inTableOfContents = false;
+      } else {
+        continue;
+      }
+    }
+
+    const level = headingLevel(line);
+    const text = headingText(line);
     if (!level || !text) continue;
     if (headingsMatch(text, targetHeading)) {
       startIndex = i;
       startLevel = level;
-      break;
     }
   }
 
