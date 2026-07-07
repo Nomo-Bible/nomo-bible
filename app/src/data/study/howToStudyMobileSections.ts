@@ -44,19 +44,6 @@ export const HOW_TO_STUDY_MOBILE_SECTIONS: HowToStudyMobileSection[] = [
     label: 'Law and Testimony',
     summary: 'Test every teaching against the written Word of God.',
     targetHeading: 'The Sola Scriptura Mandate',
-    placeholderMarkdown: `## Law and Testimony
-
-> "To the law and to the testimony: if they speak not according to this word, it is because there is no light in them." — Isaiah 8:20
-
-Every doctrine, tradition, and spiritual impression must be measured against Scripture. The law and the testimony are the fixed standard — not culture, not emotion, and not the voice of popular teachers.
-
-### Practical checkpoints
-
-- Does this teaching align with the whole counsel of God?
-- Is it confirmed by clear Scripture, compared with related passages?
-- Does it exalt Christ and produce holiness, humility, and love?
-
-When a section of this guide is still being expanded, use the **Cross References** and **Word Study** sections alongside your open Bible passage to practice these principles directly.`,
   },
   {
     id: 'prophecy',

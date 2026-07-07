@@ -97,6 +97,10 @@ export const HOW_TO_STUDY_NAV: HowToStudyNavGroup[] = [
         label: 'Symbol Study Cheat Sheet',
         targetHeading: 'Symbol Study Cheat Sheet',
       },
+      {
+        label: 'Print Expansion Blueprint',
+        targetHeading: 'Print Expansion Blueprint',
+      },
     ],
   },
 ];
