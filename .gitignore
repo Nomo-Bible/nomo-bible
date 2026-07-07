@@ -5,10 +5,8 @@ node_modules/
 knowledge-base/bible/kjv/source/eng-kjv2006_usfm/
 
 # Environment
-!.env.example
 .env
-.env.local
-.env.*.local
+.env.*
 
 # OS
 .DS_Store
