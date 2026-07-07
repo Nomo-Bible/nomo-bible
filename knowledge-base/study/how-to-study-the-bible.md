@@ -1,4 +1,4 @@
-image.png
+![How to Study the Bible — hero banner](/assets/study-guides/how-to-study-the-bible/hero-banner.png)
 
 ## How to Let Scripture Interpret Itself
 
@@ -99,7 +99,7 @@ Genesis to Revelation is not a loose anthology of moral lessons and ancient hist
 
 Reading Christ-centered means asking of every single passage, not only “What does this teach?” but “How does this point to Jesus?” The unifying thread is always there, because Scripture has one ultimate Author with one ultimate purpose: to reveal His Son.
 
-image.png
+![Chapter 1 — Christ-centered interpretation](/assets/study-guides/how-to-study-the-bible/chapter-1-christ-centered.png)
 
 **Chapter Conclusion**
 
@@ -126,7 +126,7 @@ Consider how directly the text explains complex prophetic visions:
 
 > “These great beasts, which are four, are four kings, which shall arise out of the earth…” (Daniel 7:17)
 
-image.png
+![Chapter 2 — biblical symbol lexicon](/assets/study-guides/how-to-study-the-bible/chapter-2-symbol-lexicon.png)
 
 **Chapter Conclusion**
 
@@ -157,7 +157,7 @@ The book of Daniel offers the clearest classroom example of this principle:
 * Daniel 7: Four great beasts rising from the sea, tracing the exact same sequence of kingdoms but adding detail about their spiritual character and actions.
 * Daniel 8: A ram and a goat in conflict, refining the geographic and specific details of those very same powers.
 
-image.png
+![Chapter 3 — repeat and enlarge pattern in Daniel](/assets/study-guides/how-to-study-the-bible/chapter-3-repeat-and-enlarge.png)
 
 **Chapter Conclusion**
 
@@ -237,7 +237,7 @@ A primary framework used by biblical authors is chiastic structure (or chiasmus)
 
 In a chiasm, the author intentionally pairs the first thought with the last thought, the second thought with the second-to-last thought, and so on, drawing the reader’s attention inward. The central focus or climax of the passage is not found at the very end, but right in the middle (the “C” or pivot point). Understanding this structure prevents the mistake of reading passages as disjointed lists and shows how the text emphasizes its core message.
 
-image.png
+![Chapter 6 — chiastic structure](/assets/study-guides/how-to-study-the-bible/chapter-6-chiastic-structure.png)
 
 Macro and Micro Symmetries
 
@@ -278,7 +278,7 @@ No single verse exists in isolation. A faithful interpreter gathers every releva
 
 > “These were more noble than those in Thessalonica, in that they received the word with all readiness of mind, and searched the scriptures daily, whether those things were so.” (Acts 17:1)
 
-image.png
+![Chapter 7 — comparing Scripture with Scripture](/assets/study-guides/how-to-study-the-bible/chapter-7-compare-scripture.png)
 
 **Chapter Conclusion**
 
@@ -334,7 +334,7 @@ Every principle in this guide exists for more than intellectual mastery. A Bible
 
 > “For the word of God is quick, and powerful, and sharper than any two-edged sword…” (Hebrews 4:12)
 
-image.png
+![Chapter 9 — the transforming power of the Word](/assets/study-guides/how-to-study-the-bible/chapter-9-living-truth.png)
 
 **Chapter Conclusion**
 
