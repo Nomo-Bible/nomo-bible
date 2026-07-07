@@ -8,7 +8,8 @@ import { CrossReferencePanel } from './CrossReferencePanel';
 import { ConcordancePanel } from './ConcordancePanel';
 import { HowToStudyBiblePanel } from './HowToStudyBiblePanel';
 import { HowToStudyMobilePanel } from './HowToStudyMobilePanel';
-import { KnowledgeBaseEmptyPanel } from './KnowledgeBaseEmptyPanel';import type { useStudyWorkspace } from '@/hooks/useStudyWorkspace';
+import { KnowledgeBaseEmptyPanel } from './KnowledgeBaseEmptyPanel';
+import type { useStudyWorkspace } from '@/hooks/useStudyWorkspace';
 import './StudyTabContent.css';
 
 type StudyWorkspaceState = ReturnType<typeof useStudyWorkspace>;
@@ -20,7 +21,8 @@ interface StudyTabContentProps {
 
 export function StudyTabContent({ workspace, passageLabel }: StudyTabContentProps) {
   const isMobile = useMediaQuery('(max-width: 768px)');
-  const {    activeTab,
+  const {
+    activeTab,
     notes,
     crossReferences,
     selectedNote,

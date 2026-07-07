@@ -11,6 +11,34 @@
   overflow: hidden;
 }
 
+/* Stable stacked mobile layout (no split pane) */
+.mobile-v3--stable {
+  overflow: hidden;
+}
+
+.mobile-stable__bible {
+  flex: 0 0 auto;
+  height: clamp(12rem, 40vh, 22rem);
+  min-height: 12rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-scripture);
+}
+
+.mobile-stable__study {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  background: var(--color-bg);
+  padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+}
+
 /* ── Compact header ── */
 .mobile-v3-header {
   display: grid;

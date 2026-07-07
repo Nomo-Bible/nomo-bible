@@ -1,10 +1,6 @@
 import { useState } from 'react';
 import { BibleSearch } from '@/components/layout/BibleSearch';
 import { useStudyWorkspace } from '@/hooks/useStudyWorkspace';
-import {
-  MOBILE_SPLIT_STUDY,
-  useResizableSplit,
-} from '@/hooks/useResizableSplit';
 import type { StudyWorkspaceTabId } from '@/types/studyWorkspace';
 import { MobileBibleNavigator } from './MobileBibleNavigator';
 import { MobileBibleReaderShell } from './MobileBibleReaderShell';
@@ -13,36 +9,20 @@ import { MobileNavDrawer } from './MobileNavDrawer';
 import { MobileReaderHeader } from './MobileReaderHeader';
 import { MobileStudyPanel } from './MobileStudyPanel';
 import { MobileWorkspaceTabs } from './MobileWorkspaceTabs';
-import { ResizableSplitPane } from './ResizableSplitPane';
 import './mobile-v3.css';
-import './ResizableSplitPane.css';
 
 export function MobileScriptureWorkspace() {
   const workspace = useStudyWorkspace();
-  const {
-    workspaceRatio,
-    setWorkspaceRatio,
-    commitWorkspaceRatio,
-    expandReadingView,
-    restoreStudySplit,
-    isReadingExpanded,
-    minRatio,
-    maxRatio,
-  } = useResizableSplit();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const [navigatorOpen, setNavigatorOpen] = useState(false);
   const [bottomNav, setBottomNav] = useState<MobileBottomNavId>('notes');
 
-  const focusStudy = () => {
-    commitWorkspaceRatio(MOBILE_SPLIT_STUDY);
-  };
-
   const handleBottomNav = (id: MobileBottomNavId) => {
     setBottomNav(id);
     if (id === 'bible') {
-      expandReadingView();
       setNavigatorOpen(true);
+      document.querySelector('.mobile-stable__bible')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       return;
     }
     if (id === 'search') {
@@ -51,12 +31,10 @@ export function MobileScriptureWorkspace() {
     }
     if (id === 'notes') {
       workspace.setActiveTab('study-notes');
-      focusStudy();
       return;
     }
     if (id === 'bookmarks') {
       workspace.setActiveTab('cross-references');
-      focusStudy();
       return;
     }
     if (id === 'more') {
@@ -66,54 +44,33 @@ export function MobileScriptureWorkspace() {
 
   const handleMoreTab = (tabId: StudyWorkspaceTabId) => {
     workspace.setActiveTab(tabId);
-    focusStudy();
     setBottomNav('more');
   };
 
   const handleTabChange = (tab: StudyWorkspaceTabId) => {
     workspace.setActiveTab(tab);
-    focusStudy();
     setBottomNav(
       tab === 'study-notes' ? 'notes' : tab === 'cross-references' ? 'bookmarks' : 'more',
     );
   };
 
   return (
-    <div className="mobile-v3">
+    <div className="mobile-v3 mobile-v3--stable">
       <MobileReaderHeader onOpenMenu={() => setDrawerOpen(true)} />
 
       <div className="mobile-v3__search">
         <BibleSearch />
       </div>
 
-      <div className="mobile-v3__dock">
-        <ResizableSplitPane
-          workspaceRatio={workspaceRatio}
-          minRatio={minRatio}
-          maxRatio={maxRatio}
-          onRatioChange={setWorkspaceRatio}
-          onRatioCommit={commitWorkspaceRatio}
-          top={
-            <>
-              <MobileWorkspaceTabs
-                activeTab={workspace.activeTab}
-                onTabChange={handleTabChange}
-              />
-              <div className="mobile-split__workspace-scroll">
-                <MobileStudyPanel workspace={workspace} />
-              </div>
-            </>
-          }
-          bottom={
-            <MobileBibleReaderShell
-              onOpenNavigator={() => setNavigatorOpen(true)}
-              isReadingExpanded={isReadingExpanded}
-              onExpandReading={expandReadingView}
-              onRestoreSplit={restoreStudySplit}
-            />
-          }
-        />
-      </div>
+      <section className="mobile-stable__bible" aria-label="Bible reader">
+        <MobileBibleReaderShell onOpenNavigator={() => setNavigatorOpen(true)} />
+      </section>
+
+      <MobileWorkspaceTabs activeTab={workspace.activeTab} onTabChange={handleTabChange} />
+
+      <section className="mobile-stable__study" aria-label="Study workspace">
+        <MobileStudyPanel workspace={workspace} />
+      </section>
 
       <MobileBottomNav active={bottomNav} onSelect={handleBottomNav} />
 

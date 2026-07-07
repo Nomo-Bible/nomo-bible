@@ -3,8 +3,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Compass,
-  Maximize2,
-  Minimize2,
 } from 'lucide-react';
 import { useReader } from '@/context/ReaderContext';
 import { ScriptureReaderPanel } from '@/components/workspace/ScriptureReaderPanel';
@@ -12,17 +10,9 @@ import './mobile-v3.css';
 
 interface MobileBibleReaderShellProps {
   onOpenNavigator: () => void;
-  isReadingExpanded: boolean;
-  onExpandReading: () => void;
-  onRestoreSplit: () => void;
 }
 
-export function MobileBibleReaderShell({
-  onOpenNavigator,
-  isReadingExpanded,
-  onExpandReading,
-  onRestoreSplit,
-}: MobileBibleReaderShellProps) {
+export function MobileBibleReaderShell({ onOpenNavigator }: MobileBibleReaderShellProps) {
   const {
     location,
     goToPreviousChapter,
@@ -46,31 +36,12 @@ export function MobileBibleReaderShell({
           <div className="mobile-v3-reader__actions">
             <button
               type="button"
-              className="mobile-v3-reader__action-btn"
+              className="mobile-v3-reader__action-btn mobile-v3-reader__action-btn--accent"
               onClick={onOpenNavigator}
             >
               <Compass size={14} strokeWidth={2} aria-hidden="true" />
-              Browse
+              Browse Books &amp; Chapters
             </button>
-            {isReadingExpanded ? (
-              <button
-                type="button"
-                className="mobile-v3-reader__action-btn mobile-v3-reader__action-btn--accent"
-                onClick={onRestoreSplit}
-              >
-                <Minimize2 size={14} strokeWidth={2} aria-hidden="true" />
-                Study View
-              </button>
-            ) : (
-              <button
-                type="button"
-                className="mobile-v3-reader__action-btn mobile-v3-reader__action-btn--accent"
-                onClick={onExpandReading}
-              >
-                <Maximize2 size={14} strokeWidth={2} aria-hidden="true" />
-                Read Larger
-              </button>
-            )}
           </div>
         </div>
 

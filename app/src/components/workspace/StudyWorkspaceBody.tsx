@@ -54,7 +54,8 @@ export function StudyWorkspaceBody({
             <p className="study-workspace__auth-loading">Loading…</p>
           ) : canViewTab ? (
             <StudyTabContent workspace={workspace} passageLabel={passageLabel} />
-          ) : (            <AuthGate />
+          ) : (
+            <AuthGate />
           )}
         </div>
       </div>

@@ -19,7 +19,8 @@ interface ScriptureReaderPanelProps {
 export function ScriptureReaderPanel({
   variant = 'default',
   hideChrome = false,
-}: ScriptureReaderPanelProps) {  const {
+}: ScriptureReaderPanelProps) {
+  const {
     location,
     concordanceHighlight,
     goToPreviousChapter,

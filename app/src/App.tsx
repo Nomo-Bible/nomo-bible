@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { GlobalLayout } from '@/components/layout/GlobalLayout';
 import { LoginPage } from '@/components/auth/LoginPage';
 import { SignupPage } from '@/components/auth/SignupPage';
@@ -13,6 +13,7 @@ export function App() {
     <Routes>
       <Route element={<GlobalLayout />}>
         <Route index element={<HomePage />} />
+        <Route path="scripture" element={<Navigate to="/reader" replace />} />
         <Route path="reader" element={<BibleReaderPage />} />
         <Route path="repository" element={<RepositoryPage />} />
         <Route path="about" element={<AboutPage />} />
