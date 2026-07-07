@@ -1,12 +1,10 @@
-# How to Study the Bible
-
 image.png
 
 ## How to Let Scripture Interpret Itself
 
-*A Lesson Guide for Adult Bible Study Classes, Discipleship Groups, and Personal Study*
+A Lesson Guide for Adult Bible Study Classes, Discipleship Groups, and Personal Study
 
-**By Dennis Hardy**
+By Dennis Hardy
 
 > “The entrance of thy words giveth light; it giveth understanding unto the simple.” — Psalm 119:130
 
@@ -14,7 +12,7 @@ image.png
 
 ## COPYRIGHT & LICENSING
 
-#### Unlocking the Word: How to Let Scripture Interpret Itself
+Unlocking the Word: How to Let Scripture Interpret Itself
 
 © 2026. All rights reserved.
 
@@ -89,7 +87,7 @@ If we are not deliberate, we will unconsciously inherit the biases, cultural ass
 
 Before any symbol is decoded or any complex prophecy charted, the Bible student must settle one foundational truth: the entire Bible is about Jesus Christ. If we miss this point, our study becomes an exercise in moralism or historical trivia.
 
-#### The Living Thread of Revelation
+The Living Thread of Revelation
 
 Genesis to Revelation is not a loose anthology of moral lessons and ancient history; it is one continuous narrative whose central character, from promise to fulfillment, is the Son of God. (Heerema, 2025) Without this key, the Bible remains a locked book. With it, every page opens toward the same glorious horizon.
 
@@ -118,7 +116,7 @@ When we approach the Old Testament sanctuaries, the histories of Israel, or the 
 
 The world is filled with dictionaries and commentaries trying to define biblical terminology. However, the most authoritative lexicon available to the believer is the Bible itself.
 
-#### Unlocking Biblical Symbology
+Unlocking Biblical Symbology
 
 One of the most liberating discoveries a Bible student can make is that the Bible largely defines its own terms. Symbols that appear mysterious in one passage are frequently explained in plain language elsewhere. Rather than guessing at the meaning of a symbol or importing ideas from outside tradition, the careful student first asks: “Does the Bible itself tell me what this means?”
 
@@ -149,7 +147,7 @@ By anchoring our definitions within the clear boundaries of Scripture, we guard 
 
 God is a masterful teacher. He knows our minds are prone to forgetfulness and struggle to grasp deep spiritual concepts all at once. Because of this, He uses a beautiful teaching pattern throughout prophecy: repetition paired with deeper expansion.
 
-#### The Prophetic Architecture of Daniel
+The Prophetic Architecture of Daniel
 
 A striking feature of biblical prophecy is its habit of repetition with expansion. Rather than giving all details in a single vision, God often reveals a prophetic outline more than once. Each time, he covers substantially the same ground while adding new layers of detail. Recognizing this “repeat and enlarge” pattern keeps students from treating each vision as an isolated puzzle, allowing them instead to interpret and reinforce one another.
 
@@ -176,7 +174,7 @@ When we see this pattern clearly, we no longer need to speculate about historica
 
 The Bible was not dropped out of heaven as a single, uniform textbook. It was written over a span of fifteen hundred years, tracking the historical unfolding of God’s redemptive work.
 
-#### The Organic Growth of Truth
+The Organic Growth of Truth
 
 God did not reveal all truth at once. Across the unfolding centuries of biblical history, He revealed Himself and His purposes progressively—a little here, a little there (Isaiah 28:10)—building line upon line toward the full light that shines in Jesus Christ. Understanding progressive revelation helps the student see how later Scripture clarifies, fulfills, or explains what earlier Scripture introduced in seed form.
 
@@ -203,7 +201,7 @@ Progressive revelation never means that later Scripture contradicts earlier Scri
 
 Unlike Western poetry, which typically relies on rhyming sounds, ancient Hebrew poetry and prose rely on a rhythm of thought. Understanding this structural rhythm unlocks immediate clarity directly within the text.
 
-#### The Mechanics of Parallel Patterns
+The Mechanics of Parallel Patterns
 
 Hebrew poetry and prose alike frequently teach through parallel structure: a thought is stated, then restated in different words that explain, deepen, or apply the first statement. Learning to recognize this built-in explanatory pattern allows the second half of a verse to interpret the first, often without needing any outside commentary at all.
 
@@ -241,7 +239,7 @@ In a chiasm, the author intentionally pairs the first thought with the last thou
 
 image.png
 
-#### Macro and Micro Symmetries
+Macro and Micro Symmetries
 
 Chiasms can range from a single verse to entire chapters or books of the Bible:
 
@@ -272,7 +270,7 @@ When we locate the center of a chiastic passage, we have found its beating heart
 
 No individual verse of the Bible functions as an isolated island. Building an entire doctrinal framework on a single proof-text without consulting the broader landscape of Scripture is one of the quickest paths to theological error.
 
-#### Building on Collective Witness
+Building on Collective Witness
 
 No single verse exists in isolation. A faithful interpreter gathers every relevant passage on a given subject before forming a final conclusion, allowing Scripture’s full testimony to shape understanding rather than building doctrine on an isolated proof text. This principle treats the Bible as a unified, harmonious whole.
 
@@ -297,7 +295,7 @@ The Bereans are called “noble” because they refused to rely entirely on huma
 
 While the Bible was written for us, it was not written directly to us. It was originally delivered to real people, living in real places, dealing with specific historical situations.
 
-#### The Five Key Contextual Questions
+The Five Key Contextual Questions
 
 Every passage of Scripture was spoken or written by someone, to someone, at a particular time, for a particular purpose. Ignoring this context leads to serious misreading. Sound study always asks:
 
@@ -328,7 +326,7 @@ By respecting the historical and prophetic settings of biblical passages, we pre
 
 The ultimate target of Bible study is never mere intellectual satisfaction. God did not give us His Word to satisfy our curiosity, but to transform our character.
 
-#### The Mirror of the Soul
+The Mirror of the Soul
 
 Every principle in this guide exists for more than intellectual mastery. A Bible study that produces only information, without deep transformation, has fallen short of its purpose. Scripture is a divine mirror in which believers behold the glory of the Lord, and through that beholding, are fundamentally changed from the inside out.
 
