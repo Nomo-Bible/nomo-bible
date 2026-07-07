@@ -1,0 +1,392 @@
+/**
+ * Mobile layout & readability overrides (max-width: 768px).
+ * Imported after global.css — bumps type scale, touch targets, and fixes overflow.
+ */
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-xs: 0.8125rem;
+    --font-size-sm: 0.9375rem;
+    --font-size-base: 1.0625rem;
+    --font-size-md: 1.125rem;
+    --font-size-lg: 1.375rem;
+    --font-size-xl: 1.625rem;
+    --font-size-2xl: 2.125rem;
+    --font-size-scripture: 1.3125rem;
+    --line-height-scripture: 1.85;
+    --line-height-ui: 1.6;
+    --scroll-padding-x: var(--space-3);
+    --scroll-padding-y: var(--space-3);
+    --btn-padding-y: 0.625rem;
+    --btn-font-size: var(--font-size-sm);
+    --input-padding-y: 0.6875rem;
+    --touch-min: 2.75rem;
+  }
+
+  html {
+    font-size: 17px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body,
+  #root {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  /* ── Site header ── */
+  .site-header__inner {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: var(--space-2) var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .site-header__brand {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .site-header__title {
+    font-size: 1.0625rem;
+  }
+
+  .site-header__nav {
+    order: 3;
+    flex: 1 1 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: var(--space-1);
+    padding-bottom: var(--space-1);
+  }
+
+  .site-header__nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-header__link {
+    flex: 0 0 auto;
+    font-size: var(--font-size-sm);
+    min-height: var(--touch-min);
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .global-layout--reader .site-header__subtitle {
+    display: none;
+  }
+
+  .global-layout--reader .site-header__inner {
+    padding-block: var(--space-2);
+  }
+
+  .site-main {
+    padding: var(--space-3);
+  }
+
+  .global-layout--reader .site-main {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    min-height: 0;
+    overflow: hidden;
+    padding: var(--space-2) var(--space-3);
+  }
+
+  /* ── Bible reader workspace ── */
+  .bible-reader-page {
+    flex: 1 1 0;
+    min-height: 0;
+    overflow: hidden;
+    gap: var(--space-2);
+  }
+
+  .bible-reader-page .page-banner {
+    display: none;
+  }
+
+  .global-layout--reader {
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden;
+  }
+
+  .scripture-workspace {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      'nav'
+      'scripture'
+      'study';
+    gap: var(--space-2);
+    min-height: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .scripture-workspace__nav {
+    grid-area: nav;
+    max-height: 38vh;
+  }
+
+  .scripture-workspace__scripture {
+    grid-area: scripture;
+    min-height: 0;
+  }
+
+  .scripture-workspace__study {
+    grid-area: study;
+    min-height: 0;
+  }
+
+  .scripture-nav,
+  .scripture-reader,
+  .study-workspace {
+    border-radius: var(--radius);
+    min-height: 0;
+    max-width: 100%;
+  }
+
+  /* ── Scripture text ── */
+  .scripture-reader__header {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      'heading badge'
+      'nav nav';
+    padding: var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .scripture-reader__header-actions {
+    display: none;
+  }
+
+  .scripture-reader__heading {
+    grid-area: heading;
+    text-align: left;
+    font-size: var(--font-size-xl);
+  }
+
+  .scripture-reader__badge {
+    grid-area: badge;
+    font-size: var(--font-size-xs);
+  }
+
+  .scripture-reader__chapter-nav {
+    grid-area: nav;
+    justify-content: stretch;
+  }
+
+  .scripture-reader__chapter-btn {
+    flex: 1;
+    justify-content: center;
+    min-height: var(--touch-min);
+    font-size: var(--font-size-sm);
+  }
+
+  .scripture-reader__text {
+    padding: var(--space-3);
+    padding-bottom: var(--space-4);
+    max-width: none;
+  }
+
+  .scripture-reader__verse {
+    font-size: var(--font-size-scripture);
+    margin-bottom: 1.1rem;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .scripture-reader__verse-num {
+    font-size: 0.7rem;
+  }
+
+  .scripture-reader__word {
+    padding: 0.1em 0.05em;
+    border-radius: 3px;
+  }
+
+  /* ── Navigation panel ── */
+  .scripture-nav__reference-value {
+    font-size: var(--font-size-lg);
+  }
+
+  .scripture-nav__select {
+    font-size: var(--font-size-base);
+    min-height: var(--touch-min);
+  }
+
+  .scripture-nav__label,
+  .scripture-nav__title {
+    font-size: var(--font-size-xs);
+  }
+
+  /* ── Study workspace ── */
+  .study-workspace__header {
+    padding: var(--space-3);
+  }
+
+  .study-workspace__title {
+    font-size: var(--font-size-sm);
+  }
+
+  .study-workspace__passage {
+    font-size: var(--font-size-xl);
+  }
+
+  .study-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: var(--space-2);
+    gap: var(--space-1);
+  }
+
+  .study-tabs__item {
+    flex: 0 0 auto;
+  }
+
+  .study-tabs__tab {
+    flex: 0 0 auto;
+    font-size: var(--font-size-sm);
+    min-height: var(--touch-min);
+    padding: var(--space-2) var(--space-3);
+    white-space: nowrap;
+  }
+
+  .study-toolbar {
+    padding: var(--space-2) var(--space-3);
+    gap: var(--space-2);
+  }
+
+  .study-toolbar__btn {
+    font-size: var(--font-size-sm);
+    min-height: var(--touch-min);
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .study-workspace__content {
+    overflow-x: hidden;
+  }
+
+  /* ── Cross-reference panel tabs ── */
+  .cross-ref-panel__tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: var(--space-2);
+  }
+
+  .cross-ref-panel__tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cross-ref-panel__tab {
+    flex: 0 0 auto;
+    font-size: var(--font-size-sm);
+    min-height: var(--touch-min);
+    white-space: nowrap;
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .cross-ref-panel__add-btn,
+  .cross-ref-panel__scroll,
+  .reference-resource-card__insert,
+  .reference-resource-card__link {
+    font-size: var(--font-size-sm);
+    min-height: var(--touch-min);
+  }
+
+  .public-cross-ref-section__insert {
+    min-height: var(--touch-min);
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-sm);
+  }
+
+  /* ── Concordance ── */
+  .concordance-panel__input,
+  .concordance-panel__btn {
+    font-size: var(--font-size-base);
+    min-height: var(--touch-min);
+  }
+
+  .concordance-panel__strongs-def,
+  .concordance-panel__result,
+  .concordance-panel__text {
+    font-size: var(--font-size-base);
+    overflow-wrap: anywhere;
+  }
+
+  /* ── Word study popover ── */
+  .word-study-popover__title {
+    font-size: var(--font-size-xl);
+  }
+
+  .word-study-popover__ref,
+  .word-study-popover__entry-def,
+  .word-study-popover__entry-line {
+    font-size: var(--font-size-base);
+  }
+
+  .word-study-popover__btn {
+    font-size: var(--font-size-sm);
+    min-height: var(--touch-min);
+    white-space: normal;
+    text-align: center;
+  }
+
+  /* ── Home & articles ── */
+  .home-intro h2,
+  .home-modules h2 {
+    font-size: var(--font-size-2xl);
+  }
+
+  .home-intro p,
+  .home-modules__card p {
+    font-size: var(--font-size-base);
+  }
+
+  .home-modules__card h3 {
+    font-size: var(--font-size-xl);
+  }
+
+  .home-modules__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .article-page__body,
+  .study-article {
+    overflow-x: hidden;
+  }
+
+  .study-article__table-wrap {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ── Forms ── */
+  .nm-label {
+    font-size: var(--font-size-sm);
+  }
+
+  .nm-input,
+  .nm-select,
+  .nm-textarea {
+    font-size: var(--font-size-base);
+    min-height: var(--touch-min);
+  }
+}
+
+@media (max-width: 768px) and (max-height: 700px) {
+  .scripture-workspace__nav {
+    max-height: 32vh;
+  }
+}

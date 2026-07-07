@@ -123,6 +123,6 @@
 
   .study-tabs__tab {
     flex: 0 0 auto;
-    font-size: var(--font-size-xs);
+    white-space: nowrap;
   }
 }

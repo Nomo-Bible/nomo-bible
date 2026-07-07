@@ -1,4 +1,6 @@
 import { BookOpen } from 'lucide-react';
+import { useAuth } from '@/auth/useAuth';
+import { AuthGate } from '@/components/auth/AuthGate';
 import { useReader } from '@/context/ReaderContext';
 import { useWorkspaceExpand } from '@/context/WorkspaceExpandContext';
 import { useStudyWorkspace } from '@/hooks/useStudyWorkspace';
@@ -13,11 +15,11 @@ export function StudyWorkspacePanel() {
   const { location } = useReader();
   const { isExpanded, collapsePanel } = useWorkspaceExpand();
   const workspace = useStudyWorkspace();
+  const { isAuthenticated, loading } = useAuth();
   const passageLabel = formatReaderLocation(location);
   const studyExpanded = isExpanded('study');
 
-  return (
-    <aside
+  return (    <aside
       className={
         studyExpanded
           ? 'study-workspace study-workspace--expanded'
@@ -57,10 +59,10 @@ export function StudyWorkspacePanel() {
       />
 
       {(workspace.activeTab === 'study-notes' ||
-        workspace.activeTab === 'cross-references') && (
-        <StudyToolbar
-          showNoteActions={workspace.activeTab === 'study-notes'}
-          canSave={workspace.canSave}
+        workspace.activeTab === 'cross-references') &&
+        isAuthenticated && (
+          <StudyToolbar
+            showNoteActions={workspace.activeTab === 'study-notes'}          canSave={workspace.canSave}
           canEdit={workspace.canEdit}
           canDelete={workspace.canDelete}
           canCancel={workspace.canCancel}
@@ -80,7 +82,13 @@ export function StudyWorkspacePanel() {
         aria-labelledby={`study-tab-${workspace.activeTab}`}
       >
         <div className="study-workspace__tab-body">
-          <StudyTabContent workspace={workspace} passageLabel={passageLabel} />
+          {loading ? (
+            <p className="study-workspace__auth-loading">Loading…</p>
+          ) : isAuthenticated ? (
+            <StudyTabContent workspace={workspace} passageLabel={passageLabel} />
+          ) : (
+            <AuthGate />
+          )}
         </div>
       </div>
     </aside>

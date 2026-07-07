@@ -19,6 +19,8 @@ dist-ssr
 .DS_Store
 Thumbs.db
 
-# Env
+# Env (secrets — never commit)
 .env
-.env.*
+.env.local
+.env.*.local
+!.env.example

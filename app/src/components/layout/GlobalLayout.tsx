@@ -1,8 +1,8 @@
 import { Home, BookOpen, Library, Users } from 'lucide-react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
+import { AuthNav } from '@/components/auth/AuthNav';
 import { BibleSearch } from './BibleSearch';
 import './GlobalLayout.css';
-
 export function GlobalLayout() {
   const isReaderRoute = useLocation().pathname.startsWith('/reader');
 
@@ -39,8 +39,8 @@ export function GlobalLayout() {
             </NavLink>
           </nav>
 
-          <BibleSearch />
-        </div>
+          <AuthNav />
+          <BibleSearch />        </div>
       </header>
 
       <main className="site-main">

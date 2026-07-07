@@ -1,7 +1,7 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useRef } from 'react';
-import { useReader } from '@/context/ReaderContext';
-import { useWordStudy } from '@/context/WordStudyContext';
+import { useAuth } from '@/auth/useAuth';
+import { useReader } from '@/context/ReaderContext';import { useWordStudy } from '@/context/WordStudyContext';
 import { WorkspaceExpandButton } from '@/components/workspace/WorkspaceExpandButton';
 import { getChapter } from '@/services/bibleService';
 import { getConcordanceHighlightTokenIndexes } from '@/services/concordanceService';
@@ -21,8 +21,8 @@ export function ScriptureReaderPanel() {
     setVerse,
   } = useReader();
   const { openWordStudy, activeTokenId } = useWordStudy();
-  const activeVerseRef = useRef<HTMLParagraphElement>(null);
-  const chapter = getChapter(location.book, location.chapter);
+  const { isAuthenticated, openAuthPrompt } = useAuth();
+  const activeVerseRef = useRef<HTMLParagraphElement>(null);  const chapter = getChapter(location.book, location.chapter);
   const heading = formatReaderLocation(location);
 
   useEffect(() => {
@@ -130,6 +130,10 @@ export function ScriptureReaderPanel() {
                 activeTokenId,
                 highlightedTokenIndexes,
                 onWordClick: (token, tokenIndex, event) => {
+                  if (!isAuthenticated) {
+                    openAuthPrompt();
+                    return;
+                  }
                   setVerse(number);
                   openWordStudy(
                     token,

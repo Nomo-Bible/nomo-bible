@@ -2,8 +2,9 @@
 .study-tab-content__notes {
   display: block;
   min-height: min-content;
+  min-width: 0;
+  overflow-x: hidden;
 }
-
 .study-workspace__content:has(.study-tab-content__body--how-to-study) {
   display: flex;
   flex-direction: column;
