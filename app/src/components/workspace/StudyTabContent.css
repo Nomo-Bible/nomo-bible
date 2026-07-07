@@ -5,22 +5,38 @@
   min-width: 0;
   overflow-x: hidden;
 }
-.study-workspace__content:has(.study-tab-content__body--how-to-study) {
+.study-workspace__content:has(.study-tab-content__body--how-to-study):not(
+    :has(.study-tab-content__body--how-to-study-mobile)
+  ) {
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
-.study-workspace__content:has(.study-tab-content__body--how-to-study) .study-workspace__tab-body {
+.study-workspace__content:has(.study-tab-content__body--how-to-study):not(
+    :has(.study-tab-content__body--how-to-study-mobile)
+  )
+  .study-workspace__tab-body {
   flex: 1 1 auto;
   min-height: 0;
   display: flex;
   flex-direction: column;
 }
 
-.study-tab-content__body--how-to-study {
+.study-tab-content__body--how-to-study:not(.study-tab-content__body--how-to-study-mobile) {
   flex: 1 1 auto;
   min-height: 0;
   display: flex;
   flex-direction: column;
+}
+
+.study-workspace__content:has(.study-tab-content__body--how-to-study-mobile) {
+  display: block;
+  overflow: visible;
+}
+
+.study-workspace__content:has(.study-tab-content__body--how-to-study-mobile) .study-workspace__tab-body {
+  display: block;
+  flex: none;
+  min-height: min-content;
 }

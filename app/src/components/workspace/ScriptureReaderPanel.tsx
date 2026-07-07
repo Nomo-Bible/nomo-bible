@@ -1,7 +1,8 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { useAuth } from '@/auth/useAuth';
-import { useReader } from '@/context/ReaderContext';import { useWordStudy } from '@/context/WordStudyContext';
+import { useReader } from '@/context/ReaderContext';
+import { useWordStudy } from '@/context/WordStudyContext';
 import { WorkspaceExpandButton } from '@/components/workspace/WorkspaceExpandButton';
 import { getChapter } from '@/services/bibleService';
 import { getConcordanceHighlightTokenIndexes } from '@/services/concordanceService';
@@ -10,8 +11,15 @@ import { formatReaderLocation, formatReference } from '@/types/bible';
 import { renderVerseContent, buildDisplayWordTokens } from '@/utils/formatVerseText';
 import './ScriptureReaderPanel.css';
 
-export function ScriptureReaderPanel() {
-  const {
+interface ScriptureReaderPanelProps {
+  variant?: 'default' | 'mobile';
+  hideChrome?: boolean;
+}
+
+export function ScriptureReaderPanel({
+  variant = 'default',
+  hideChrome = false,
+}: ScriptureReaderPanelProps) {  const {
     location,
     concordanceHighlight,
     goToPreviousChapter,
@@ -22,9 +30,13 @@ export function ScriptureReaderPanel() {
   } = useReader();
   const { openWordStudy, activeTokenId } = useWordStudy();
   const { isAuthenticated, openAuthPrompt } = useAuth();
-  const activeVerseRef = useRef<HTMLParagraphElement>(null);  const chapter = getChapter(location.book, location.chapter);
+  const activeVerseRef = useRef<HTMLParagraphElement>(null);
+  const chapter = getChapter(location.book, location.chapter);
   const heading = formatReaderLocation(location);
-
+  const readerClass =
+    variant === 'mobile'
+      ? 'scripture-reader scripture-reader--mobile'
+      : 'scripture-reader';
   useEffect(() => {
     if (location.verse !== null && activeVerseRef.current) {
       activeVerseRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -84,23 +96,22 @@ export function ScriptureReaderPanel() {
   );
 
   if (!chapter) {
+    if (hideChrome) {
+      return (
+        <p className="scripture-reader__empty">This passage could not be loaded.</p>
+      );
+    }
     return (
-      <article className="scripture-reader" aria-label="Scripture text">
+      <article className={readerClass} aria-label="Scripture text">
         {header}
-        <p className="scripture-reader__empty">
-          This passage could not be loaded.
-        </p>
+        <p className="scripture-reader__empty">This passage could not be loaded.</p>
       </article>
     );
   }
 
-  return (
-    <article className="scripture-reader" aria-label="Scripture text">
-      {header}
-
-      <div className="scripture-reader__text">
-        {chapter.verses.map(({ number, text }) => {
-          const isActive = location.verse === number;
+  const verseContent = (
+    <div className="scripture-reader__text">
+      {chapter.verses.map(({ number, text }) => {          const isActive = location.verse === number;
           const tokenIdPrefix = `${location.book}:${location.chapter}:${number}`;
           const tokens = getVerseWordTokens(location.book, location.chapter, number);
           const highlightedTokenIndexes =
@@ -155,7 +166,17 @@ export function ScriptureReaderPanel() {
             </p>
           );
         })}
-      </div>
+    </div>
+  );
+
+  if (hideChrome) {
+    return verseContent;
+  }
+
+  return (
+    <article className={readerClass} aria-label="Scripture text">
+      {header}
+      {verseContent}
     </article>
   );
 }

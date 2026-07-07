@@ -1,4 +1,5 @@
 import { BarChart3, BookOpen, Tags } from 'lucide-react';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { EmptyState } from './EmptyState';
 import { StudyNoteDetail } from './StudyNoteDetail';
 import { StudyNoteEditor } from './StudyNoteEditor';
@@ -6,8 +7,8 @@ import { StudyNotesList } from './StudyNotesList';
 import { CrossReferencePanel } from './CrossReferencePanel';
 import { ConcordancePanel } from './ConcordancePanel';
 import { HowToStudyBiblePanel } from './HowToStudyBiblePanel';
-import { KnowledgeBaseEmptyPanel } from './KnowledgeBaseEmptyPanel';
-import type { useStudyWorkspace } from '@/hooks/useStudyWorkspace';
+import { HowToStudyMobilePanel } from './HowToStudyMobilePanel';
+import { KnowledgeBaseEmptyPanel } from './KnowledgeBaseEmptyPanel';import type { useStudyWorkspace } from '@/hooks/useStudyWorkspace';
 import './StudyTabContent.css';
 
 type StudyWorkspaceState = ReturnType<typeof useStudyWorkspace>;
@@ -18,8 +19,8 @@ interface StudyTabContentProps {
 }
 
 export function StudyTabContent({ workspace, passageLabel }: StudyTabContentProps) {
-  const {
-    activeTab,
+  const isMobile = useMediaQuery('(max-width: 768px)');
+  const {    activeTab,
     notes,
     crossReferences,
     selectedNote,
@@ -110,11 +111,16 @@ export function StudyTabContent({ workspace, passageLabel }: StudyTabContentProp
 
     case 'how-to-study':
       return (
-        <div className="study-tab-content__body study-tab-content__body--how-to-study nm-fade-in">
-          <HowToStudyBiblePanel />
+        <div
+          className={
+            isMobile
+              ? 'study-tab-content__body study-tab-content__body--how-to-study study-tab-content__body--how-to-study-mobile nm-fade-in'
+              : 'study-tab-content__body study-tab-content__body--how-to-study nm-fade-in'
+          }
+        >
+          {isMobile ? <HowToStudyMobilePanel /> : <HowToStudyBiblePanel />}
         </div>
       );
-
     case 'charts':
       return (
         <div className="study-tab-content__body nm-fade-in">

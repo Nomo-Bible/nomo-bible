@@ -74,12 +74,24 @@
   background: var(--color-bg-scripture);
 }
 
-.study-workspace__content:not(:has(.study-tab-content__body--how-to-study)) {
+.study-workspace__content:not(:has(.study-tab-content__body--how-to-study)),
+.study-workspace__content:has(.study-tab-content__body--how-to-study-mobile) {
   overflow-x: hidden;
   overflow-y: auto;
   padding-bottom: var(--scroll-padding-bottom);
 }
 
+.study-workspace__content:has(.study-tab-content__body--how-to-study-mobile) {
+  flex: none;
+  min-height: min-content;
+  overflow: visible;
+}
+
+.study-workspace__content:has(.study-tab-content__body--how-to-study-mobile) .study-workspace__tab-body {
+  flex: none;
+  min-height: min-content;
+  display: block;
+}
 .study-workspace__tab-body {
   flex: 1 1 auto;
   min-height: 0;

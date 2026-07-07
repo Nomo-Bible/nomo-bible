@@ -1,0 +1,701 @@
+/* ── Mobile V3: native-quality Bible study workspace ── */
+
+.mobile-v3 {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-height: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+/* ── Compact header ── */
+.mobile-v3-header {
+  display: grid;
+  grid-template-columns: var(--touch-min, 2.75rem) 1fr auto;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  min-height: 3rem;
+  background: var(--color-bg-elevated);
+  border-bottom: 1px solid var(--color-border-subtle);
+  flex-shrink: 0;
+  z-index: var(--z-header, 100);
+}
+
+.mobile-v3-header__menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-min, 2.75rem);
+  height: var(--touch-min, 2.75rem);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.mobile-v3-header__menu-btn:hover {
+  background: var(--color-highlight);
+}
+
+.mobile-v3-header__menu-btn:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.mobile-v3-header__brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+}
+
+.mobile-v3-header__mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.625rem;
+  height: 1.625rem;
+  font-family: var(--font-serif);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--color-accent);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.mobile-v3-header__title {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobile-v3-header__account {
+  flex-shrink: 0;
+}
+
+.mobile-v3-header__account .auth-nav {
+  gap: var(--space-1);
+}
+
+.mobile-v3-header__account .auth-nav__user,
+.mobile-v3-header__account .auth-nav__link span:not(.auth-nav__signup-short),
+.mobile-v3-header__account .auth-nav__signup-long {
+  display: none;
+}
+
+.mobile-v3-header__account .auth-nav__signup-short {
+  display: inline;
+}
+
+.mobile-v3-header__account .auth-nav__link {
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-xs);
+  min-height: var(--touch-min, 2.75rem);
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ── Search row ── */
+.mobile-v3__search {
+  flex-shrink: 0;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg-elevated);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.mobile-v3__search .bible-search {
+  width: 100%;
+}
+
+.mobile-v3__search .bible-search__form {
+  gap: var(--space-2);
+}
+
+.mobile-v3__search .bible-search__field {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.mobile-v3__search .bible-search__input {
+  width: 100%;
+  font-size: var(--font-size-sm);
+  padding-block: var(--space-2);
+}
+
+.mobile-v3__search .bible-search__input:focus {
+  width: 100%;
+}
+
+.mobile-v3__search .bible-search__button {
+  min-height: var(--touch-min, 2.75rem);
+  min-width: 5rem;
+  padding-inline: var(--space-3);
+}
+
+/* ── Site section nav ── */
+.mobile-v3-site-nav {
+  display: flex;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex-shrink: 0;
+  background: var(--color-bg-elevated);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.mobile-v3-site-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-v3-site-nav__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  min-height: var(--touch-min, 2.75rem);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  flex: 0 0 auto;
+  border: 1px solid transparent;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.mobile-v3-site-nav__link:hover {
+  background: var(--color-highlight);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.mobile-v3-site-nav__link--active {
+  color: var(--color-accent);
+  font-weight: 600;
+  background: var(--color-highlight-active);
+  border-color: color-mix(in srgb, var(--color-accent) 20%, transparent);
+}
+
+/* ── Workspace shell ── */
+.mobile-v3__workspace {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Workspace tabs (snap scroll cards) ── */
+.mobile-v3-tabs-wrap {
+  flex-shrink: 0;
+  padding: var(--space-2) 0 var(--space-1);
+  background: var(--color-bg-secondary);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.mobile-v3-tabs {
+  display: flex;
+  gap: var(--space-2);
+  padding: 0 var(--space-3);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--space-3);
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-v3-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-v3-tabs__card {
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-width: 5.5rem;
+  min-height: 4.25rem;
+  padding: var(--space-2) var(--space-2-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-card);
+  box-shadow: var(--shadow-subtle, 0 1px 2px rgba(44, 42, 38, 0.04));
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.mobile-v3-tabs__card:hover {
+  border-color: var(--color-border-strong);
+  color: var(--color-text);
+}
+
+.mobile-v3-tabs__card--active {
+  border-color: var(--color-accent);
+  background: var(--color-highlight-active);
+  color: var(--color-accent);
+  font-weight: 600;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 25%, transparent);
+}
+
+.mobile-v3-tabs__icon {
+  flex-shrink: 0;
+}
+
+.mobile-v3-tabs__label {
+  text-align: center;
+  line-height: 1.2;
+  max-width: 5rem;
+}
+
+.mobile-v3-tabs__hint {
+  margin: var(--space-1) var(--space-3) 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-subtle);
+  text-align: center;
+}
+
+/* ── Study panel ── */
+.mobile-v3-study {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.mobile-v3-study__header {
+  flex-shrink: 0;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg-elevated);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.mobile-v3-study__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: var(--line-height-tight);
+}
+
+.mobile-v3-study__context {
+  margin: var(--space-1) 0 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-subtle);
+}
+
+.mobile-v3-study__body {
+  flex: 1 1 auto;
+}
+
+.study-workspace--mobile {
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  height: auto;
+  min-height: auto;
+}
+
+.study-workspace--mobile .study-workspace__content:not(:has(.study-tab-content__body--how-to-study-mobile)) {
+  overflow: visible;
+  padding-bottom: var(--space-4);
+}
+
+.study-workspace--mobile .study-workspace__tab-body {
+  padding: var(--space-2) var(--space-3);
+}
+
+/* ── Bible reader shell ── */
+.mobile-v3-reader {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-height: 0;
+  background: var(--color-bg-scripture);
+}
+
+.mobile-v3-reader__chrome {
+  flex-shrink: 0;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg-elevated);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.mobile-v3-reader__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.mobile-v3-reader__heading {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: var(--line-height-tight);
+}
+
+.mobile-v3-reader__badge {
+  flex-shrink: 0;
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  background: var(--color-accent-muted);
+  border-radius: var(--radius-sm);
+}
+
+.mobile-v3-reader__selects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.mobile-v3-reader__field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex: 1 1 calc(33% - var(--space-2));
+  min-width: 5.5rem;
+}
+
+.mobile-v3-reader__select {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: var(--touch-min, 2.75rem);
+  padding: var(--space-1) var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  border: var(--input-border, 1px solid var(--color-border));
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.mobile-v3-reader__chapter-nav {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.mobile-v3-reader__nav-btn {
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-height: var(--touch-min, 2.75rem);
+  padding: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.mobile-v3-reader__nav-btn:hover:not(:disabled) {
+  background: var(--color-highlight);
+  border-color: var(--color-border-strong);
+}
+
+.mobile-v3-reader__nav-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.mobile-v3-reader__text {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+.mobile-v3-reader__text .scripture-reader__text {
+  padding: var(--space-3) var(--space-3) var(--space-5);
+}
+
+.mobile-v3-reader__text .scripture-reader__verse {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+/* ── Bottom navigation ── */
+.mobile-v3-bottom-nav {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  flex-shrink: 0;
+  min-height: 3.75rem;
+  padding: var(--space-1) var(--space-2) calc(var(--space-1) + env(safe-area-inset-bottom, 0px));
+  background: var(--color-text);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: var(--z-header, 100);
+}
+
+.mobile-v3-bottom-nav__btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.125rem;
+  flex: 1 1 0;
+  min-width: var(--touch-min, 2.75rem);
+  min-height: var(--touch-min, 2.75rem);
+  padding: var(--space-1);
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.mobile-v3-bottom-nav__btn:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.mobile-v3-bottom-nav__btn--active {
+  color: var(--color-gold-light);
+  font-weight: 600;
+}
+
+.mobile-v3-bottom-nav__btn:focus-visible {
+  outline: 2px solid var(--color-gold-light);
+  outline-offset: -2px;
+}
+
+/* ── Nav drawer ── */
+.mobile-v3-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-header, 100) + 20);
+  display: flex;
+}
+
+.mobile-v3-drawer__backdrop {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: rgba(30, 29, 26, 0.45);
+  cursor: pointer;
+  animation: mobile-v3-fade-in 0.2s ease;
+}
+
+.mobile-v3-drawer__panel {
+  position: relative;
+  width: min(18rem, 85vw);
+  height: 100%;
+  background: var(--color-bg-elevated);
+  box-shadow: var(--shadow-panel, 0 8px 32px rgba(44, 42, 38, 0.12));
+  display: flex;
+  flex-direction: column;
+  animation: mobile-v3-slide-in 0.22s ease;
+}
+
+.mobile-v3-drawer__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.mobile-v3-drawer__title {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.mobile-v3-drawer__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-min, 2.75rem);
+  height: var(--touch-min, 2.75rem);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.mobile-v3-drawer__close:hover {
+  background: var(--color-highlight);
+  color: var(--color-text);
+}
+
+.mobile-v3-drawer__list {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-2);
+}
+
+.mobile-v3-drawer__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  min-height: var(--touch-min, 2.75rem);
+  border-radius: var(--radius);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.mobile-v3-drawer__link:hover {
+  background: var(--color-highlight);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.mobile-v3-drawer__link--active {
+  background: var(--color-highlight-active);
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* ── More sheet ── */
+.mobile-v3-more {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-header, 100) + 15);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.mobile-v3-more__backdrop {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: rgba(30, 29, 26, 0.4);
+  cursor: pointer;
+  animation: mobile-v3-fade-in 0.2s ease;
+}
+
+.mobile-v3-more__panel {
+  position: relative;
+  width: 100%;
+  max-width: 28rem;
+  padding: var(--space-3) var(--space-3) calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+  background: var(--color-bg-elevated);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  box-shadow: 0 -4px 24px rgba(44, 42, 38, 0.12);
+  animation: mobile-v3-sheet-up 0.24s ease;
+}
+
+.mobile-v3-more__title {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.mobile-v3-more__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-v3-more__item {
+  display: block;
+  width: 100%;
+  padding: var(--space-3);
+  min-height: var(--touch-min, 2.75rem);
+  border: none;
+  border-radius: var(--radius);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--color-text);
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.mobile-v3-more__item:hover {
+  background: var(--color-highlight);
+}
+
+@keyframes mobile-v3-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes mobile-v3-slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes mobile-v3-sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

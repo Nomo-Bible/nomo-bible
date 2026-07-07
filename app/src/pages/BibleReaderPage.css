@@ -12,11 +12,16 @@
   margin-bottom: 0;
 }
 
-.bible-reader-page .scripture-workspace {
+.bible-reader-page .scripture-workspace,
+.bible-reader-page .mobile-v3 {
   flex: 1 1 0;
   min-height: 0;
   height: auto;
   max-height: none;
+}
+
+.bible-reader-page:has(.mobile-v3) {
+  gap: 0;
 }
 
 .bible-reader-page:has(

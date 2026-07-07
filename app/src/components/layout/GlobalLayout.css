@@ -2,6 +2,8 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 100%;
 }
 
 .site-header {
@@ -211,5 +213,51 @@
 
   .site-main {
     padding: var(--space-3);
+  }
+}
+
+/* Reader: compact header — prioritize reading area */
+.global-layout--reader .site-header__inner {
+  padding-block: var(--space-1);
+}
+
+@media (max-width: 768px) {
+  /* Mobile V3 reader supplies its own header, search, and navigation */
+  .global-layout--reader .site-header {
+    display: none;
+  }
+
+  .global-layout--reader .site-main:has(.mobile-v3) {
+    padding: 0;
+    max-width: none;
+  }
+
+  .global-layout--reader .site-header .bible-search {
+    display: none;
+  }
+
+  .global-layout--reader .site-header__utilities {
+    gap: var(--space-1);
+  }
+}
+
+/* Very narrow: icon-only nav labels to keep all links visible */
+@media (max-width: 360px) {
+  .site-header__link-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .site-header__link {
+    padding: var(--space-2);
+    min-width: var(--touch-min, 2.75rem);
+    justify-content: center;
   }
 }

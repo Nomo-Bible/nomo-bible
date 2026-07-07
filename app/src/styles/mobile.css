@@ -151,29 +151,28 @@
   }
 
   /* ── Scripture text ── */
-  .scripture-reader__header {
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
-    grid-template-areas:
-      'heading badge'
-      'nav nav';
-    padding: var(--space-2) var(--space-2-5);
-    gap: var(--space-2);
-  }
-
   .scripture-reader__header-actions {
     display: none;
+  }
+
+  .scripture-reader__badge {
+    display: none;
+  }
+
+  .scripture-reader__header {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      'heading'
+      'nav';
+    padding: var(--space-1) var(--space-2);
+    gap: var(--space-1);
   }
 
   .scripture-reader__heading {
     grid-area: heading;
     text-align: left;
-    font-size: var(--font-size-xl);
-  }
-
-  .scripture-reader__badge {
-    grid-area: badge;
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-lg);
   }
 
   .scripture-reader__chapter-nav {
@@ -250,6 +249,14 @@
     white-space: nowrap;
   }
 
+  .study-tabs__expand-btn {
+    display: none;
+  }
+
+  .scripture-workspace--mobile-study .study-workspace__header {
+    display: none;
+  }
+
   .study-toolbar {
     padding: var(--space-2);
     gap: var(--space-1);
@@ -261,6 +268,12 @@
 
   .study-workspace__content {
     overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .study-workspace__content:not(:has(.study-tab-content__body--how-to-study-mobile)) {
+    padding-bottom: var(--space-3);
   }
 
   /* ── Cross-reference panel tabs ── */

@@ -23,19 +23,19 @@ export function GlobalLayout() {
           <nav className="site-header__nav" aria-label="Main navigation">
             <NavLink to="/" end className="site-header__link">
               <Home className="site-header__link-icon" aria-hidden="true" size={16} strokeWidth={2} />
-              Home
+              <span className="site-header__link-text">Home</span>
             </NavLink>
             <NavLink to="/reader" className="site-header__link">
               <BookOpen className="site-header__link-icon" aria-hidden="true" size={16} strokeWidth={2} />
-              Scripture
+              <span className="site-header__link-text">Scripture</span>
             </NavLink>
             <NavLink to="/repository" className="site-header__link">
               <Library className="site-header__link-icon" aria-hidden="true" size={16} strokeWidth={2} />
-              Repository
+              <span className="site-header__link-text">Repository</span>
             </NavLink>
             <NavLink to="/about" className="site-header__link">
               <Users className="site-header__link-icon" aria-hidden="true" size={16} strokeWidth={2} />
-              About
+              <span className="site-header__link-text">About</span>
             </NavLink>
           </nav>
 
