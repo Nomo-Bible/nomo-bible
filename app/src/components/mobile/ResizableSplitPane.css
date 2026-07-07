@@ -3,23 +3,32 @@
   flex-direction: column;
   flex: 1 1 0;
   min-height: 0;
+  height: 100%;
   overflow: hidden;
+}
+
+.mobile-split--dragging {
+  user-select: none;
+  cursor: row-resize;
 }
 
 .mobile-split__workspace {
   display: flex;
   flex-direction: column;
-  min-height: 7rem;
-  max-height: 72%;
+  flex-shrink: 0;
+  min-height: 0;
   overflow: hidden;
+}
+
+.mobile-split__workspace > .mobile-v3-tabs-wrap {
   flex-shrink: 0;
 }
 
 .mobile-split__reader {
   display: flex;
   flex-direction: column;
-  flex: 1 1 0;
-  min-height: 7rem;
+  flex-shrink: 0;
+  min-height: 0;
   overflow: hidden;
 }
 
@@ -28,18 +37,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 1.25rem;
+  height: 1.5rem;
   cursor: row-resize;
   touch-action: none;
   background: var(--color-bg-secondary);
-  border-block: 1px solid var(--color-border-subtle);
+  border-block: 1px solid var(--color-border-strong);
+  z-index: 2;
+}
+
+.mobile-split--dragging .mobile-split__handle {
+  background: var(--color-highlight-active);
 }
 
 .mobile-split__handle-grip {
-  width: 2.5rem;
-  height: 0.25rem;
+  width: 2.75rem;
+  height: 0.3125rem;
   border-radius: var(--radius-pill);
   background: var(--color-border-strong);
+}
+
+.mobile-split--dragging .mobile-split__handle-grip {
+  background: var(--color-accent);
 }
 
 .mobile-split__handle:focus-visible {
@@ -52,5 +70,7 @@
   min-height: 0;
   overflow-x: hidden;
   overflow-y: auto;
+  overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }

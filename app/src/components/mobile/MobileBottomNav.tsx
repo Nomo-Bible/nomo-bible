@@ -13,7 +13,7 @@ const ITEMS: { id: MobileBottomNavId; label: string; Icon: typeof BookOpen }[] =
   { id: 'bible', label: 'Bible', Icon: BookOpen },
   { id: 'search', label: 'Search', Icon: Search },
   { id: 'notes', label: 'Notes', Icon: NotebookPen },
-  { id: 'bookmarks', label: 'Refs', Icon: Bookmark },
+  { id: 'bookmarks', label: 'Bookmarks', Icon: Bookmark },
   { id: 'more', label: 'More', Icon: MoreHorizontal },
 ];
 

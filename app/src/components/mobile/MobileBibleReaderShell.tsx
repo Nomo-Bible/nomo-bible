@@ -1,90 +1,79 @@
-import { BookMarked, ChevronLeft, ChevronRight, Hash, ListOrdered } from 'lucide-react';
-import { useReader } from '@/context/ReaderContext';
 import {
-  getAvailableBooks,
-  getChaptersForBook,
-  getVerseNumbers,
-} from '@/services/bibleService';
-import { formatReaderLocation } from '@/types/bible';
+  BookOpen,
+  ChevronLeft,
+  ChevronRight,
+  Compass,
+  Maximize2,
+  Minimize2,
+} from 'lucide-react';
+import { useReader } from '@/context/ReaderContext';
 import { ScriptureReaderPanel } from '@/components/workspace/ScriptureReaderPanel';
 import './mobile-v3.css';
 
-export function MobileBibleReaderShell() {
+interface MobileBibleReaderShellProps {
+  onOpenNavigator: () => void;
+  isReadingExpanded: boolean;
+  onExpandReading: () => void;
+  onRestoreSplit: () => void;
+}
+
+export function MobileBibleReaderShell({
+  onOpenNavigator,
+  isReadingExpanded,
+  onExpandReading,
+  onRestoreSplit,
+}: MobileBibleReaderShellProps) {
   const {
     location,
-    setBook,
-    setChapter,
-    setVerse,
     goToPreviousChapter,
     goToNextChapter,
     canGoPrevious,
     canGoNext,
   } = useReader();
 
-  const books = getAvailableBooks();
-  const chapters = getChaptersForBook(location.book);
-  const verses = getVerseNumbers(location.book, location.chapter);
-  const heading = formatReaderLocation(location);
-  const verseSelectValue = location.verse === null ? 'chapter' : String(location.verse);
+  const reference = `${location.book} ${location.chapter}`;
 
   return (
     <div className="mobile-v3-reader">
       <header className="mobile-v3-reader__chrome">
-        <div className="mobile-v3-reader__title-row">
-          <h2 className="mobile-v3-reader__heading">{heading}</h2>
-          <span className="mobile-v3-reader__badge">KJV</span>
+        <div className="mobile-v3-reader__toolbar">
+          <div className="mobile-v3-reader__ref">
+            <BookOpen size={15} strokeWidth={2} aria-hidden="true" />
+            <span className="mobile-v3-reader__ref-text">{reference}</span>
+            <span className="mobile-v3-reader__badge">KJV</span>
+          </div>
+
+          <div className="mobile-v3-reader__actions">
+            <button
+              type="button"
+              className="mobile-v3-reader__action-btn"
+              onClick={onOpenNavigator}
+            >
+              <Compass size={14} strokeWidth={2} aria-hidden="true" />
+              Browse
+            </button>
+            {isReadingExpanded ? (
+              <button
+                type="button"
+                className="mobile-v3-reader__action-btn mobile-v3-reader__action-btn--accent"
+                onClick={onRestoreSplit}
+              >
+                <Minimize2 size={14} strokeWidth={2} aria-hidden="true" />
+                Study View
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="mobile-v3-reader__action-btn mobile-v3-reader__action-btn--accent"
+                onClick={onExpandReading}
+              >
+                <Maximize2 size={14} strokeWidth={2} aria-hidden="true" />
+                Read Larger
+              </button>
+            )}
+          </div>
         </div>
-        <div className="mobile-v3-reader__selects">
-          <label className="mobile-v3-reader__field">
-            <BookMarked size={14} strokeWidth={2} aria-hidden="true" />
-            <select
-              className="mobile-v3-reader__select"
-              value={location.book}
-              onChange={(e) => setBook(e.target.value)}
-              aria-label="Book"
-            >
-              {books.map((book) => (
-                <option key={book} value={book}>
-                  {book}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="mobile-v3-reader__field">
-            <Hash size={14} strokeWidth={2} aria-hidden="true" />
-            <select
-              className="mobile-v3-reader__select"
-              value={location.chapter}
-              onChange={(e) => setChapter(Number(e.target.value))}
-              aria-label="Chapter"
-            >
-              {chapters.map((n) => (
-                <option key={n} value={n}>
-                  {n}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="mobile-v3-reader__field">
-            <ListOrdered size={14} strokeWidth={2} aria-hidden="true" />
-            <select
-              className="mobile-v3-reader__select"
-              value={verseSelectValue}
-              onChange={(e) => {
-                const value = e.target.value;
-                setVerse(value === 'chapter' ? null : Number(value));
-              }}
-              aria-label="Verse"
-            >
-              <option value="chapter">All</option>
-              {verses.map((n) => (
-                <option key={n} value={n}>
-                  {n}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
+
         <div className="mobile-v3-reader__chapter-nav">
           <button
             type="button"
@@ -108,6 +97,7 @@ export function MobileBibleReaderShell() {
           </button>
         </div>
       </header>
+
       <div className="mobile-v3-reader__text">
         <ScriptureReaderPanel variant="mobile" hideChrome />
       </div>

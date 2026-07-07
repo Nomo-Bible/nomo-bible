@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { StudyWorkspaceTabId } from '@/types/studyWorkspace';
 import { STUDY_WORKSPACE_TABS } from '@/types/studyWorkspace';
 import { STUDY_TAB_ICONS } from '@/components/ui/studyTabIcons';
@@ -12,17 +12,45 @@ interface MobileWorkspaceTabsProps {
 export function MobileWorkspaceTabs({ activeTab, onTabChange }: MobileWorkspaceTabsProps) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const activeRef = useRef<HTMLButtonElement>(null);
+  const [showScrollHint, setShowScrollHint] = useState(false);
 
   useEffect(() => {
     activeRef.current?.scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
-      inline: 'center',
+      inline: 'start',
     });
   }, [activeTab]);
 
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+
+    const updateHint = () => {
+      const hasOverflow = scroller.scrollWidth > scroller.clientWidth + 8;
+      const atEnd =
+        scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 8;
+      setShowScrollHint(hasOverflow && !atEnd);
+    };
+
+    updateHint();
+    scroller.addEventListener('scroll', updateHint, { passive: true });
+    window.addEventListener('resize', updateHint);
+
+    return () => {
+      scroller.removeEventListener('scroll', updateHint);
+      window.removeEventListener('resize', updateHint);
+    };
+  }, [activeTab]);
+
   return (
-    <div className="mobile-v3-tabs-wrap">
+    <div
+      className={
+        showScrollHint
+          ? 'mobile-v3-tabs-wrap mobile-v3-tabs-wrap--more'
+          : 'mobile-v3-tabs-wrap'
+      }
+    >
       <div
         ref={scrollerRef}
         className="mobile-v3-tabs"
@@ -55,7 +83,7 @@ export function MobileWorkspaceTabs({ activeTab, onTabChange }: MobileWorkspaceT
         })}
       </div>
       <p className="mobile-v3-tabs__hint" aria-hidden="true">
-        Swipe for more tools →
+        Swipe for more study tools
       </p>
     </div>
   );
