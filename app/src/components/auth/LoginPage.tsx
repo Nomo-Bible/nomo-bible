@@ -52,13 +52,13 @@ export function LoginPage() {
         {error && <p className="auth-page__error">{error}</p>}
 
         <div className="auth-page__field">
-          <label htmlFor="login-email" className="auth-page__label">
+          <label htmlFor="login-email" className="nm-label">
             Email
           </label>
           <input
             id="login-email"
             type="email"
-            className="auth-page__input"
+            className="nm-input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             autoComplete="email"
@@ -68,13 +68,13 @@ export function LoginPage() {
         </div>
 
         <div className="auth-page__field">
-          <label htmlFor="login-password" className="auth-page__label">
+          <label htmlFor="login-password" className="nm-label">
             Password
           </label>
           <input
             id="login-password"
             type="password"
-            className="auth-page__input"
+            className="nm-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
@@ -83,7 +83,7 @@ export function LoginPage() {
           />
         </div>
 
-        <button type="submit" className="auth-page__submit" disabled={submitting || !isConfigured}>
+        <button type="submit" className="auth-page__submit nm-btn nm-btn--primary" disabled={submitting || !isConfigured}>
           {submitting ? 'Signing in…' : 'Sign in'}
         </button>
       </form>

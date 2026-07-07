@@ -64,13 +64,13 @@ export function SignupPage() {
         {success && <p className="auth-page__success">{success}</p>}
 
         <div className="auth-page__field">
-          <label htmlFor="signup-email" className="auth-page__label">
+          <label htmlFor="signup-email" className="nm-label">
             Email
           </label>
           <input
             id="signup-email"
             type="email"
-            className="auth-page__input"
+            className="nm-input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             autoComplete="email"
@@ -80,13 +80,13 @@ export function SignupPage() {
         </div>
 
         <div className="auth-page__field">
-          <label htmlFor="signup-password" className="auth-page__label">
+          <label htmlFor="signup-password" className="nm-label">
             Password
           </label>
           <input
             id="signup-password"
             type="password"
-            className="auth-page__input"
+            className="nm-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="new-password"
@@ -97,13 +97,13 @@ export function SignupPage() {
         </div>
 
         <div className="auth-page__field">
-          <label htmlFor="signup-confirm" className="auth-page__label">
+          <label htmlFor="signup-confirm" className="nm-label">
             Confirm password
           </label>
           <input
             id="signup-confirm"
             type="password"
-            className="auth-page__input"
+            className="nm-input"
             value={confirm}
             onChange={(e) => setConfirm(e.target.value)}
             autoComplete="new-password"
@@ -115,7 +115,7 @@ export function SignupPage() {
 
         <button
           type="submit"
-          className="auth-page__submit"
+          className="auth-page__submit nm-btn nm-btn--primary"
           disabled={submitting || Boolean(success) || !isConfigured}
         >
           {submitting ? 'Creating account…' : 'Create account'}

@@ -40,17 +40,15 @@ export function StudyWorkspacePanel() {
         </div>
       )}
       <header className="study-workspace__header">
-        <div className="study-workspace__header-row">
-          <h2 className="study-workspace__title">Study Workspace</h2>
-          <WorkspaceExpandButton
-            panelId="study"
-            label="Study workspace"
-            restoreLabel="Back to Bible"
-          />
-        </div>
+        <h2 className="study-workspace__title visually-hidden">Study Workspace</h2>
         <p className="study-workspace__passage" aria-live="polite">
           {passageLabel}
         </p>
+        <WorkspaceExpandButton
+          panelId="study"
+          label="Study workspace"
+          restoreLabel="Back to Bible"
+        />
       </header>
 
       <StudyWorkspaceTabs

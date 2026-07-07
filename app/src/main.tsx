@@ -6,6 +6,7 @@ import { SearchProvider } from '@/context/SearchContext';
 import { App } from '@/App';
 import '@/styles/global.css';
 import '@/styles/forms.css';
+import '@/styles/components.css';
 import '@/styles/mobile.css';
 
 createRoot(document.getElementById('root')!).render(

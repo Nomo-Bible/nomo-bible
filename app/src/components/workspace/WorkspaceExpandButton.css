@@ -8,10 +8,10 @@
   font-family: var(--font-sans);
   font-size: var(--font-size-xs);
   font-weight: 500;
-  color: var(--color-text-muted);
+  color: var(--color-text-subtle);
   background: transparent;
   border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   cursor: pointer;
   transition:
     background var(--transition-fast),
@@ -22,7 +22,7 @@
 .workspace-expand-btn:hover {
   color: var(--color-accent);
   background: var(--color-highlight);
-  border-color: var(--color-accent-muted);
+  border-color: var(--color-border);
 }
 
 .workspace-expand-btn[aria-pressed='true'] {
@@ -40,7 +40,7 @@
   margin-left: 0;
   padding: var(--space-1);
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-xs);
 }
 
 .workspace-expand-btn--compact:hover {

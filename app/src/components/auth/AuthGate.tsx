@@ -29,14 +29,14 @@ export function AuthGate({ compact = false, onDismiss }: AuthGateProps) {
         Study Notes, Cross References, and more.
       </p>
       <div className="auth-gate__actions">
-        <Link to="/login" className="auth-gate__btn auth-gate__btn--primary">
+        <Link to="/login" className="nm-btn nm-btn--primary">
           Sign in
         </Link>
-        <Link to="/signup" className="auth-gate__btn auth-gate__btn--secondary">
+        <Link to="/signup" className="nm-btn nm-btn--secondary">
           Create account
         </Link>
         {onDismiss && (
-          <button type="button" className="auth-gate__btn auth-gate__btn--ghost" onClick={onDismiss}>
+          <button type="button" className="nm-btn nm-btn--ghost" onClick={onDismiss}>
             Continue reading
           </button>
         )}

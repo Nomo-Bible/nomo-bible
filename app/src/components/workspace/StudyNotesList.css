@@ -1,11 +1,11 @@
 .study-notes-list {
   list-style: none;
   margin: 0;
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-2-5) var(--space-3);
   padding-bottom: var(--space-2);
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-1);
   flex-shrink: 0;
 }
 
@@ -13,30 +13,28 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-1);
+  gap: 2px;
   width: 100%;
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-2-5) var(--space-3);
   text-align: left;
   border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius);
+  border-radius: var(--radius-sm);
   background: var(--color-card);
   cursor: pointer;
   transition:
     border-color var(--transition-fast),
-    background var(--transition-fast),
-    box-shadow var(--transition-fast);
+    background var(--transition-fast);
 }
 
 .study-notes-list__item:hover {
   border-color: var(--color-accent-muted);
   background: var(--color-highlight);
-  box-shadow: var(--shadow-sm);
 }
 
 .study-notes-list__item--selected {
   border-color: var(--color-accent-muted);
   background: var(--color-highlight-active);
-  box-shadow: inset 3px 0 0 var(--color-accent);
+  box-shadow: inset 2px 0 0 var(--color-accent);
 }
 
 .study-notes-list__item:focus-visible {
@@ -53,7 +51,7 @@
 
 .study-notes-list__excerpt {
   font-size: var(--font-size-sm);
-  line-height: 1.55;
+  line-height: 1.5;
   color: var(--color-text-muted);
 }
 

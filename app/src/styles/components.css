@@ -1,0 +1,225 @@
+/*
+ * Nomomartyria v2.0 — Shared component patterns
+ * Panels, cards, toolbars, section labels
+ */
+
+/* ── Panel shell (workspace panels) ── */
+.nm-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
+  overflow: hidden;
+}
+
+.nm-panel--sidebar {
+  background: var(--color-panel-sidebar);
+}
+
+.nm-panel--scripture {
+  background: var(--color-bg-scripture);
+}
+
+.nm-panel__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border-subtle);
+  flex-shrink: 0;
+  min-height: 2.5rem;
+}
+
+.nm-panel__header-title {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-workspace-title);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-subtle);
+}
+
+.nm-panel__header-heading {
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-serif);
+  font-size: var(--text-chapter-title);
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: var(--line-height-tight);
+}
+
+.nm-panel__body {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Cards ── */
+.nm-card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.nm-card--interactive {
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.nm-card--interactive:hover {
+  border-color: var(--color-accent-muted);
+  box-shadow: var(--shadow-hover);
+}
+
+.nm-card__body {
+  padding: var(--space-4);
+}
+
+/* ── Section label (uppercase micro-labels) ── */
+.nm-section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-subtle);
+}
+
+.nm-section-label__icon {
+  color: var(--color-accent);
+  opacity: 0.7;
+}
+
+/* ── Toolbar row ── */
+.nm-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-elevated);
+  flex-shrink: 0;
+}
+
+.nm-toolbar__spacer {
+  flex: 1 1 auto;
+}
+
+/* ── Tab bar (shared pattern) ── */
+.nm-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-bg);
+  flex-shrink: 0;
+}
+
+.nm-tabs__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2-5);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  line-height: 1.3;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.nm-tabs__tab:hover {
+  color: var(--color-text);
+  background: var(--color-highlight);
+}
+
+.nm-tabs__tab--active {
+  color: var(--color-accent);
+  background: var(--color-card);
+  border-color: var(--color-border);
+  font-weight: 600;
+}
+
+.nm-tabs__tab:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 1px;
+}
+
+/* ── Badge ── */
+.nm-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-secondary);
+  color: var(--color-gold-deep);
+  border: 1px solid var(--color-gold-muted);
+}
+
+/* ── Empty state ── */
+.nm-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-5) var(--space-4);
+  gap: var(--space-2);
+}
+
+.nm-empty__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--color-accent);
+  background: var(--color-highlight);
+  border-radius: var(--radius);
+}
+
+.nm-empty__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--text-section-heading);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.nm-empty__message {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  max-width: 22rem;
+}

@@ -17,7 +17,8 @@ export function AuthNav() {
           Sign in
         </Link>
         <Link to="/signup" className="auth-nav__link auth-nav__link--primary">
-          Create account
+          <span className="auth-nav__signup-long">Create account</span>
+          <span className="auth-nav__signup-short">Sign up</span>
         </Link>
       </div>
     );

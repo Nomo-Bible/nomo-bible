@@ -1,13 +1,13 @@
 .bible-search {
   position: relative;
-  margin-left: auto;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .bible-search__form {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-1);
 }
 
 .bible-search__field {
@@ -18,17 +18,17 @@
 
 .bible-search__field-icon {
   position: absolute;
-  left: var(--space-3);
+  left: var(--space-2-5);
   color: var(--color-text-subtle);
   pointer-events: none;
 }
 
 .bible-search__input {
-  width: 13rem;
+  width: 12rem;
   padding: var(--input-padding-y) var(--input-padding-x);
-  padding-left: calc(var(--space-3) + 1.25rem);
+  padding-left: calc(var(--space-2-5) + 1.125rem);
   font-family: var(--font-sans);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   border: var(--input-border);
   border-radius: var(--radius-pill);
   background: var(--color-bg);
@@ -46,12 +46,12 @@
 .bible-search__input:focus {
   outline: none;
   border-color: var(--color-accent-light);
-  box-shadow: 0 0 0 3px var(--color-accent-glow);
-  width: 16rem;
+  box-shadow: 0 0 0 2px var(--color-accent-glow);
+  width: 15rem;
 }
 
 .bible-search__button {
-  min-width: 5rem;
+  min-width: 4.5rem;
 }
 
 .bible-search__spinner {
@@ -66,8 +66,9 @@
 
 @media (max-width: 768px) {
   .bible-search {
-    margin-left: 0;
-    width: 100%;
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto;
   }
 
   .bible-search__form {
@@ -80,7 +81,8 @@
 
   .bible-search__input {
     width: 100%;
-    border-radius: var(--radius);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
   }
 
   .bible-search__input:focus {
@@ -88,6 +90,6 @@
   }
 
   .bible-search__button {
-    border-radius: var(--radius);
+    border-radius: var(--radius-sm);
   }
 }

@@ -10,7 +10,7 @@
 }
 
 .study-workspace__return {
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-2) var(--space-3);
   border-bottom: 1px solid var(--color-border-subtle);
   background: var(--color-bg-secondary);
   flex-shrink: 0;
@@ -19,7 +19,7 @@
 .study-workspace__return-link {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-1);
   padding: 0;
   font-family: var(--font-sans);
   font-size: var(--font-size-sm);
@@ -28,8 +28,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration: none;
   transition: color var(--transition-fast);
 }
 
@@ -40,40 +39,29 @@
 .study-workspace__return-link:focus-visible {
   outline: 2px solid var(--color-focus-ring);
   outline-offset: 2px;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-xs);
 }
 
 .study-workspace__header {
-  padding: var(--space-4) var(--space-4) var(--space-3);
-  border-bottom: 1px solid var(--color-border-subtle);
-  flex-shrink: 0;
-}
-
-.study-workspace__header-row {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: var(--space-2);
-}
-
-.study-workspace__title {
-  margin: 0;
-  flex: 1 1 auto;
-  min-width: 0;
-  font-family: var(--font-sans);
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-text-subtle);
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border-subtle);
+  flex-shrink: 0;
+  min-height: 2.5rem;
 }
 
 .study-workspace__passage {
-  margin: var(--space-1) 0 0;
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
   font-family: var(--font-serif);
-  font-size: var(--font-size-lg);
+  font-size: var(--text-book-title);
   font-weight: 600;
   color: var(--color-text);
-  line-height: 1.25;
+  line-height: var(--line-height-tight);
 }
 
 .study-workspace__content {
@@ -101,7 +89,7 @@
 
 .study-workspace__auth-loading {
   margin: 0;
-  padding: var(--space-5) var(--space-4);
+  padding: var(--space-4) var(--space-3);
   text-align: center;
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);

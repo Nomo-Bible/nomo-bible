@@ -1,26 +1,27 @@
 /**
- * Mobile layout & readability overrides (max-width: 768px).
- * Imported after global.css — bumps type scale, touch targets, and fixes overflow.
+ * Nomomartyria v2.0 — Mobile-first layout overrides (max-width: 768px).
+ * Imported after global.css — touch targets, reader viewport, native-app feel.
  */
 
 @media (max-width: 768px) {
   :root {
-    --font-size-xs: 0.8125rem;
-    --font-size-sm: 0.9375rem;
-    --font-size-base: 1.0625rem;
-    --font-size-md: 1.125rem;
-    --font-size-lg: 1.375rem;
-    --font-size-xl: 1.625rem;
-    --font-size-2xl: 2.125rem;
-    --font-size-scripture: 1.3125rem;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-md: 1.0625rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.375rem;
+    --font-size-2xl: 1.625rem;
+    --font-size-scripture: 1.1875rem;
     --line-height-scripture: 1.85;
-    --line-height-ui: 1.6;
-    --scroll-padding-x: var(--space-3);
-    --scroll-padding-y: var(--space-3);
-    --btn-padding-y: 0.625rem;
+    --line-height-ui: 1.55;
+    --scroll-padding-x: var(--space-2-5);
+    --scroll-padding-y: var(--space-2-5);
+    --btn-padding-y: 0.5625rem;
     --btn-font-size: var(--font-size-sm);
-    --input-padding-y: 0.6875rem;
+    --input-padding-y: 0.625rem;
     --touch-min: 2.75rem;
+    --header-height: 2.75rem;
   }
 
   html {
@@ -34,46 +35,68 @@
     max-width: 100%;
   }
 
-  /* ── Site header ── */
+  /* ── Site header (align with grid layout) ── */
   .site-header__inner {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: var(--space-2) var(--space-3);
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'brand utilities'
+      'nav nav';
+    padding: var(--space-2) var(--space-2-5);
     gap: var(--space-2);
   }
 
   .site-header__brand {
-    flex: 1 1 auto;
     min-width: 0;
   }
 
   .site-header__title {
-    font-size: 1.0625rem;
+    font-size: 0.9375rem;
   }
 
   .site-header__nav {
-    order: 3;
-    flex: 1 1 100%;
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    gap: var(--space-1);
+    justify-self: stretch;
     padding-bottom: var(--space-1);
   }
 
-  .site-header__nav::-webkit-scrollbar {
-    display: none;
+  .site-header__link {
+    min-height: var(--touch-min);
+    padding: var(--space-2) var(--space-2-5);
   }
 
-  .site-header__link {
-    flex: 0 0 auto;
+  .site-header__utilities {
+    gap: var(--space-1);
+    max-width: 100%;
+  }
+
+  .bible-search {
+    flex: 1 1 auto;
+    min-width: 8rem;
+    max-width: 100%;
+  }
+
+  .bible-search__form {
+    width: 100%;
+  }
+
+  .bible-search__field {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .bible-search__input {
+    width: 100%;
+    min-width: 0;
+    border-radius: var(--radius-sm);
     font-size: var(--font-size-sm);
-    min-height: var(--touch-min);
-    padding: var(--space-2) var(--space-3);
+  }
+
+  .bible-search__input:focus {
+    width: 100%;
+  }
+
+  .bible-search__button {
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
   }
 
   .global-layout--reader .site-header__subtitle {
@@ -81,11 +104,11 @@
   }
 
   .global-layout--reader .site-header__inner {
-    padding-block: var(--space-2);
+    padding-block: var(--space-1);
   }
 
   .site-main {
-    padding: var(--space-3);
+    padding: var(--space-2-5);
   }
 
   .global-layout--reader .site-main {
@@ -94,7 +117,7 @@
     flex: 1 1 0;
     min-height: 0;
     overflow: hidden;
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-1) var(--space-2-5);
   }
 
   /* ── Bible reader workspace ── */
@@ -102,7 +125,7 @@
     flex: 1 1 0;
     min-height: 0;
     overflow: hidden;
-    gap: var(--space-2);
+    gap: var(--space-1);
   }
 
   .bible-reader-page .page-banner {
@@ -115,33 +138,8 @@
     overflow: hidden;
   }
 
-  .scripture-workspace {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-areas:
-      'nav'
-      'scripture'
-      'study';
-    gap: var(--space-2);
-    min-height: 0;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-  }
-
   .scripture-workspace__nav {
-    grid-area: nav;
-    max-height: 38vh;
-  }
-
-  .scripture-workspace__scripture {
-    grid-area: scripture;
-    min-height: 0;
-  }
-
-  .scripture-workspace__study {
-    grid-area: study;
-    min-height: 0;
+    max-height: none;
   }
 
   .scripture-nav,
@@ -159,7 +157,7 @@
     grid-template-areas:
       'heading badge'
       'nav nav';
-    padding: var(--space-3);
+    padding: var(--space-2) var(--space-2-5);
     gap: var(--space-2);
   }
 
@@ -191,14 +189,14 @@
   }
 
   .scripture-reader__text {
-    padding: var(--space-3);
+    padding: var(--space-2-5);
     padding-bottom: var(--space-4);
     max-width: none;
   }
 
   .scripture-reader__verse {
     font-size: var(--font-size-scripture);
-    margin-bottom: 1.1rem;
+    margin-bottom: 1rem;
     overflow-wrap: anywhere;
     word-break: break-word;
   }
@@ -209,7 +207,7 @@
 
   .scripture-reader__word {
     padding: 0.1em 0.05em;
-    border-radius: 3px;
+    border-radius: var(--radius-xs);
   }
 
   /* ── Navigation panel ── */
@@ -222,22 +220,13 @@
     min-height: var(--touch-min);
   }
 
-  .scripture-nav__label,
-  .scripture-nav__title {
-    font-size: var(--font-size-xs);
-  }
-
   /* ── Study workspace ── */
   .study-workspace__header {
-    padding: var(--space-3);
-  }
-
-  .study-workspace__title {
-    font-size: var(--font-size-sm);
+    padding: var(--space-2) var(--space-2-5);
   }
 
   .study-workspace__passage {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
   }
 
   .study-tabs {
@@ -245,7 +234,7 @@
     overflow-x: auto;
     overscroll-behavior-x: contain;
     -webkit-overflow-scrolling: touch;
-    padding: var(--space-2);
+    padding: var(--space-1);
     gap: var(--space-1);
   }
 
@@ -257,19 +246,17 @@
     flex: 0 0 auto;
     font-size: var(--font-size-sm);
     min-height: var(--touch-min);
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-2) var(--space-2-5);
     white-space: nowrap;
   }
 
   .study-toolbar {
-    padding: var(--space-2) var(--space-3);
-    gap: var(--space-2);
+    padding: var(--space-2);
+    gap: var(--space-1);
   }
 
-  .study-toolbar__btn {
-    font-size: var(--font-size-sm);
+  .study-toolbar .nm-btn {
     min-height: var(--touch-min);
-    padding: var(--space-2) var(--space-3);
   }
 
   .study-workspace__content {
@@ -283,7 +270,7 @@
     overscroll-behavior-x: contain;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    padding: var(--space-2);
+    padding: var(--space-1);
   }
 
   .cross-ref-panel__tabs::-webkit-scrollbar {
@@ -295,7 +282,7 @@
     font-size: var(--font-size-sm);
     min-height: var(--touch-min);
     white-space: nowrap;
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-2) var(--space-2-5);
   }
 
   .cross-ref-panel__add-btn,
@@ -308,7 +295,7 @@
 
   .public-cross-ref-section__insert {
     min-height: var(--touch-min);
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-2) var(--space-2-5);
     font-size: var(--font-size-sm);
   }
 
@@ -356,7 +343,7 @@
   }
 
   .home-modules__card h3 {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
   }
 
   .home-modules__grid {
@@ -385,8 +372,27 @@
   }
 }
 
-@media (max-width: 768px) and (max-height: 700px) {
-  .scripture-workspace__nav {
-    max-height: 32vh;
+@media (max-width: 480px) {
+  .site-header__inner {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'brand'
+      'utilities'
+      'nav';
+  }
+
+  .site-header__utilities {
+    justify-self: stretch;
+    flex-wrap: wrap;
+    justify-content: stretch;
+  }
+
+  .auth-nav {
+    flex: 1 1 auto;
+    justify-content: flex-end;
+  }
+
+  .bible-search {
+    flex: 1 1 100%;
   }
 }

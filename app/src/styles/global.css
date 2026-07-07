@@ -1,120 +1,184 @@
 :root {
   /*
-   * Nomomartyria Design System v1
-   * Warm ivory workspace · sapphire accent · antique gold sparingly
-   * 8-point spacing · premium study application feel
+   * Nomomartyria Design System v2.0
+   * Premium Bible study application — Scripture is the centerpiece.
+   * Warm neutrals · sapphire accent · antique gold sparingly
    */
 
+  /* ── Spacing (4 · 8 · 12 · 16 · 24 · 32 · 48 · 64) ── */
+  --space-1: 0.25rem;   /* 4px  */
+  --space-2: 0.5rem;    /* 8px  */
+  --space-2-5: 0.75rem; /* 12px */
+  --space-3: 1rem;      /* 16px */
+  --space-4: 1.5rem;    /* 24px */
+  --space-5: 2rem;      /* 32px */
+  --space-6: 3rem;      /* 48px */
+  --space-7: 4rem;      /* 64px */
+
   /* ── Color: surfaces ── */
-  --color-bg: #f9f7f2;
-  --color-bg-secondary: #f3efe6;
-  --color-bg-muted: #f3efe6;
-  --color-bg-elevated: #fefefe;
-  --color-bg-scripture: #fdfcf9;
-  --color-panel: #faf8f4;
-  --color-panel-sidebar: #f5f1ea;
-  --color-card: #fefefe;
+  --color-bg: #f7f5f0;
+  --color-bg-secondary: #f0ece4;
+  --color-bg-muted: #ebe6dc;
+  --color-bg-elevated: #fcfaf7;
+  --color-bg-scripture: #fbf9f5;
+  --color-panel: #f8f6f1;
+  --color-panel-sidebar: #f3efe8;
+  --color-card: #fcfaf7;
+  --color-surface-muted: #f3efe8;
 
   /* ── Color: text ── */
-  --color-text: #2a2926;
-  --color-text-muted: #5c574f;
-  --color-text-subtle: #8a847a;
-  --color-scripture: #1f1e1b;
+  --color-text: #2c2a26;
+  --color-text-muted: #5a564e;
+  --color-text-subtle: #8a8478;
+  --color-scripture: #1e1d1a;
 
-  /* ── Color: primary accent (sapphire) ── */
-  --color-accent: #1b4b82;
-  --color-accent-hover: #163d6e;
-  --color-accent-light: #2a6cb8;
-  --color-accent-muted: #d4e3f5;
-  --color-accent-glow: rgba(27, 75, 130, 0.14);
-  --color-focus-ring: #1b4b82;
+  /* ── Color: primary (sapphire) ── */
+  --color-primary: #1a4678;
+  --color-accent: var(--color-primary);
+  --color-accent-hover: #153a65;
+  --color-accent-light: #2a6299;
+  --color-accent-muted: #d0e0f0;
+  --color-accent-glow: rgba(26, 70, 120, 0.12);
+  --color-focus-ring: #1a4678;
 
-  /* ── Color: secondary accent (antique gold — use sparingly) ── */
-  --color-gold: #a8884a;
-  --color-gold-light: #c4a86a;
-  --color-gold-muted: #e8dac0;
-  --color-gold-deep: #7a6535;
-  --color-gold-glow: rgba(168, 136, 74, 0.16);
+  /* ── Color: secondary (warm neutral) ── */
+  --color-secondary: #6b6458;
+  --color-secondary-muted: #e8e2d8;
 
-  /* Legacy alias */
+  /* ── Color: gold accent (sparingly) ── */
+  --color-gold: #a08040;
+  --color-gold-light: #b89858;
+  --color-gold-muted: #e6d8b8;
+  --color-gold-deep: #756030;
+  --color-gold-glow: rgba(160, 128, 64, 0.14);
   --color-accent-muted-gold: var(--color-gold-muted);
 
   /* ── Color: semantic ── */
-  --color-success: #6b7b52;
-  --color-warning: #c4883a;
-  --color-danger: #9e4545;
-  --color-danger-hover: #b85555;
+  --color-success: #5a6e48;
+  --color-success-muted: #e4ebe0;
+  --color-warning: #b07830;
+  --color-warning-muted: #f0e4d0;
+  --color-danger: #944040;
+  --color-danger-hover: #a85050;
+  --color-danger-muted: #f0e0e0;
 
   /* ── Color: borders & highlights ── */
-  --color-border: rgba(42, 41, 38, 0.1);
-  --color-border-strong: rgba(42, 41, 38, 0.16);
-  --color-border-subtle: rgba(42, 41, 38, 0.06);
-  --color-highlight: rgba(27, 75, 130, 0.06);
-  --color-highlight-active: rgba(27, 75, 130, 0.1);
-  --color-mark: rgba(196, 168, 106, 0.35);
+  --color-border: rgba(44, 42, 38, 0.09);
+  --color-border-strong: rgba(44, 42, 38, 0.14);
+  --color-border-subtle: rgba(44, 42, 38, 0.05);
+  --color-highlight: rgba(26, 70, 120, 0.05);
+  --color-highlight-active: rgba(26, 70, 120, 0.09);
+  --color-mark: rgba(184, 152, 88, 0.32);
 
-  /* ── Spacing (8-point) ── */
-  --space-1: 0.25rem; /* 4px */
-  --space-2: 0.5rem; /* 8px */
-  --space-3: 1rem; /* 16px */
-  --space-4: 1.5rem; /* 24px */
-  --space-5: 2rem; /* 32px */
-  --space-6: 3rem; /* 48px */
-  --space-7: 4rem; /* 64px */
-
-  /* Scrollable panel padding */
-  --scroll-padding-y: var(--space-4);
-  --scroll-padding-x: var(--space-4);
-  --scroll-padding-bottom: var(--space-6);
-
-  /* Search & concordance cards */
-  --search-card-height: 4.75rem;
-  --search-card-gap: var(--space-2);
-  --concordance-card-gap: var(--search-card-gap);
-  --concordance-scroll-padding-y: var(--space-3);
-  --concordance-scroll-padding-x: var(--space-4);
-  --concordance-scroll-padding-bottom: var(--space-5);
-
-  /* ── Typography ── */
+  /* ── Typography: families ── */
   --font-serif: 'Cormorant Garamond', 'Crimson Pro', Georgia, serif;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-size-xs: 0.6875rem;
-  --font-size-sm: 0.8125rem;
-  --font-size-base: 0.9375rem;
-  --font-size-md: 1rem;
-  --font-size-lg: 1.25rem;
-  --font-size-xl: 1.5rem;
-  --font-size-2xl: 2rem;
-  --font-size-scripture: 1.1875rem;
-  --line-height-ui: 1.55;
-  --line-height-scripture: 2;
-  --line-height-heading: 1.25;
+
+  /* ── Typography: scale ── */
+  --font-size-xs: 0.6875rem;   /* 11px — caption */
+  --font-size-sm: 0.8125rem;   /* 13px — nav, buttons */
+  --font-size-base: 0.9375rem; /* 15px — body */
+  --font-size-md: 1rem;        /* 16px */
+  --font-size-lg: 1.1875rem;   /* 19px — section */
+  --font-size-xl: 1.375rem;    /* 22px — chapter */
+  --font-size-2xl: 1.75rem;    /* 28px — page title */
+  --font-size-scripture: 1.25rem; /* 20px — verse text */
+
+  /* Semantic type aliases */
+  --text-app-title: var(--font-size-sm);
+  --text-workspace-title: var(--font-size-xs);
+  --text-book-title: var(--font-size-lg);
+  --text-chapter-title: var(--font-size-xl);
+  --text-section-heading: var(--font-size-lg);
+  --text-body: var(--font-size-base);
+  --text-caption: var(--font-size-xs);
+  --text-nav: var(--font-size-sm);
+  --text-button: var(--font-size-sm);
+
+  --line-height-ui: 1.5;
+  --line-height-scripture: 1.95;
+  --line-height-heading: 1.2;
+  --line-height-tight: 1.25;
 
   /* ── Layout ── */
-  --radius-sm: 8px;
-  --radius: 12px;
-  --radius-lg: 16px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
   --radius-pill: 999px;
-  --max-width: 1280px;
-  --max-width-wide: 1600px;
-  --nav-panel-width: 9.5rem;
-  --study-panel-width: 36rem;
 
-  /* Compact page banner (not hero) */
-  --page-banner-height: 11.25rem;
-  --page-banner-height-mobile: 8.75rem;
+  --max-width: 1200px;
+  --max-width-wide: 1440px;
+  --max-width-reading: 42rem;
+  --header-height: 3rem;
+  --nav-panel-width: 8.75rem;
+  --study-panel-width: 34rem;
 
-  /* ── Elevation ── */
-  --shadow-sm: 0 1px 2px rgba(26, 25, 22, 0.04), 0 1px 3px rgba(26, 25, 22, 0.03);
-  --shadow-md: 0 4px 16px rgba(26, 25, 22, 0.06), 0 2px 6px rgba(26, 25, 22, 0.04);
-  --shadow-panel: 0 1px 3px rgba(26, 25, 22, 0.05), 0 4px 12px rgba(26, 25, 22, 0.04);
-  --shadow-card: 0 1px 2px rgba(26, 25, 22, 0.04);
-  --shadow-hover: 0 6px 20px rgba(26, 25, 22, 0.08);
+  --page-banner-height: 9rem;
+  --page-banner-height-mobile: 7rem;
+
+  /* Scrollable panel padding */
+  --scroll-padding-y: var(--space-3);
+  --scroll-padding-x: var(--space-3);
+  --scroll-padding-bottom: var(--space-5);
+
+  --search-card-height: 4.25rem;
+  --search-card-gap: var(--space-2);
+  --concordance-card-gap: var(--search-card-gap);
+  --concordance-scroll-padding-y: var(--space-2-5);
+  --concordance-scroll-padding-x: var(--space-3);
+  --concordance-scroll-padding-bottom: var(--space-4);
+
+  /* ── Elevation (subtle — refined, not floating) ── */
+  --shadow-xs: 0 1px 2px rgba(30, 29, 26, 0.03);
+  --shadow-sm: 0 1px 3px rgba(30, 29, 26, 0.04);
+  --shadow-md: 0 2px 8px rgba(30, 29, 26, 0.05);
+  --shadow-panel: 0 1px 2px rgba(30, 29, 26, 0.03), 0 0 0 1px var(--color-border-subtle);
+  --shadow-card: 0 1px 2px rgba(30, 29, 26, 0.03);
+  --shadow-hover: 0 3px 12px rgba(30, 29, 26, 0.06);
 
   /* ── Motion ── */
-  --transition-fast: 0.14s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-fade: 0.18s ease;
+  --transition-fast: 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fade: 0.16s ease;
+  --transition-expand: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ── Z-index scale ── */
+  --z-header: 50;
+  --z-dropdown: 60;
+  --z-overlay: 70;
+  --z-popover: 80;
+}
+
+/* Dark mode preparation */
+@media (prefers-color-scheme: dark) {
+  :root.auto-theme {
+    --color-bg: #1a1917;
+    --color-bg-secondary: #222120;
+    --color-bg-muted: #2a2927;
+    --color-bg-elevated: #2e2d2a;
+    --color-bg-scripture: #1e1d1b;
+    --color-panel: #242322;
+    --color-panel-sidebar: #1f1e1c;
+    --color-card: #2a2927;
+    --color-surface-muted: #2a2927;
+    --color-text: #e8e6e1;
+    --color-text-muted: #a8a49c;
+    --color-text-subtle: #78746c;
+    --color-scripture: #f0ede8;
+    --color-border: rgba(232, 230, 225, 0.08);
+    --color-border-strong: rgba(232, 230, 225, 0.14);
+    --color-border-subtle: rgba(232, 230, 225, 0.04);
+    --color-highlight: rgba(90, 140, 200, 0.08);
+    --color-highlight-active: rgba(90, 140, 200, 0.14);
+    --color-accent: #5a94d0;
+    --color-accent-hover: #6aa4e0;
+    --color-accent-muted: #2a3d52;
+    --color-accent-glow: rgba(90, 148, 208, 0.18);
+    --shadow-panel: 0 0 0 1px var(--color-border-subtle);
+    --shadow-card: none;
+  }
 }
 
 *,
@@ -127,12 +191,13 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: var(--font-size-base);
+  font-size: var(--text-body);
   color: var(--color-text);
   background: var(--color-bg);
   line-height: var(--line-height-ui);
@@ -191,7 +256,8 @@ a:focus-visible {
 .scripture-reader__text,
 .study-workspace__content,
 .scripture-nav__controls,
-.search-results__list {
+.search-results__list,
+.nm-scroll {
   scrollbar-width: thin;
   scrollbar-color: var(--color-border-strong) transparent;
 }
@@ -200,15 +266,17 @@ a:focus-visible {
 .scripture-reader__text::-webkit-scrollbar,
 .study-workspace__content::-webkit-scrollbar,
 .scripture-nav__controls::-webkit-scrollbar,
-.search-results__list::-webkit-scrollbar {
-  width: 6px;
+.search-results__list::-webkit-scrollbar,
+.nm-scroll::-webkit-scrollbar {
+  width: 5px;
 }
 
 .scroll-pane::-webkit-scrollbar-thumb,
 .scripture-reader__text::-webkit-scrollbar-thumb,
 .study-workspace__content::-webkit-scrollbar-thumb,
 .scripture-nav__controls::-webkit-scrollbar-thumb,
-.search-results__list::-webkit-scrollbar-thumb {
+.search-results__list::-webkit-scrollbar-thumb,
+.nm-scroll::-webkit-scrollbar-thumb {
   background: var(--color-border-strong);
   border-radius: var(--radius-pill);
 }
@@ -224,11 +292,22 @@ a:focus-visible {
   padding-top: var(--space-2);
 }
 
-/* Tab content fade */
+/* Animations */
 @keyframes nm-fade-in {
   from {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes nm-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
   }
   to {
     opacity: 1;

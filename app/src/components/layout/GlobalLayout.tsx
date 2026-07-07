@@ -39,8 +39,11 @@ export function GlobalLayout() {
             </NavLink>
           </nav>
 
-          <AuthNav />
-          <BibleSearch />        </div>
+          <div className="site-header__utilities">
+            <AuthNav />
+            <BibleSearch />
+          </div>
+        </div>
       </header>
 
       <main className="site-main">
@@ -49,7 +52,7 @@ export function GlobalLayout() {
 
       {!isReaderRoute && (
         <footer className="site-footer">
-          <p>Nomomartyria Bible Platform · Version 0.1</p>
+          <p>Nomomartyria Bible Platform · Version 2.0</p>
         </footer>
       )}
     </div>
