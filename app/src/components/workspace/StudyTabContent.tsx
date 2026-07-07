@@ -1,5 +1,6 @@
-import { BarChart3, BookOpen, Tags } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
+import type { StudyResourceKind } from '@/types/studyResources';
 import { EmptyState } from './EmptyState';
 import { StudyNoteDetail } from './StudyNoteDetail';
 import { StudyNoteEditor } from './StudyNoteEditor';
@@ -8,7 +9,11 @@ import { CrossReferencePanel } from './CrossReferencePanel';
 import { ConcordancePanel } from './ConcordancePanel';
 import { HowToStudyBiblePanel } from './HowToStudyBiblePanel';
 import { HowToStudyMobilePanel } from './HowToStudyMobilePanel';
-import { KnowledgeBaseEmptyPanel } from './KnowledgeBaseEmptyPanel';
+import { ChartsPanel, TopicsPanel } from './studyResources/StudyResourcePanels';
+import {
+  RelatedResourcesPanel,
+  usePassageResourceContext,
+} from './studyResources/RelatedResourcesPanel';
 import type { useStudyWorkspace } from '@/hooks/useStudyWorkspace';
 import './StudyTabContent.css';
 
@@ -39,6 +44,20 @@ export function StudyTabContent({
     startCreate,
     updateDraftField,
   } = workspace;
+
+  const resourceContext = usePassageResourceContext(workspace.passageKey);
+
+  const handleNavigateResource = (kind: StudyResourceKind) => {
+    if (kind === 'topic') {
+      workspace.setActiveTab('topics');
+      return;
+    }
+    if (kind === 'chart') {
+      workspace.setActiveTab('charts');
+      return;
+    }
+    workspace.setActiveTab('cross-references');
+  };
 
   switch (activeTab) {
     case 'study-notes':
@@ -96,6 +115,7 @@ export function StudyTabContent({
               workspace.startCreate();
               workspace.setActiveTab('study-notes');
             }}
+            onNavigateResource={handleNavigateResource}
           />
         </div>
       );
@@ -110,10 +130,15 @@ export function StudyTabContent({
     case 'topics':
       return (
         <div className="study-tab-content__body nm-fade-in">
-          <KnowledgeBaseEmptyPanel
-            icon={<Tags size={22} strokeWidth={1.75} />}
-            title="No Topics"
-            message={`No topics have yet been connected to ${passageLabel}. Topics will become part of the Knowledge Base.`}
+          <TopicsPanel
+            passageKey={workspace.passageKey}
+            passageLabel={passageLabel}
+            headerSlot={
+              <RelatedResourcesPanel
+                context={resourceContext}
+                onNavigate={handleNavigateResource}
+              />
+            }
           />
         </div>
       );
@@ -140,10 +165,15 @@ export function StudyTabContent({
     case 'charts':
       return (
         <div className="study-tab-content__body nm-fade-in">
-          <KnowledgeBaseEmptyPanel
-            icon={<BarChart3 size={22} strokeWidth={1.75} />}
-            title="No Charts"
-            message={`No charts have been connected to ${passageLabel}. Visual study resources will appear here from the Knowledge Base.`}
+          <ChartsPanel
+            passageKey={workspace.passageKey}
+            passageLabel={passageLabel}
+            headerSlot={
+              <RelatedResourcesPanel
+                context={resourceContext}
+                onNavigate={handleNavigateResource}
+              />
+            }
           />
         </div>
       );

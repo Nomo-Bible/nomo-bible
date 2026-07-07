@@ -35,9 +35,19 @@ import { ReferenceResourceCard } from './ReferenceResourceCard';
 import { StudyNoteDetail } from './StudyNoteDetail';
 import { StudyNotesList } from './StudyNotesList';
 import { EmptyState } from './EmptyState';
+import {
+  CommentaryNotesPanel,
+  EgwReferencesPanel,
+} from './studyResources/StudyResourcePanels';
+import {
+  RelatedResourcesPanel,
+  usePassageResourceContext,
+} from './studyResources/RelatedResourcesPanel';
+import type { StudyResourceKind } from '@/types/studyResources';
 import './CrossReferencePanel.css';
 import './ReferenceResourceCard.css';
 import './PublicCrossReferenceSection.css';
+import './studyResources/studyResources.css';
 
 interface CrossReferencePanelProps {
   sourceReference: PassageKey;
@@ -48,6 +58,7 @@ interface CrossReferencePanelProps {
   onRefresh: () => void;
   onSelectNote: (noteId: string) => void;
   onStartCreateNote: () => void;
+  onNavigateResource?: (kind: StudyResourceKind) => void;
 }
 
 const TABS: {
@@ -70,6 +81,7 @@ export function CrossReferencePanel({
   onRefresh,
   onSelectNote,
   onStartCreateNote,
+  onNavigateResource,
 }: CrossReferencePanelProps) {
   const { goToPassage } = useReader();
   const verseRefs = useVerseReferences(sourceReference);
@@ -174,6 +186,11 @@ export function CrossReferencePanel({
     notes.find((note) => note.id === selectedNoteId) ?? null;
 
   const verseLevel = isVerseLevelPassage(sourceReference);
+  const resourceContext = usePassageResourceContext(sourceReference);
+
+  const handleNavigateRelated = (kind: StudyResourceKind) => {
+    onNavigateResource?.(kind);
+  };
 
   return (
     <div className="cross-ref-panel">
@@ -208,6 +225,11 @@ export function CrossReferencePanel({
       )}
 
       <div className="cross-ref-panel__scroll">
+        <RelatedResourcesPanel
+          context={resourceContext}
+          onNavigate={(kind) => handleNavigateRelated(kind)}
+        />
+
         {activeTab === 'cross-references' && (
           <div role="tabpanel">
             {!verseLevel && (
@@ -267,36 +289,45 @@ export function CrossReferencePanel({
           <div role="tabpanel">
             {!verseLevel ? (
               <p className="cross-ref-panel__hint">
-                Select a verse to view public-domain commentary.
+                Select a verse to view public-domain commentary. You can still add personal
+                commentary notes below.
               </p>
             ) : verseRefs.loading ? (
               <p className="cross-ref-panel__hint">Loading commentary…</p>
             ) : verseRefs.commentary.length > 0 ? (
-              verseRefs.commentary.map((entry) => (
-                <ReferenceResourceCard
-                  key={entry.id}
-                  sourceLabel={entry.sourceName}
-                  title={entry.reference}
-                  summary={entry.summary}
-                  excerpt={entry.excerpt}
-                  showExcerpt={entry.textEmbedded}
-                  attribution={
-                    entry.attributionRequired
-                      ? entry.attribution
-                      : `${entry.attribution} · ${entry.license}`
-                  }
-                  externalUrl={entry.externalUrl}
-                  externalLabel="Open full commentary"
-                  onInsert={() => handleInsertCommentary(entry)}
-                />
-              ))
+              <>
+                <p className="study-resource-panel__section-title">Public Commentary</p>
+                {verseRefs.commentary.map((entry) => (
+                  <ReferenceResourceCard
+                    key={entry.id}
+                    sourceLabel={entry.sourceName}
+                    title={entry.reference}
+                    summary={entry.summary}
+                    excerpt={entry.excerpt}
+                    showExcerpt={entry.textEmbedded}
+                    attribution={
+                      entry.attributionRequired
+                        ? entry.attribution
+                        : `${entry.attribution} · ${entry.license}`
+                    }
+                    externalUrl={entry.externalUrl}
+                    externalLabel="Open full commentary"
+                    onInsert={() => handleInsertCommentary(entry)}
+                  />
+                ))}
+              </>
             ) : (
               <EmptyState
                 icon={<BookMarked size={22} strokeWidth={1.75} />}
-                title="No Commentary Available"
-                message={`No public-domain commentary is bundled for ${passageLabel} yet. Additional sources can be added when license is verified.`}
+                title="No Public Commentary"
+                message={`No public-domain commentary is bundled for ${passageLabel} yet. Add your own notes below.`}
               />
             )}
+
+            <CommentaryNotesPanel
+              passageKey={sourceReference}
+              passageLabel={passageLabel}
+            />
           </div>
         )}
 
@@ -304,31 +335,37 @@ export function CrossReferencePanel({
           <div role="tabpanel">
             {!verseLevel ? (
               <p className="cross-ref-panel__hint">
-                Select a verse to view Ellen G. White reference links.
+                Select a verse to view Ellen G. White reference links. You can still add personal
+                references below.
               </p>
             ) : verseRefs.loading ? (
               <p className="cross-ref-panel__hint">Loading references…</p>
             ) : verseRefs.ellenWhite.length > 0 ? (
-              verseRefs.ellenWhite.map((entry) => (
-                <ReferenceResourceCard
-                  key={entry.id}
-                  sourceLabel="Ellen G. White Reference"
-                  title={entry.egwReference}
-                  summary={entry.summary}
-                  licenseNote={entry.licenseNote}
-                  attribution={entry.attribution}
-                  externalUrl={entry.externalUrl}
-                  externalLabel="Open at EGW Writings"
-                  onInsert={() => handleInsertEgw(entry)}
-                />
-              ))
+              <>
+                <p className="study-resource-panel__section-title">Indexed EGW Links</p>
+                {verseRefs.ellenWhite.map((entry) => (
+                  <ReferenceResourceCard
+                    key={entry.id}
+                    sourceLabel="Ellen G. White Reference"
+                    title={entry.egwReference}
+                    summary={entry.summary}
+                    licenseNote={entry.licenseNote}
+                    attribution={entry.attribution}
+                    externalUrl={entry.externalUrl}
+                    externalLabel="Open at EGW Writings"
+                    onInsert={() => handleInsertEgw(entry)}
+                  />
+                ))}
+              </>
             ) : (
               <EmptyState
                 icon={<ScrollText size={22} strokeWidth={1.75} />}
-                title="No EGW References"
-                message={`No Ellen G. White reference links are indexed for ${passageLabel} yet. References are link-only; no copyrighted text is embedded.`}
+                title="No Indexed EGW Links"
+                message={`No Ellen G. White reference links are indexed for ${passageLabel} yet. Add your own references below.`}
               />
             )}
+
+            <EgwReferencesPanel passageKey={sourceReference} passageLabel={passageLabel} />
           </div>
         )}
 
