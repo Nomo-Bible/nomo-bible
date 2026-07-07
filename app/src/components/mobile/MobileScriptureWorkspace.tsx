@@ -17,6 +17,7 @@ export function MobileScriptureWorkspace() {
   const [moreOpen, setMoreOpen] = useState(false);
   const [navigatorOpen, setNavigatorOpen] = useState(false);
   const [bottomNav, setBottomNav] = useState<MobileBottomNavId>('notes');
+  const [studyExpanded, setStudyExpanded] = useState(false);
 
   const handleBottomNav = (id: MobileBottomNavId) => {
     setBottomNav(id);
@@ -54,8 +55,12 @@ export function MobileScriptureWorkspace() {
     );
   };
 
+  const rootClassName = studyExpanded
+    ? 'mobile-v3 mobile-v3--stable mobile-v3--study-expanded'
+    : 'mobile-v3 mobile-v3--stable';
+
   return (
-    <div className="mobile-v3 mobile-v3--stable">
+    <div className={rootClassName}>
       <MobileReaderHeader onOpenMenu={() => setDrawerOpen(true)} />
 
       <div className="mobile-v3__search">
@@ -69,10 +74,17 @@ export function MobileScriptureWorkspace() {
       <MobileWorkspaceTabs activeTab={workspace.activeTab} onTabChange={handleTabChange} />
 
       <section className="mobile-stable__study" aria-label="Study workspace">
-        <MobileStudyPanel workspace={workspace} />
+        <MobileStudyPanel
+          workspace={workspace}
+          expanded={studyExpanded}
+          onExpand={() => setStudyExpanded(true)}
+          onCollapse={() => setStudyExpanded(false)}
+        />
       </section>
 
-      <MobileBottomNav active={bottomNav} onSelect={handleBottomNav} />
+      {!studyExpanded && (
+        <MobileBottomNav active={bottomNav} onSelect={handleBottomNav} />
+      )}
 
       <MobileNavDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
       <MobileMoreSheet
