@@ -8,12 +8,14 @@
   display: flex;
   align-items: center;
   gap: var(--space-1);
+  min-width: 0;
 }
 
 .bible-search__field {
   position: relative;
   display: flex;
   align-items: center;
+  min-width: 0;
 }
 
 .bible-search__field-icon {
@@ -25,6 +27,7 @@
 
 .bible-search__input {
   width: 12rem;
+  max-width: 100%;
   padding: var(--input-padding-y) var(--input-padding-x);
   padding-left: calc(var(--space-2-5) + 1.125rem);
   font-family: var(--font-sans);
@@ -52,6 +55,7 @@
 
 .bible-search__button {
   min-width: 4.5rem;
+  flex-shrink: 0;
 }
 
 .bible-search__spinner {
@@ -61,6 +65,45 @@
 @keyframes bible-search-spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* Compact form for Scripture reader / mobile Bible chrome */
+.bible-search--embedded {
+  flex: 1 1 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+.bible-search--embedded .bible-search__input {
+  width: 10.5rem;
+}
+
+.bible-search--embedded .bible-search__input:focus {
+  width: 13rem;
+}
+
+.bible-search--embedded .bible-search__button {
+  min-width: 4rem;
+  padding-inline: var(--space-2-5);
+}
+
+@media (max-width: 1100px) {
+  .bible-search--embedded .bible-search__form {
+    width: 100%;
+  }
+
+  .bible-search--embedded .bible-search__field {
+    flex: 1 1 0;
+  }
+
+  .bible-search--embedded .bible-search__input,
+  .bible-search--embedded .bible-search__input:focus {
+    width: 100%;
+  }
+
+  .bible-search--embedded .bible-search__button {
+    border-radius: var(--radius-sm);
   }
 }
 

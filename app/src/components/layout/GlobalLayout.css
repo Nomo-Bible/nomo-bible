@@ -222,7 +222,7 @@
 }
 
 @media (max-width: 768px) {
-  /* Mobile V3 reader supplies its own header, search, and navigation */
+  /* Mobile V3 reader supplies its own header and navigation */
   .global-layout--reader .site-header {
     display: none;
   }
@@ -230,10 +230,6 @@
   .global-layout--reader .site-main:has(.mobile-v3) {
     padding: 0;
     max-width: none;
-  }
-
-  .global-layout--reader .site-header .bible-search {
-    display: none;
   }
 
   .global-layout--reader .site-header__utilities {

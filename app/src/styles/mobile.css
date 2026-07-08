@@ -151,32 +151,40 @@
   }
 
   /* ── Scripture text ── */
-  .scripture-reader__header-actions {
-    display: none;
-  }
-
-  .scripture-reader__badge {
+  .scripture-reader__header-meta .workspace-expand-btn {
     display: none;
   }
 
   .scripture-reader__header {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto auto;
     grid-template-areas:
-      'heading'
-      'nav';
+      'heading meta'
+      'nav nav'
+      'search search';
     padding: var(--space-1) var(--space-2);
     gap: var(--space-1);
   }
 
+  .scripture-reader__header-tools {
+    display: contents;
+  }
+
+  .scripture-reader__header-meta {
+    grid-area: meta;
+  }
+
+  .scripture-reader__header-search {
+    grid-area: search;
+    width: 100%;
+  }
+
   .scripture-reader__heading {
-    grid-area: heading;
     text-align: left;
     font-size: var(--font-size-lg);
   }
 
   .scripture-reader__chapter-nav {
-    grid-area: nav;
     justify-content: stretch;
   }
 

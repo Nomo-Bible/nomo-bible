@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { BibleSearch } from '@/components/layout/BibleSearch';
 import { useStudyWorkspace } from '@/hooks/useStudyWorkspace';
 import type { StudyWorkspaceTabId } from '@/types/studyWorkspace';
 import { MobileBibleNavigator } from './MobileBibleNavigator';
@@ -62,10 +61,6 @@ export function MobileScriptureWorkspace() {
   return (
     <div className={rootClassName}>
       <MobileReaderHeader onOpenMenu={() => setDrawerOpen(true)} />
-
-      <div className="mobile-v3__search">
-        <BibleSearch />
-      </div>
 
       <section className="mobile-stable__bible" aria-label="Bible reader">
         <MobileBibleReaderShell onOpenNavigator={() => setNavigatorOpen(true)} />

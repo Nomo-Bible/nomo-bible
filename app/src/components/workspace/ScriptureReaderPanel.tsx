@@ -1,6 +1,7 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { useAuth } from '@/auth/useAuth';
+import { BibleSearch } from '@/components/layout/BibleSearch';
 import { useReader } from '@/context/ReaderContext';
 import { useWordStudy } from '@/context/WordStudyContext';
 import { WorkspaceExpandButton } from '@/components/workspace/WorkspaceExpandButton';
@@ -89,9 +90,14 @@ export function ScriptureReaderPanel({
 
       <h2 className="scripture-reader__heading">{heading}</h2>
 
-      <div className="scripture-reader__header-actions">
-        <WorkspaceExpandButton panelId="scripture" label="Scripture reader" compact />
-        <span className="scripture-reader__badge">KJV</span>
+      <div className="scripture-reader__header-tools">
+        <div className="scripture-reader__header-search">
+          <BibleSearch variant="embedded" />
+        </div>
+        <div className="scripture-reader__header-meta">
+          <WorkspaceExpandButton panelId="scripture" label="Scripture reader" compact />
+          <span className="scripture-reader__badge">KJV</span>
+        </div>
       </div>
     </header>
   );

@@ -40,7 +40,6 @@
 }
 
 /* Study tool full-screen mode (mobile only) */
-.mobile-v3--study-expanded .mobile-v3__search,
 .mobile-v3--study-expanded .mobile-stable__bible,
 .mobile-v3--study-expanded .mobile-v3-tabs-wrap {
   display: none;
@@ -623,6 +622,40 @@
 .mobile-v3-reader__nav-btn:disabled {
   opacity: 0.45;
   cursor: not-allowed;
+}
+
+.mobile-v3-reader__search {
+  margin-top: var(--space-1);
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.mobile-v3-reader__search .bible-search {
+  width: 100%;
+}
+
+.mobile-v3-reader__search .bible-search__form {
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.mobile-v3-reader__search .bible-search__field {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.mobile-v3-reader__search .bible-search__input,
+.mobile-v3-reader__search .bible-search__input:focus {
+  width: 100%;
+  font-size: var(--font-size-sm);
+  padding-block: var(--space-2);
+}
+
+.mobile-v3-reader__search .bible-search__button {
+  min-height: var(--touch-min, 2.75rem);
+  min-width: 5rem;
+  padding-inline: var(--space-3);
 }
 
 .mobile-v3-reader__text {

@@ -4,6 +4,7 @@ import {
   ChevronRight,
   Compass,
 } from 'lucide-react';
+import { BibleSearch } from '@/components/layout/BibleSearch';
 import { useReader } from '@/context/ReaderContext';
 import { ScriptureReaderPanel } from '@/components/workspace/ScriptureReaderPanel';
 import './mobile-v3.css';
@@ -66,6 +67,10 @@ export function MobileBibleReaderShell({ onOpenNavigator }: MobileBibleReaderShe
             Next
             <ChevronRight size={16} strokeWidth={2} aria-hidden="true" />
           </button>
+        </div>
+
+        <div className="mobile-v3-reader__search">
+          <BibleSearch variant="embedded" />
         </div>
       </header>
 

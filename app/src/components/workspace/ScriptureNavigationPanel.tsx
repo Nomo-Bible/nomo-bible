@@ -2,12 +2,13 @@ import { BookMarked, ChevronDown, Hash, ListOrdered, Compass } from 'lucide-reac
 import { useEffect, useState } from 'react';
 import { useReader } from '@/context/ReaderContext';
 import { WorkspaceExpandButton } from '@/components/workspace/WorkspaceExpandButton';
+import { BibleBookSelect } from '@/components/workspace/BibleBookSelect';
 import {
-  getAvailableBooks,
   getChaptersForBook,
   getVerseNumbers,
 } from '@/services/bibleService';
 import { formatReaderLocation } from '@/types/bible';
+import './BibleBookSelect.css';
 import './ScriptureNavigationPanel.css';
 
 export function ScriptureNavigationPanel() {
@@ -19,7 +20,6 @@ export function ScriptureNavigationPanel() {
   } = useReader();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const books = getAvailableBooks();
   const chapters = getChaptersForBook(location.book);
   const verses = getVerseNumbers(location.book, location.chapter);
   const reference = formatReaderLocation(location);
@@ -74,18 +74,12 @@ export function ScriptureNavigationPanel() {
             <BookMarked className="scripture-nav__label-icon" aria-hidden="true" size={13} strokeWidth={2} />
             Book
           </label>
-          <select
+          <BibleBookSelect
             id="workspace-book-select"
             className="scripture-nav__select"
             value={location.book}
-            onChange={(e) => setBook(e.target.value)}
-          >
-            {books.map((book) => (
-              <option key={book} value={book}>
-                {book}
-              </option>
-            ))}
-          </select>
+            onChange={setBook}
+          />
         </div>
 
         <div className="scripture-nav__group">

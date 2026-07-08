@@ -1,0 +1,123 @@
+.bible-book-select {
+  position: relative;
+  min-width: 0;
+}
+
+.bible-book-select__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  width: 100%;
+  min-height: var(--touch-min, 2.75rem);
+  padding: var(--space-2) var(--space-2-5);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text);
+  text-align: left;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.bible-book-select__trigger:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.bible-book-select__value {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bible-book-select__chevron {
+  flex-shrink: 0;
+  color: var(--color-text-subtle);
+  transition: transform var(--transition-fast);
+}
+
+.bible-book-select--open .bible-book-select__chevron {
+  transform: rotate(180deg);
+}
+
+.bible-book-select__popover {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  left: 0;
+  right: 0;
+  z-index: var(--z-dropdown);
+  display: flex;
+  flex-direction: column;
+  max-height: min(18rem, 50vh);
+  background: var(--color-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.bible-book-select__search {
+  flex-shrink: 0;
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-2) var(--space-2-5);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  border: none;
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+}
+
+.bible-book-select__search:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--color-accent-glow);
+}
+
+.bible-book-select__list {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-1);
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 0;
+  flex: 1 1 auto;
+}
+
+.bible-book-select__option {
+  display: block;
+  width: 100%;
+  padding: var(--space-2) var(--space-2-5);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text);
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-xs, 0.25rem);
+  cursor: pointer;
+}
+
+.bible-book-select__option:hover,
+.bible-book-select__option:focus-visible {
+  background: var(--color-highlight);
+  outline: none;
+}
+
+.bible-book-select__option--selected {
+  color: var(--color-accent);
+  background: var(--color-highlight-active);
+  font-weight: 600;
+}
+
+.bible-book-select__empty {
+  padding: var(--space-2) var(--space-2-5);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+}

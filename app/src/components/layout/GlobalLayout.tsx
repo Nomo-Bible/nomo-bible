@@ -41,7 +41,7 @@ export function GlobalLayout() {
 
           <div className="site-header__utilities">
             <AuthNav />
-            <BibleSearch />
+            {!isReaderRoute && <BibleSearch />}
           </div>
         </div>
       </header>

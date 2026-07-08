@@ -1,8 +1,8 @@
-import { ArrowLeft, BookOpen, X } from 'lucide-react';
+import { ArrowLeft, BookOpen, Search, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useReader } from '@/context/ReaderContext';
-import { getBibleBookGroups } from '@/data/bible/bookGroups';
+import { getFilteredBibleBookGroups } from '@/data/bible/bookGroups';
 import { getChaptersForBook } from '@/services/bibleService';
 import './MobileBibleNavigator.css';
 
@@ -17,13 +17,15 @@ export function MobileBibleNavigator({ open, onClose }: MobileBibleNavigatorProp
   const { location, goToPassage } = useReader();
   const [step, setStep] = useState<NavigatorStep>('books');
   const [selectedBook, setSelectedBook] = useState(location.book);
-  const bookGroups = getBibleBookGroups();
+  const [bookQuery, setBookQuery] = useState('');
+  const bookGroups = getFilteredBibleBookGroups(bookQuery);
   const chapters = getChaptersForBook(selectedBook);
 
   useEffect(() => {
     if (!open) return;
     setStep('books');
     setSelectedBook(location.book);
+    setBookQuery('');
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = '';
@@ -96,7 +98,24 @@ export function MobileBibleNavigator({ open, onClose }: MobileBibleNavigatorProp
             <p className="mobile-bible-nav__lead">
               Choose a book. You will pick the chapter next.
             </p>
-            {bookGroups.map((group) => (
+            <label className="mobile-bible-nav__search-label" htmlFor="mobile-bible-nav-book-search">
+              Search books
+            </label>
+            <div className="mobile-bible-nav__search-wrap">
+              <Search size={16} strokeWidth={2} aria-hidden="true" />
+              <input
+                id="mobile-bible-nav-book-search"
+                type="search"
+                className="mobile-bible-nav__search"
+                value={bookQuery}
+                onChange={(event) => setBookQuery(event.target.value)}
+                placeholder="Filter by book name…"
+              />
+            </div>
+            {bookGroups.length === 0 ? (
+              <p className="mobile-bible-nav__empty">No matching books.</p>
+            ) : (
+              bookGroups.map((group) => (
               <section key={group.id} className="mobile-bible-nav__section">
                 <h2 className="mobile-bible-nav__section-title">{group.label}</h2>
                 <ul className="mobile-bible-nav__book-list">
@@ -120,7 +139,8 @@ export function MobileBibleNavigator({ open, onClose }: MobileBibleNavigatorProp
                   })}
                 </ul>
               </section>
-            ))}
+            ))
+            )}
           </div>
         ) : (
           <div className="mobile-bible-nav__body">
