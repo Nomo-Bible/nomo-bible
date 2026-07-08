@@ -17,9 +17,16 @@ interface TopicsCatalogSectionProps {
   passageKey: PassageKey;
   passageLabel: string;
   headerSlot?: React.ReactNode;
+  onReadEgwBook?: (bookId: string) => void;
 }
 
-function TopicDetailView({ topic }: { topic: CatalogTopicEntry }) {
+function TopicDetailView({
+  topic,
+  onReadEgwBook,
+}: {
+  topic: CatalogTopicEntry;
+  onReadEgwBook?: (bookId: string) => void;
+}) {
   const relatedBooks = topic.relatedEgwBookIds
     .map((id) => getEgwBookById(id))
     .filter((book): book is NonNullable<typeof book> => book !== undefined);
@@ -50,8 +57,10 @@ function TopicDetailView({ topic }: { topic: CatalogTopicEntry }) {
                   description={book.description}
                   sourceName={book.sourceName}
                   licenseNotes={book.licenseNotes}
-                  readOnlineUrl={book.readOnlineUrl}
-                  localTextAvailable={book.localTextAvailable}
+                  sourceUrl={book.readOnlineUrl}
+                  onRead={
+                    onReadEgwBook ? () => onReadEgwBook(book.id) : undefined
+                  }
                 />
               </li>
             ))}
@@ -76,6 +85,7 @@ export function TopicsCatalogSection({
   passageKey,
   passageLabel,
   headerSlot,
+  onReadEgwBook,
 }: TopicsCatalogSectionProps) {
   const topics = getCatalogTopics();
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -107,7 +117,9 @@ export function TopicsCatalogSection({
             </li>
           ))}
         </ul>
-        {selected ? <TopicDetailView topic={selected} /> : null}
+        {selected ? (
+          <TopicDetailView topic={selected} onReadEgwBook={onReadEgwBook} />
+        ) : null}
       </section>
 
       <section aria-label="My custom topics">

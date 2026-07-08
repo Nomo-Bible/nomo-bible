@@ -7,6 +7,7 @@ import {
   ScrollText,
   Tags,
 } from 'lucide-react';
+import { useState } from 'react';
 import { ReadingPanelChrome } from '@/components/workspace/ReadingPanelChrome';
 import type { PassageKey } from '@/types/study';
 import type { StudyResourceLibrarySection } from '@/types/studyWorkspace';
@@ -61,6 +62,12 @@ export function StudyResourcesLibraryPanel({
   const resourceContext = usePassageResourceContext(passageKey);
   const counts = getStudyResourceCounts();
   const catalogCounts = getCatalogCounts();
+  const [activeEgwBookId, setActiveEgwBookId] = useState<string | null>(null);
+
+  const handleReadEgwBook = (bookId: string) => {
+    setActiveEgwBookId(bookId);
+    onSectionChange('egw');
+  };
 
   const relatedHeader = (
     <RelatedResourcesPanel
@@ -136,7 +143,7 @@ export function StudyResourcesLibraryPanel({
                   <span className="study-resources-library__card-text">
                     <span className="study-resources-library__card-title">Ellen White</span>
                     <span className="study-resources-library__card-meta">
-                      {catalogCounts.egwBooks} books · Read online + linked notes
+                      {catalogCounts.egwBooks} books · In-app reading + linked notes
                     </span>
                   </span>
                 </button>
@@ -227,6 +234,8 @@ export function StudyResourcesLibraryPanel({
               passageKey={passageKey}
               passageLabel={passageLabel}
               headerSlot={relatedHeader}
+              activeBookId={activeEgwBookId}
+              onActiveBookChange={setActiveEgwBookId}
             />
           </div>
         )}
@@ -237,6 +246,7 @@ export function StudyResourcesLibraryPanel({
               passageKey={passageKey}
               passageLabel={passageLabel}
               headerSlot={relatedHeader}
+              onReadEgwBook={handleReadEgwBook}
             />
           </div>
         )}

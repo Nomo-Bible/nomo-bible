@@ -15,9 +15,8 @@ export interface EgwBookCatalogEntry {
   sourceName: string;
   sourceUrl: string;
   licenseNotes: string;
+  /** Whether bundled local text has been imported for in-app reading. */
   localTextAvailable: boolean;
-  /** App-bundled markdown path (Steps to Christ excerpt only). */
-  localTextPath?: string;
   relatedTopics: string[];
   relatedBibleRefs: string[];
 }

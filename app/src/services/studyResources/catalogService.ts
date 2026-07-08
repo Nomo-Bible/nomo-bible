@@ -1,4 +1,3 @@
-import stepsToChristExcerpt from '@/data/resources/texts/steps-to-christ-excerpt.md?raw';
 import { CATALOG_CHARTS } from '@/data/resources/catalog/chartsCatalog';
 import { EGW_BOOK_CATALOG } from '@/data/resources/catalog/egwBooks';
 import { CATALOG_MAPS } from '@/data/resources/catalog/mapsCatalog';
@@ -53,11 +52,6 @@ export function getCatalogCharts(): CatalogChartEntry[] {
 
 export function getCatalogChartById(id: string): CatalogChartEntry | undefined {
   return CATALOG_CHARTS.find((chart) => chart.id === id);
-}
-
-export function getLocalTextContent(pathKey: string): string | null {
-  if (pathKey === 'steps-to-christ-excerpt') return stepsToChristExcerpt;
-  return null;
 }
 
 export function getCatalogCounts(): {

@@ -2,10 +2,10 @@ import type { EgwBookCatalogEntry } from '@/types/resourceCatalog';
 
 const WHITE_ESTATE_LEGAL = 'https://whiteestate.org/legal-notice/';
 const EGW_WRITINGS = 'https://whiteestate.org/resources/apps/web/';
-const READ_ONLINE_NOTE =
-  'Free to read online via the Ellen G. White Estate. Local redistribution not yet verified for Nomomartyria onboard storage.';
+const LOCAL_TEXT_NOTE =
+  'Read in the app when local text is imported. Official source link provided for reference only.';
 
-/** Official EGW Writings permalinks (Ellen G. White Estate). */
+/** Official EGW Writings permalinks (Ellen G. White Estate) — reference only. */
 export const EGW_BOOK_CATALOG: EgwBookCatalogEntry[] = [
   {
     id: 'egw-steps-to-christ',
@@ -16,9 +16,8 @@ export const EGW_BOOK_CATALOG: EgwBookCatalogEntry[] = [
     readOnlineUrl: 'https://egwwritings.org/book/70',
     sourceName: 'Ellen G. White Estate — EGW Writings',
     sourceUrl: EGW_WRITINGS,
-    licenseNotes: `${READ_ONLINE_NOTE} CCEL also hosts a public-domain edition (1892). See local excerpt in app.`,
+    licenseNotes: `${LOCAL_TEXT_NOTE} Starter chapter bundled from CCEL public-domain edition (1892).`,
     localTextAvailable: true,
-    localTextPath: 'steps-to-christ-excerpt',
     relatedTopics: ['Law and Gospel', 'Spirit of Prophecy'],
     relatedBibleRefs: ['John 3:16', 'Romans 8:28'],
   },
@@ -31,7 +30,7 @@ export const EGW_BOOK_CATALOG: EgwBookCatalogEntry[] = [
     readOnlineUrl: 'https://egwwritings.org/book/42',
     sourceName: 'Ellen G. White Estate — EGW Writings',
     sourceUrl: EGW_WRITINGS,
-    licenseNotes: READ_ONLINE_NOTE,
+    licenseNotes: LOCAL_TEXT_NOTE,
     localTextAvailable: false,
     relatedTopics: ['Sanctuary', 'Law and Gospel', 'Second Coming'],
     relatedBibleRefs: ['John 1:14', 'Hebrews 9:11-12'],
@@ -45,7 +44,7 @@ export const EGW_BOOK_CATALOG: EgwBookCatalogEntry[] = [
     readOnlineUrl: 'https://egwwritings.org/book/43',
     sourceName: 'Ellen G. White Estate — EGW Writings',
     sourceUrl: EGW_WRITINGS,
-    licenseNotes: READ_ONLINE_NOTE,
+    licenseNotes: LOCAL_TEXT_NOTE,
     localTextAvailable: false,
     relatedTopics: ['Great Controversy', 'Second Coming', 'Three Angels\' Messages'],
     relatedBibleRefs: ['Revelation 12:7-9', 'Daniel 7', 'Revelation 14'],
@@ -59,7 +58,7 @@ export const EGW_BOOK_CATALOG: EgwBookCatalogEntry[] = [
     readOnlineUrl: 'https://egwwritings.org/book/36',
     sourceName: 'Ellen G. White Estate — EGW Writings',
     sourceUrl: EGW_WRITINGS,
-    licenseNotes: READ_ONLINE_NOTE,
+    licenseNotes: LOCAL_TEXT_NOTE,
     localTextAvailable: false,
     relatedTopics: ['Sanctuary', 'Sabbath', 'Law and Gospel'],
     relatedBibleRefs: ['Genesis 1', 'Exodus 25', 'Hebrews 11'],
@@ -73,7 +72,7 @@ export const EGW_BOOK_CATALOG: EgwBookCatalogEntry[] = [
     readOnlineUrl: 'https://egwwritings.org/book/37',
     sourceName: 'Ellen G. White Estate — EGW Writings',
     sourceUrl: EGW_WRITINGS,
-    licenseNotes: READ_ONLINE_NOTE,
+    licenseNotes: LOCAL_TEXT_NOTE,
     localTextAvailable: false,
     relatedTopics: ['Spirit of Prophecy', 'Second Coming'],
     relatedBibleRefs: ['1 Kings 8', 'Daniel 2', 'Isaiah 53'],
@@ -87,7 +86,7 @@ export const EGW_BOOK_CATALOG: EgwBookCatalogEntry[] = [
     readOnlineUrl: 'https://egwwritings.org/book/38',
     sourceName: 'Ellen G. White Estate — EGW Writings',
     sourceUrl: EGW_WRITINGS,
-    licenseNotes: READ_ONLINE_NOTE,
+    licenseNotes: LOCAL_TEXT_NOTE,
     localTextAvailable: false,
     relatedTopics: ['Three Angels\' Messages', 'Testimony of Jesus'],
     relatedBibleRefs: ['Acts 2', 'Acts 8', 'Revelation 14'],
@@ -101,7 +100,7 @@ export const EGW_BOOK_CATALOG: EgwBookCatalogEntry[] = [
     readOnlineUrl: 'https://egwwritings.org/book/41',
     sourceName: 'Ellen G. White Estate — EGW Writings',
     sourceUrl: EGW_WRITINGS,
-    licenseNotes: READ_ONLINE_NOTE,
+    licenseNotes: LOCAL_TEXT_NOTE,
     localTextAvailable: false,
     relatedTopics: ['Second Coming', 'Sanctuary', 'Spirit of Prophecy'],
     relatedBibleRefs: ['Daniel 8:14', 'Revelation 14:12'],
@@ -110,3 +109,7 @@ export const EGW_BOOK_CATALOG: EgwBookCatalogEntry[] = [
 
 export const EGW_CCEL_STEPS_URL = 'https://ccel.org/ccel/white/steps.i.html';
 export const EGW_WHITE_ESTATE_LEGAL_URL = WHITE_ESTATE_LEGAL;
+
+export function getEgwBookById(id: string): EgwBookCatalogEntry | undefined {
+  return EGW_BOOK_CATALOG.find((book) => book.id === id);
+}

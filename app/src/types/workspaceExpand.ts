@@ -5,6 +5,7 @@ export type ReadingFocusId =
   | 'study-notes'
   | 'how-to-study'
   | 'study-resources'
+  | 'egw-reader'
   | 'concordance'
   | 'cross-references'
   | 'topics'
@@ -18,6 +19,7 @@ export const READING_FOCUS_PANEL: Record<
   'study-notes': 'study',
   'how-to-study': 'study',
   'study-resources': 'study',
+  'egw-reader': 'study',
   concordance: 'study',
   'cross-references': 'study',
   topics: 'study',

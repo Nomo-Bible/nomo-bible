@@ -595,6 +595,21 @@
   outline-offset: 2px;
 }
 
+.catalog-resource-card__ref {
+  margin: var(--space-2) 0 0;
+  font-size: var(--font-size-xs);
+}
+
+.catalog-resource-card__ref a {
+  color: var(--color-text-subtle);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.catalog-resource-card__ref a:hover {
+  color: var(--color-accent);
+}
+
 .catalog-topic-detail {
   padding: var(--space-3);
   background: var(--color-bg-secondary);

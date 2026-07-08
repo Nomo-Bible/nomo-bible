@@ -1,10 +1,9 @@
-# Steps to Christ — Starter Excerpt
+# Steps to Christ
 
 **Author:** Ellen G. White  
 **Source:** Christian Classics Ethereal Library (CCEL)  
 **Edition:** Public domain (1892)  
-**Full text:** https://ccel.org/ccel/white/steps.i.html  
-**License:** Public domain per CCEL: “This is a public domain book, published in 1892.”
+**License:** Public domain per CCEL.
 
 ---
 
@@ -18,4 +17,4 @@ The Bible is God's word to us. In it He has revealed His character and His will.
 
 > “God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.” — John 3:16
 
-This excerpt is provided as a public-domain starter reading. For the complete book, use **Read Online** via EGW Writings or CCEL.
+This public-domain starter chapter is bundled for onboard reading in Nomomartyria. Additional chapters may be imported as verified local text becomes available.

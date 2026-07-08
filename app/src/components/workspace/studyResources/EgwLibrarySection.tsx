@@ -4,11 +4,9 @@ import {
   EGW_CCEL_STEPS_URL,
   EGW_WHITE_ESTATE_LEGAL_URL,
 } from '@/data/resources/catalog/egwBooks';
-import {
-  getEgwBookCatalog,
-  getLocalTextContent,
-} from '@/services/studyResources/catalogService';
-import { CatalogResourceCard, LocalTextViewer } from './CatalogResourceCard';
+import { getEgwBookCatalog } from '@/services/studyResources/catalogService';
+import { CatalogResourceCard } from './CatalogResourceCard';
+import { EgwBookReader } from './EgwBookReader';
 import { EgwReferencesPanel } from './StudyResourcePanels';
 import './studyResources.css';
 
@@ -16,27 +14,50 @@ interface EgwLibrarySectionProps {
   passageKey: PassageKey;
   passageLabel: string;
   headerSlot?: React.ReactNode;
+  activeBookId?: string | null;
+  onActiveBookChange?: (bookId: string | null) => void;
 }
 
 export function EgwLibrarySection({
   passageKey,
   passageLabel,
   headerSlot,
+  activeBookId: controlledBookId,
+  onActiveBookChange,
 }: EgwLibrarySectionProps) {
   const books = getEgwBookCatalog();
-  const [localTextBookId, setLocalTextBookId] = useState<string | null>(null);
+  const [localBookId, setLocalBookId] = useState<string | null>(null);
+  const activeBookId = controlledBookId !== undefined ? controlledBookId : localBookId;
+
+  const setActiveBookId = (bookId: string | null) => {
+    if (onActiveBookChange) onActiveBookChange(bookId);
+    else setLocalBookId(bookId);
+  };
+
   const [linkedNoteSeed, setLinkedNoteSeed] = useState<{
     bookTitle: string;
     key: number;
   } | null>(null);
 
-  const localTextBook = localTextBookId
-    ? books.find((book) => book.id === localTextBookId) ?? null
-    : null;
-  const localContent =
-    localTextBook?.localTextPath
-      ? getLocalTextContent(localTextBook.localTextPath)
-      : null;
+  if (activeBookId) {
+    return (
+      <div className="catalog-library-section">
+        {headerSlot}
+        <EgwBookReader bookId={activeBookId} onClose={() => setActiveBookId(null)} />
+        <section aria-label="My Ellen White linked notes">
+          <EgwReferencesPanel
+            passageKey={passageKey}
+            passageLabel={passageLabel}
+            filterByPassage={false}
+            libraryMode
+            sectionTitle="My Linked EGW Notes"
+            seedSourceWork={linkedNoteSeed?.bookTitle}
+            autoStartCreateKey={linkedNoteSeed?.key}
+          />
+        </section>
+      </div>
+    );
+  }
 
   return (
     <div className="catalog-library-section">
@@ -45,8 +66,8 @@ export function EgwLibrarySection({
       <section aria-label="Ellen White book library">
         <h3 className="catalog-library-section__heading">Ellen White Library</h3>
         <p className="catalog-library-section__intro">
-          Built-in links to Ellen G. White writings via the Ellen G. White Estate. Read online
-          freely; local full-text import requires verified licensing.{' '}
+          Read Ellen G. White books in the app when local text is imported. Official estate links
+          are provided for reference only.{' '}
           <a href={EGW_WHITE_ESTATE_LEGAL_URL} target="_blank" rel="noopener noreferrer">
             White Estate legal notice
           </a>
@@ -59,12 +80,9 @@ export function EgwLibrarySection({
                 description={book.description}
                 sourceName={book.sourceName}
                 licenseNotes={book.licenseNotes}
-                readOnlineUrl={book.readOnlineUrl}
-                localTextAvailable={book.localTextAvailable}
+                sourceUrl={book.readOnlineUrl}
                 meta={`Author: ${book.author} · Topics: ${book.relatedTopics.join(', ') || '—'}`}
-                onViewLocalText={
-                  book.localTextAvailable ? () => setLocalTextBookId(book.id) : undefined
-                }
+                onRead={() => setActiveBookId(book.id)}
                 onAddLinkedNote={() =>
                   setLinkedNoteSeed({ bookTitle: book.title, key: Date.now() })
                 }
@@ -77,17 +95,9 @@ export function EgwLibrarySection({
           <a href={EGW_CCEL_STEPS_URL} target="_blank" rel="noopener noreferrer">
             CCEL
           </a>
-          . App includes a short PD starter excerpt only.
+          . The app includes a starter chapter bundled for in-app reading.
         </p>
       </section>
-
-      {localTextBook && localContent ? (
-        <LocalTextViewer
-          title={localTextBook.title}
-          content={localContent}
-          onClose={() => setLocalTextBookId(null)}
-        />
-      ) : null}
 
       <section aria-label="My Ellen White linked notes">
         <EgwReferencesPanel
