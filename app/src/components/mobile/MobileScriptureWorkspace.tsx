@@ -17,6 +17,7 @@ export function MobileScriptureWorkspace() {
   const [navigatorOpen, setNavigatorOpen] = useState(false);
   const [bottomNav, setBottomNav] = useState<MobileBottomNavId>('notes');
   const [studyExpanded, setStudyExpanded] = useState(false);
+  const [bibleExpanded, setBibleExpanded] = useState(false);
 
   const handleBottomNav = (id: MobileBottomNavId) => {
     setBottomNav(id);
@@ -54,16 +55,28 @@ export function MobileScriptureWorkspace() {
     );
   };
 
-  const rootClassName = studyExpanded
-    ? 'mobile-v3 mobile-v3--stable mobile-v3--study-expanded'
-    : 'mobile-v3 mobile-v3--stable';
+  const rootClassName = [
+    'mobile-v3',
+    'mobile-v3--stable',
+    studyExpanded ? 'mobile-v3--study-expanded' : '',
+    bibleExpanded ? 'mobile-v3--bible-expanded' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <div className={rootClassName}>
       <MobileReaderHeader onOpenMenu={() => setDrawerOpen(true)} />
 
       <section className="mobile-stable__bible" aria-label="Bible reader">
-        <MobileBibleReaderShell onOpenNavigator={() => setNavigatorOpen(true)} />
+        <MobileBibleReaderShell
+          onOpenNavigator={() => setNavigatorOpen(true)}
+          expanded={bibleExpanded}
+          onExpand={() => {
+            setBibleExpanded((current) => !current);
+            if (!bibleExpanded) setStudyExpanded(false);
+          }}
+        />
       </section>
 
       <MobileWorkspaceTabs activeTab={workspace.activeTab} onTabChange={handleTabChange} />
@@ -72,12 +85,15 @@ export function MobileScriptureWorkspace() {
         <MobileStudyPanel
           workspace={workspace}
           expanded={studyExpanded}
-          onExpand={() => setStudyExpanded(true)}
+          onExpand={() => {
+            setStudyExpanded(true);
+            setBibleExpanded(false);
+          }}
           onCollapse={() => setStudyExpanded(false)}
         />
       </section>
 
-      {!studyExpanded && (
+      {!studyExpanded && !bibleExpanded && (
         <MobileBottomNav active={bottomNav} onSelect={handleBottomNav} />
       )}
 

@@ -74,6 +74,30 @@
   -webkit-overflow-scrolling: touch;
 }
 
+.mobile-v3--bible-expanded .mobile-stable__study,
+.mobile-v3--bible-expanded .mobile-v3-tabs-wrap,
+.mobile-v3--bible-expanded .mobile-v3-bottom-nav {
+  display: none;
+}
+
+.mobile-v3--bible-expanded .mobile-stable__bible {
+  flex: 1 1 0;
+  min-height: 0;
+  height: auto;
+  max-height: none;
+}
+
+.mobile-v3--bible-expanded .mobile-v3-reader {
+  height: 100%;
+  min-height: 0;
+}
+
+.mobile-v3--bible-expanded .mobile-v3-reader__text {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+}
+
 /* ── Compact header ── */
 .mobile-v3-header {
   display: grid;

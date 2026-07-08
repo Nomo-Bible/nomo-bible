@@ -7,6 +7,7 @@ import {
   ScrollText,
   Tags,
 } from 'lucide-react';
+import { ReadingPanelChrome } from '@/components/workspace/ReadingPanelChrome';
 import type { PassageKey } from '@/types/study';
 import type { StudyResourceLibrarySection } from '@/types/studyWorkspace';
 import { getStudyResourceCounts } from '@/services/studyResources/studyResourceService';
@@ -70,6 +71,7 @@ export function StudyResourcesLibraryPanel({
 
   return (
     <div className="study-resources-library">
+      <ReadingPanelChrome focusId="study-resources" title="Study Resource Library" />
       <header className="study-resources-library__header">
         <h2 className="study-resources-library__title">Study Resource Library</h2>
         <p className="study-resources-library__subtitle">

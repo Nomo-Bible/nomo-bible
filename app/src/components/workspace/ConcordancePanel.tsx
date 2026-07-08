@@ -17,6 +17,7 @@ import { stripKjvEditorialMarkup } from '@/utils/kjvVerseMarkup';
 import type { StrongsEntry, StrongsSearchResponse } from '@/types/strongs';
 import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { ReadingPanelChrome } from '@/components/workspace/ReadingPanelChrome';
 import { EmptyState } from './EmptyState';
 import './ConcordancePanel.css';
 
@@ -225,6 +226,7 @@ export function ConcordancePanel() {
 
   return (
     <div className="concordance-panel">
+      <ReadingPanelChrome focusId="concordance" title="Concordance" />
       <div className="concordance-panel__notice">
         <strong>Concordance</strong>
         <p>

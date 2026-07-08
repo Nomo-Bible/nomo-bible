@@ -1,6 +1,6 @@
 import { Maximize2, Minimize2 } from 'lucide-react';
 import { useWorkspaceExpand } from '@/context/WorkspaceExpandContext';
-import type { WorkspacePanelId } from '@/types/workspaceExpand';
+import type { ReadingFocusId, WorkspacePanelId } from '@/types/workspaceExpand';
 import './WorkspaceExpandButton.css';
 
 interface WorkspaceExpandButtonProps {
@@ -8,6 +8,7 @@ interface WorkspaceExpandButtonProps {
   label: string;
   compact?: boolean;
   restoreLabel?: string;
+  readingFocusId?: ReadingFocusId;
 }
 
 export function WorkspaceExpandButton({
@@ -15,6 +16,7 @@ export function WorkspaceExpandButton({
   label,
   compact = false,
   restoreLabel = 'Restore layout',
+  readingFocusId,
 }: WorkspaceExpandButtonProps) {
   const { isExpanded, togglePanel } = useWorkspaceExpand();
   const expanded = isExpanded(panelId);
@@ -27,7 +29,7 @@ export function WorkspaceExpandButton({
           ? 'workspace-expand-btn workspace-expand-btn--compact'
           : 'workspace-expand-btn'
       }
-      onClick={() => togglePanel(panelId)}
+      onClick={() => togglePanel(panelId, readingFocusId)}
       aria-pressed={expanded}
       aria-label={expanded ? `${restoreLabel} from ${label}` : `Expand ${label} to full workspace`}
       title={expanded ? restoreLabel : `Expand ${label}`}

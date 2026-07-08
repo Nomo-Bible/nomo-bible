@@ -1,0 +1,73 @@
+.reading-panel-expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 2rem;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--color-card);
+  color: var(--color-text-muted);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.reading-panel-expand-btn:hover {
+  background: var(--color-highlight);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.reading-panel-expand-btn[aria-pressed='true'] {
+  background: var(--color-accent-glow);
+  border-color: color-mix(in srgb, var(--color-accent) 35%, transparent);
+  color: var(--color-accent);
+}
+
+.reading-panel-expand-btn--compact {
+  min-height: 2rem;
+  padding: var(--space-1);
+}
+
+.reading-panel-expand-btn:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+.reading-panel-expand-btn__label {
+  white-space: nowrap;
+}
+
+.reading-panel-chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: color-mix(in srgb, var(--color-bg-secondary) 60%, var(--color-card));
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.reading-panel-chrome__title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  min-width: 0;
+}
+
+.reading-panel-chrome__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}

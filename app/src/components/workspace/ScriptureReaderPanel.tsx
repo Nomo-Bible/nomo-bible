@@ -4,6 +4,7 @@ import { useAuth } from '@/auth/useAuth';
 import { BibleSearch } from '@/components/layout/BibleSearch';
 import { useReader } from '@/context/ReaderContext';
 import { useScriptureInteraction } from '@/context/ScriptureInteractionContext';
+import { useWorkspaceExpand } from '@/context/WorkspaceExpandContext';
 import { useWordStudy } from '@/context/WordStudyContext';
 import { WorkspaceExpandButton } from '@/components/workspace/WorkspaceExpandButton';
 import { VerseSelectionToolbar } from '@/components/workspace/VerseSelectionToolbar';
@@ -41,6 +42,8 @@ export function ScriptureReaderPanel({
     setVerse,
   } = useReader();
   const { openWordStudy, activeTokenId } = useWordStudy();
+  const { isExpanded, collapsePanel } = useWorkspaceExpand();
+  const scriptureExpanded = isExpanded('scripture');
   const { isAuthenticated, openAuthPrompt } = useAuth();
   const {
     isVerseSelected,
@@ -130,7 +133,20 @@ export function ScriptureReaderPanel({
   };
 
   const header = (
-    <header className="scripture-reader__header">
+    <>
+      {scriptureExpanded ? (
+        <div className="scripture-reader__return">
+          <button
+            type="button"
+            className="scripture-reader__return-link"
+            onClick={collapsePanel}
+          >
+            <ChevronLeft size={16} strokeWidth={2} aria-hidden="true" />
+            Back to workspace
+          </button>
+        </div>
+      ) : null}
+      <header className="scripture-reader__header">
       <div className="scripture-reader__chapter-nav">
         <button
           type="button"
@@ -161,11 +177,17 @@ export function ScriptureReaderPanel({
           <BibleSearch variant="embedded" />
         </div>
         <div className="scripture-reader__header-meta">
-          <WorkspaceExpandButton panelId="scripture" label="Scripture reader" compact />
+          <WorkspaceExpandButton
+            panelId="scripture"
+            label="Scripture reader"
+            readingFocusId="scripture-reader"
+            compact
+          />
           <span className="scripture-reader__badge">KJV</span>
         </div>
       </div>
     </header>
+    </>
   );
 
   if (!chapter) {

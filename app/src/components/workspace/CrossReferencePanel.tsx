@@ -22,6 +22,7 @@ import type {
 } from '@/types/referenceProviders';
 import type { PassageKey, StudyNote } from '@/types/study';
 import { isVerseLevelPassage } from '@/services/providers/referenceUtils';
+import { ReadingPanelChrome } from '@/components/workspace/ReadingPanelChrome';
 import { CrossReferenceEditor } from './CrossReferenceEditor';
 import {
   CrossReferenceSearch,
@@ -194,6 +195,7 @@ export function CrossReferencePanel({
 
   return (
     <div className="cross-ref-panel">
+      <ReadingPanelChrome focusId="cross-references" title="Cross References & Resources" />
       <div
         className="cross-ref-panel__tabs"
         role="tablist"

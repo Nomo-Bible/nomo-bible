@@ -3,6 +3,8 @@ import {
   ChevronLeft,
   ChevronRight,
   Compass,
+  Maximize2,
+  Minimize2,
 } from 'lucide-react';
 import { BibleSearch } from '@/components/layout/BibleSearch';
 import { useReader } from '@/context/ReaderContext';
@@ -11,9 +13,15 @@ import './mobile-v3.css';
 
 interface MobileBibleReaderShellProps {
   onOpenNavigator: () => void;
+  expanded?: boolean;
+  onExpand?: () => void;
 }
 
-export function MobileBibleReaderShell({ onOpenNavigator }: MobileBibleReaderShellProps) {
+export function MobileBibleReaderShell({
+  onOpenNavigator,
+  expanded = false,
+  onExpand,
+}: MobileBibleReaderShellProps) {
   const {
     location,
     goToPreviousChapter,
@@ -35,6 +43,21 @@ export function MobileBibleReaderShell({ onOpenNavigator }: MobileBibleReaderShe
           </div>
 
           <div className="mobile-v3-reader__actions">
+            {onExpand ? (
+              <button
+                type="button"
+                className="mobile-v3-reader__action-btn"
+                onClick={onExpand}
+                aria-label={expanded ? 'Restore Scripture layout' : 'Expand Bible reader'}
+              >
+                {expanded ? (
+                  <Minimize2 size={14} strokeWidth={2} aria-hidden="true" />
+                ) : (
+                  <Maximize2 size={14} strokeWidth={2} aria-hidden="true" />
+                )}
+                {expanded ? 'Restore' : 'Expand'}
+              </button>
+            ) : null}
             <button
               type="button"
               className="mobile-v3-reader__action-btn mobile-v3-reader__action-btn--accent"

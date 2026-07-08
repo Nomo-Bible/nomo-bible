@@ -10,6 +10,8 @@ import type { StudyResourceLibrarySection } from '@/types/studyWorkspace';
 
 import { EmptyState } from './EmptyState';
 
+import { ReadingPanelChrome } from './ReadingPanelChrome';
+
 import { StudyNoteDetail } from './StudyNoteDetail';
 
 import { StudyNoteEditor } from './StudyNoteEditor';
@@ -377,6 +379,8 @@ export function StudyTabContent({
 
         <div className="study-tab-content__body nm-fade-in">
 
+          <ReadingPanelChrome focusId="topics" title="Topics" />
+
           <TopicsPanel
 
             passageKey={workspace.passageKey}
@@ -446,6 +450,8 @@ export function StudyTabContent({
       return (
 
         <div className="study-tab-content__body nm-fade-in">
+
+          <ReadingPanelChrome focusId="charts" title="Charts" />
 
           <ChartsPanel
 

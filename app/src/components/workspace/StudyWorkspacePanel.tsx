@@ -10,20 +10,22 @@ import './StudyWorkspacePanel.css';
 
 export function StudyWorkspacePanel() {
   const { location } = useReader();
-  const { isExpanded, collapsePanel } = useWorkspaceExpand();
+  const { isExpanded, collapsePanel, readingFocus } = useWorkspaceExpand();
   const workspace = useStudyWorkspace();
   const passageLabel = formatReaderLocation(location);
   const studyExpanded = isExpanded('study');
+  const readingFocusActive = studyExpanded && readingFocus !== null;
+
+  const workspaceClassName = [
+    'study-workspace',
+    studyExpanded ? 'study-workspace--expanded' : '',
+    readingFocusActive ? 'study-workspace--reading-focus' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
-    <aside
-      className={
-        studyExpanded
-          ? 'study-workspace study-workspace--expanded'
-          : 'study-workspace'
-      }
-      aria-label="Study workspace"
-    >
+    <aside className={workspaceClassName} aria-label="Study workspace">
       {studyExpanded && (
         <div className="study-workspace__return">
           <button
@@ -36,11 +38,19 @@ export function StudyWorkspacePanel() {
           </button>
         </div>
       )}
-      <header className="study-workspace__header">
+      <header
+        className={
+          readingFocusActive
+            ? 'study-workspace__header study-workspace__header--compact'
+            : 'study-workspace__header'
+        }
+      >
         <h2 className="study-workspace__title visually-hidden">Study Workspace</h2>
-        <p className="study-workspace__passage" aria-live="polite">
-          {passageLabel}
-        </p>
+        {!readingFocusActive ? (
+          <p className="study-workspace__passage" aria-live="polite">
+            {passageLabel}
+          </p>
+        ) : null}
         <WorkspaceExpandButton
           panelId="study"
           label="Study workspace"
@@ -48,10 +58,12 @@ export function StudyWorkspacePanel() {
         />
       </header>
 
-      <StudyWorkspaceTabs
-        activeTab={workspace.activeTab}
-        onTabChange={workspace.setActiveTab}
-      />
+      <div className="study-workspace__tabs-wrap">
+        <StudyWorkspaceTabs
+          activeTab={workspace.activeTab}
+          onTabChange={workspace.setActiveTab}
+        />
+      </div>
 
       <StudyWorkspaceBody workspace={workspace} passageLabel={passageLabel} />
     </aside>

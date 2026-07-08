@@ -1,10 +1,22 @@
 .how-to-study-panel {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex: 1 1 auto;
   height: 100%;
   min-height: 0;
   gap: 0;
+}
+
+.how-to-study-panel__body {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  gap: 0;
+}
+
+.how-to-study-panel__resize {
+  flex-shrink: 0;
+  align-self: stretch;
 }
 
 .how-to-study-panel__sidebar {
@@ -192,7 +204,7 @@
 }
 
 @media (max-width: 768px) {
-  .how-to-study-panel {
+  .how-to-study-panel__body {
     flex-direction: column;
   }
 

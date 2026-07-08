@@ -2,13 +2,35 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  padding: var(--space-4) var(--space-5);
+  padding: 0;
+  min-height: 0;
 }
 
 .study-note-editor__field {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  padding-inline: var(--space-5);
+}
+
+.study-note-editor__field--body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding-inline: var(--space-5);
+}
+
+.study-note-editor__resizable {
+  min-height: 0;
+}
+
+.study-note-editor__resizable .rich-text-note-editor {
+  height: 100%;
+  min-height: 0;
+}
+
+.study-note-editor__resizable .rich-text-note-editor__surface {
+  max-height: none;
+  flex: 1 1 auto;
 }
 
 .study-note-editor__label {
@@ -48,6 +70,10 @@
   outline: none;
   border-color: var(--color-accent-light);
   box-shadow: 0 0 0 3px var(--color-accent-glow);
+}
+
+.study-note-editor__field:last-child {
+  padding-bottom: var(--space-4);
 }
 
 .study-note-editor__hint {

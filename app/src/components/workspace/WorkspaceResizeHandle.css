@@ -1,0 +1,84 @@
+.workspace-resize-handle {
+  flex-shrink: 0;
+  z-index: 4;
+  touch-action: none;
+  background: transparent;
+  transition: background var(--transition-fast);
+}
+
+.workspace-resize-handle--horizontal {
+  width: 8px;
+  margin: 0 -4px;
+  cursor: col-resize;
+  align-self: stretch;
+}
+
+.workspace-resize-handle--vertical {
+  height: 8px;
+  margin: -4px 0;
+  cursor: row-resize;
+  width: 100%;
+}
+
+.workspace-resize-handle::after {
+  content: '';
+  display: block;
+  margin: auto;
+  border-radius: var(--radius-pill);
+  background: var(--color-border-subtle);
+  transition:
+    background var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.workspace-resize-handle--horizontal::after {
+  width: 3px;
+  height: 2.5rem;
+}
+
+.workspace-resize-handle--vertical::after {
+  width: 2.5rem;
+  height: 3px;
+}
+
+.workspace-resize-handle:hover::after,
+.workspace-resize-handle:focus-visible::after {
+  background: var(--color-accent-muted);
+  box-shadow: 0 0 0 2px var(--color-accent-glow);
+}
+
+.workspace-resize-handle:focus-visible {
+  outline: none;
+}
+
+body.workspace-resize-dragging {
+  user-select: none;
+  cursor: col-resize;
+}
+
+body.workspace-resize-dragging .workspace-resize-handle--vertical {
+  cursor: row-resize;
+}
+
+.vertically-resizable {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.vertically-resizable__content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.vertically-resizable--auto {
+  height: auto;
+}
+
+.vertically-resizable--auto .vertically-resizable__content {
+  flex: none;
+  overflow: visible;
+}

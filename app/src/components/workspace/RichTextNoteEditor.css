@@ -5,6 +5,8 @@
   border-radius: var(--input-radius);
   background: var(--color-card);
   overflow: hidden;
+  height: 100%;
+  min-height: 0;
 }
 
 .rich-text-note-editor--loading {
@@ -95,8 +97,9 @@
 }
 
 .rich-text-note-editor__surface {
-  min-height: 12rem;
-  max-height: 28rem;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
   overflow-x: hidden;
   overflow-y: auto;
 }

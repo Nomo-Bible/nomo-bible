@@ -1,5 +1,7 @@
 import type { StudyNoteDraft } from '@/types/study';
+import { ReadingPanelChrome } from './ReadingPanelChrome';
 import { RichTextNoteEditor } from './RichTextNoteEditor';
+import { VerticallyResizable } from './VerticallyResizable';
 import './StudyNoteEditor.css';
 
 interface StudyNoteEditorProps {
@@ -9,13 +11,23 @@ interface StudyNoteEditorProps {
   remountKey?: string;
 }
 
-export function StudyNoteEditor({ draft, mode, onChange, remountKey }: StudyNoteEditorProps) {
+export function StudyNoteEditor({
+  draft,
+  mode,
+  onChange,
+  remountKey,
+}: StudyNoteEditorProps) {
   return (
     <form
       className="study-note-editor"
       aria-label={mode === 'create' ? 'Create study note' : 'Edit study note'}
       onSubmit={(e) => e.preventDefault()}
     >
+      <ReadingPanelChrome
+        focusId="study-notes"
+        title={mode === 'create' ? 'New Study Note' : 'Edit Study Note'}
+      />
+
       <div className="study-note-editor__field">
         <label htmlFor="study-note-title" className="study-note-editor__label">
           Title
@@ -31,17 +43,25 @@ export function StudyNoteEditor({ draft, mode, onChange, remountKey }: StudyNote
         />
       </div>
 
-      <div className="study-note-editor__field">
+      <div className="study-note-editor__field study-note-editor__field--body">
         <span className="study-note-editor__label" id="study-note-body-label">
           Body
         </span>
-        <RichTextNoteEditor
-          key={remountKey}
-          remountKey={remountKey ?? mode}
-          value={draft.body}
-          onChange={(html) => onChange('body', html)}
-          ariaLabel="Study note body"
-        />
+        <VerticallyResizable
+          storageKey="study-notes-editor"
+          defaultHeight={360}
+          minHeight={220}
+          maxHeight={900}
+          className="study-note-editor__resizable"
+        >
+          <RichTextNoteEditor
+            key={remountKey}
+            remountKey={remountKey ?? mode}
+            value={draft.body}
+            onChange={(html) => onChange('body', html)}
+            ariaLabel="Study note body"
+          />
+        </VerticallyResizable>
       </div>
 
       <div className="study-note-editor__field">

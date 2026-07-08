@@ -1,9 +1,20 @@
 import { Maximize2 } from 'lucide-react';
 import type { StudyWorkspaceTabId } from '@/types/studyWorkspace';
 import { STUDY_WORKSPACE_TABS } from '@/types/studyWorkspace';
+import type { ReadingFocusId } from '@/types/workspaceExpand';
 import { STUDY_TAB_ICONS, STUDY_TAB_ICON_SIZE } from '@/components/ui/studyTabIcons';
 import { useWorkspaceExpand } from '@/context/WorkspaceExpandContext';
 import './StudyWorkspaceTabs.css';
+
+const TAB_READING_FOCUS: Partial<Record<StudyWorkspaceTabId, ReadingFocusId>> = {
+  'study-notes': 'study-notes',
+  'how-to-study': 'how-to-study',
+  'study-resources': 'study-resources',
+  concordance: 'concordance',
+  'cross-references': 'cross-references',
+  topics: 'topics',
+  charts: 'charts',
+};
 
 interface StudyWorkspaceTabsProps {
   activeTab: StudyWorkspaceTabId;
@@ -14,11 +25,12 @@ export function StudyWorkspaceTabs({
   activeTab,
   onTabChange,
 }: StudyWorkspaceTabsProps) {
-  const { expandPanel } = useWorkspaceExpand();
+  const { expandReading } = useWorkspaceExpand();
 
   const handleExpandTab = (tabId: StudyWorkspaceTabId) => {
     onTabChange(tabId);
-    expandPanel('study');
+    const focusId = TAB_READING_FOCUS[tabId] ?? 'study-notes';
+    expandReading(focusId);
   };
 
   return (
