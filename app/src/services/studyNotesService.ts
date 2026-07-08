@@ -3,6 +3,12 @@ import { noteMatchesPassage } from '@/services/passageKeyService';
 
 const STORAGE_KEY = 'nomomartyria-study-notes-v1';
 
+function normalizeNoteBody(body: string): string {
+  const trimmed = body.trim();
+  if (!trimmed || trimmed === '<p></p>') return '';
+  return trimmed;
+}
+
 interface StudyNotesStore {
   version: 1;
   notes: StudyNote[];
@@ -71,7 +77,7 @@ export function createNote(input: StudyNoteInput): StudyNote {
     id: generateId(),
     passageKey: input.passageKey,
     title: input.title.trim(),
-    body: input.body.trim(),
+    body: normalizeNoteBody(input.body),
     tags: input.tags,
     createdAt: now,
     updatedAt: now,
@@ -96,7 +102,7 @@ export function updateNote(
   const updated: StudyNote = {
     ...notes[index],
     title: input.title.trim(),
-    body: input.body.trim(),
+    body: normalizeNoteBody(input.body),
     tags: input.tags,
     updatedAt: new Date().toISOString(),
   };

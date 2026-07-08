@@ -138,6 +138,39 @@
   background: var(--color-highlight);
 }
 
+.scripture-reader__verse-select {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  min-height: 28px;
+  margin-right: 0.25rem;
+  padding: 0;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-xs);
+  background: var(--color-card);
+  color: var(--color-text-muted);
+  vertical-align: super;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.scripture-reader__verse-select:hover {
+  background: var(--color-highlight);
+  border-color: var(--color-border);
+  color: var(--color-accent);
+}
+
+.scripture-reader__verse-select:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 1px;
+}
+
 .scripture-reader__verse-num {
   font-family: var(--font-sans);
   font-size: 0.625rem;
@@ -231,6 +264,95 @@
 .scripture-reader__verse--active {
   background: var(--color-highlight-active);
   border-left-color: var(--color-accent);
+}
+
+.scripture-reader__verse--selected {
+  outline: 2px solid color-mix(in srgb, var(--color-accent) 55%, transparent);
+  outline-offset: -1px;
+  background: color-mix(in srgb, var(--color-accent) 10%, var(--color-bg-scripture));
+}
+
+.scripture-reader__verse--highlighted {
+  position: relative;
+  z-index: 0;
+}
+
+.scripture-reader__verse--highlighted::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0.55;
+}
+
+.scripture-reader__verse--highlighted[data-highlight-color='yellow']::before {
+  background: #fef08a;
+}
+
+.scripture-reader__verse--highlighted[data-highlight-color='green']::before {
+  background: #bbf7d0;
+}
+
+.scripture-reader__verse--highlighted[data-highlight-color='blue']::before {
+  background: #bfdbfe;
+}
+
+.scripture-reader__verse--highlighted[data-highlight-color='pink']::before {
+  background: #fbcfe8;
+}
+
+.scripture-reader__verse--highlighted[data-highlight-color='orange']::before {
+  background: #fed7aa;
+}
+
+.scripture-reader__verse--highlighted[data-highlight-color='purple']::before {
+  background: #ddd6fe;
+}
+
+.scripture-reader__verse--flash {
+  animation: scripture-verse-flash 2.5s ease-out;
+}
+
+@keyframes scripture-verse-flash {
+  0%,
+  15% {
+    box-shadow: inset 0 0 0 2px var(--color-gold);
+    background: color-mix(in srgb, var(--color-gold-muted) 70%, transparent);
+  }
+  100% {
+    box-shadow: none;
+  }
+}
+
+.verse-context-menu {
+  position: fixed;
+  z-index: 1000;
+  min-width: 180px;
+  padding: var(--space-1);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--color-card);
+  box-shadow: var(--shadow-panel);
+}
+
+.verse-context-menu__item {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding: var(--space-2) var(--space-3);
+  border: none;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  text-align: left;
+  cursor: pointer;
+}
+
+.verse-context-menu__item:hover {
+  background: var(--color-highlight);
 }
 
 .scripture-reader__empty {

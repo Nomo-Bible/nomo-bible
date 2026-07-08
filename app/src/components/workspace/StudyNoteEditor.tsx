@@ -1,13 +1,15 @@
 import type { StudyNoteDraft } from '@/types/study';
+import { RichTextNoteEditor } from './RichTextNoteEditor';
 import './StudyNoteEditor.css';
 
 interface StudyNoteEditorProps {
   draft: StudyNoteDraft;
   mode: 'create' | 'edit';
   onChange: (field: keyof StudyNoteDraft, value: string) => void;
+  remountKey?: string;
 }
 
-export function StudyNoteEditor({ draft, mode, onChange }: StudyNoteEditorProps) {
+export function StudyNoteEditor({ draft, mode, onChange, remountKey }: StudyNoteEditorProps) {
   return (
     <form
       className="study-note-editor"
@@ -30,16 +32,15 @@ export function StudyNoteEditor({ draft, mode, onChange }: StudyNoteEditorProps)
       </div>
 
       <div className="study-note-editor__field">
-        <label htmlFor="study-note-body" className="study-note-editor__label">
+        <span className="study-note-editor__label" id="study-note-body-label">
           Body
-        </label>
-        <textarea
-          id="study-note-body"
-          className="study-note-editor__textarea"
+        </span>
+        <RichTextNoteEditor
+          key={remountKey}
+          remountKey={remountKey ?? mode}
           value={draft.body}
-          onChange={(e) => onChange('body', e.target.value)}
-          placeholder="Write your study notes here…"
-          rows={8}
+          onChange={(html) => onChange('body', html)}
+          ariaLabel="Study note body"
         />
       </div>
 

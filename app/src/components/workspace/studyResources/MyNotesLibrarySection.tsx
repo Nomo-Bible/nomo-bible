@@ -1,4 +1,5 @@
 import { BookOpen } from 'lucide-react';
+import { noteExcerpt } from '@/components/workspace/StudyNoteDetail';
 import type { PassageKey } from '@/types/study';
 import type { StudyNote } from '@/types/study';
 import { loadNotesForPassage } from '@/services/studyNotesService';
@@ -66,7 +67,7 @@ export function MyNotesLibrarySection({
                   <span className="study-resource-list__title">{note.title}</span>
                   {note.body ? (
                     <span className="study-resource-list__excerpt">
-                      {note.body.length > 100 ? `${note.body.slice(0, 100)}…` : note.body}
+                      {noteExcerpt(note.body, 100)}
                     </span>
                   ) : null}
                   <span className="study-resource-list__meta">{formatDate(note.updatedAt)}</span>

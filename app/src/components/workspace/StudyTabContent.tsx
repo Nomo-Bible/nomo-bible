@@ -189,6 +189,8 @@ export function StudyTabContent({
 
               onChange={updateDraftField}
 
+              remountKey={selectedNoteId ?? 'create'}
+
             />
 
           </div>

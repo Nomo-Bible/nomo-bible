@@ -1,4 +1,8 @@
 import type { StudyNote } from '@/types/study';
+import {
+  isNoteHtml,
+  sanitizeNoteHtml,
+} from '@/utils/noteContent';
 import './StudyNoteDetail.css';
 
 interface StudyNoteDetailProps {
@@ -15,7 +19,31 @@ function formatDate(iso: string): string {
   });
 }
 
+function renderNoteBody(body: string) {
+  if (!body.trim()) return null;
+
+  if (isNoteHtml(body)) {
+    const html = sanitizeNoteHtml(body);
+    return (
+      <div
+        className="study-note-detail__body study-note-detail__body--rich"
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
+    );
+  }
+
+  return (
+    <div className="study-note-detail__body">
+      {body.split('\n').map((paragraph, index) => (
+        <p key={index}>{paragraph}</p>
+      ))}
+    </div>
+  );
+}
+
 export function StudyNoteDetail({ note }: StudyNoteDetailProps) {
+  const bodyContent = renderNoteBody(note.body);
+
   return (
     <article className="study-note-detail" aria-label={`Study note: ${note.title}`}>
       <header className="study-note-detail__header">
@@ -35,15 +63,15 @@ export function StudyNoteDetail({ note }: StudyNoteDetailProps) {
         </ul>
       )}
 
-      {note.body ? (
-        <div className="study-note-detail__body">
-          {note.body.split('\n').map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
-        </div>
-      ) : (
-        <p className="study-note-detail__empty">No body text.</p>
-      )}
+      {bodyContent ?? <p className="study-note-detail__empty">No body text.</p>}
     </article>
   );
+}
+
+export function noteExcerpt(body: string, maxLength = 90): string {
+  if (!body) return '';
+  const plain = isNoteHtml(body)
+    ? body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+    : body.replace(/\s+/g, ' ').trim();
+  return plain.length > maxLength ? `${plain.slice(0, maxLength)}…` : plain;
 }

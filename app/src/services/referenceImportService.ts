@@ -1,4 +1,5 @@
 import { createNote, updateNote, getNoteById } from '@/services/studyNotesService';
+import { isNoteHtml, plainTextToNoteHtml } from '@/utils/noteContent';
 import type {
   CommentaryEntry,
   EllenWhiteReferenceEntry,
@@ -66,10 +67,18 @@ export function appendReferenceToNote(noteId: string, blockText: string): StudyN
     throw new Error(`Study note not found: ${noteId}`);
   }
 
-  const separator = existing.body.trim() ? '\n\n---\n\n' : '';
+  const separator = existing.body.trim()
+    ? isNoteHtml(existing.body)
+      ? '<hr>'
+      : '\n\n---\n\n'
+    : '';
+  const appended = isNoteHtml(existing.body)
+    ? plainTextToNoteHtml(blockText)
+    : blockText.trim();
+
   return updateNote(noteId, {
     title: existing.title,
-    body: `${existing.body.trim()}${separator}${blockText.trim()}`,
+    body: `${existing.body.trim()}${separator}${appended}`,
     tags: existing.tags,
   });
 }

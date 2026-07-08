@@ -55,6 +55,33 @@
   margin-bottom: 0;
 }
 
+.study-note-detail__body--rich p {
+  margin: 0 0 0.85rem;
+}
+
+.study-note-detail__body--rich ul,
+.study-note-detail__body--rich ol {
+  margin: 0 0 0.85rem;
+  padding-left: 1.35rem;
+}
+
+.study-note-detail__body--rich blockquote {
+  margin: 0 0 0.85rem;
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--color-gold-muted);
+  color: var(--color-text-muted);
+}
+
+.study-note-detail__body--rich a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.study-note-detail__body--rich mark {
+  border-radius: 2px;
+  padding: 0 0.1em;
+}
+
 .study-note-detail__empty {
   margin: 0;
   font-size: var(--font-size-sm);

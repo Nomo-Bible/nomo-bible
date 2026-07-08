@@ -4,6 +4,7 @@ import { useReader } from '@/context/ReaderContext';
 import { useSearch } from '@/context/SearchContext';
 import type { BibleSearchResult } from '@/types/bible';
 import { formatReference } from '@/types/bible';
+import { SCRIPTURE_FLASH_EVENT } from '@/types/scriptureInteraction';
 import { stripKjvEditorialMarkup } from '@/utils/kjvVerseMarkup';
 import './SearchResultsPanel.css';
 
@@ -55,11 +56,17 @@ export function SearchResultsPanel({ onClose, style }: SearchResultsPanelProps) 
     goToConcordanceResult(result.reference, response.query);
     onClose();
 
+    window.dispatchEvent(
+      new CustomEvent(SCRIPTURE_FLASH_EVENT, {
+        detail: { verse: result.reference.verse },
+      }),
+    );
+
     requestAnimationFrame(() => {
       document
         .querySelector('.mobile-stable__bible, .scripture-reader__text')
         ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      document.getElementById('scripture-active-verse')?.scrollIntoView({
+      document.getElementById(`scripture-verse-${result.reference.verse}`)?.scrollIntoView({
         behavior: 'smooth',
         block: 'center',
       });

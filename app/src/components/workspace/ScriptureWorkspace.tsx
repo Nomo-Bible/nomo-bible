@@ -1,3 +1,4 @@
+import { ScriptureInteractionProvider } from '@/context/ScriptureInteractionContext';
 import { WordStudyProvider } from '@/context/WordStudyContext';
 import { AuthPromptOverlay } from '@/components/auth/AuthPromptOverlay';
 import { WorkspaceExpandProvider, useWorkspaceExpand } from '@/context/WorkspaceExpandContext';
@@ -47,10 +48,12 @@ function ScriptureWorkspaceLayout() {
 
 export function ScriptureWorkspace() {
   return (
-    <WordStudyProvider>
-      <WorkspaceExpandProvider>
-        <ScriptureWorkspaceLayout />
-      </WorkspaceExpandProvider>
-    </WordStudyProvider>
+    <ScriptureInteractionProvider>
+      <WordStudyProvider>
+        <WorkspaceExpandProvider>
+          <ScriptureWorkspaceLayout />
+        </WorkspaceExpandProvider>
+      </WordStudyProvider>
+    </ScriptureInteractionProvider>
   );
 }

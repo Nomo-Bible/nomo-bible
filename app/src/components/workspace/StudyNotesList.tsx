@@ -1,4 +1,5 @@
 import type { StudyNote } from '@/types/study';
+import { noteExcerpt } from './StudyNoteDetail';
 import './StudyNotesList.css';
 
 interface StudyNotesListProps {
@@ -39,9 +40,7 @@ export function StudyNotesList({
               <span className="study-notes-list__title">{note.title}</span>
               {note.body && (
                 <span className="study-notes-list__excerpt">
-                  {note.body.length > 90
-                    ? `${note.body.slice(0, 90)}…`
-                    : note.body}
+                  {noteExcerpt(note.body)}
                 </span>
               )}
               <span className="study-notes-list__meta">

@@ -1,6 +1,12 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useReader } from '@/context/ReaderContext';
+import { insertIntoStudyNoteEditor } from '@/services/studyNoteEditorBridge';
+import {
+  SCRIPTURE_INSERT_EVENT,
+  SCRIPTURE_STUDY_TAB_EVENT,
+} from '@/types/scriptureInteraction';
+import { formatScripturePlainToNoteHtml } from '@/utils/noteContent';
 import { loadCrossReferencesForSource } from '@/services/crossReferenceService';
 import {
   formatTagsForInput,
@@ -73,6 +79,11 @@ export function useStudyWorkspace() {
   const [editorMode, setEditorMode] = useState<StudyNoteEditorMode>('idle');
   const [draft, setDraft] = useState<StudyNoteDraft>(EMPTY_DRAFT);
   const [draftBaseline, setDraftBaseline] = useState<StudyNoteDraft>(EMPTY_DRAFT);
+  const editorModeRef = useRef(editorMode);
+
+  useEffect(() => {
+    editorModeRef.current = editorMode;
+  }, [editorMode]);
 
   const selectedNote = useMemo(() => {
     if (!selectedNoteId) return null;
@@ -113,6 +124,52 @@ export function useStudyWorkspace() {
     setDraft(EMPTY_DRAFT);
     setDraftBaseline(EMPTY_DRAFT);
   }, [requestedNoteId, refreshNotes]);
+
+  useEffect(() => {
+    const handleInsertScripture = (event: Event) => {
+      const detail = (event as CustomEvent<{ text: string }>).detail;
+      if (!detail?.text) return;
+
+      const scriptureHtml = formatScripturePlainToNoteHtml(detail.text);
+      setActiveTab('study-notes');
+
+      if (
+        editorModeRef.current === 'create' ||
+        editorModeRef.current === 'edit'
+      ) {
+        if (insertIntoStudyNoteEditor(scriptureHtml)) {
+          return;
+        }
+
+        setDraft((current) => ({
+          ...current,
+          body: current.body.trim()
+            ? `${current.body}<p></p>${scriptureHtml}`
+            : scriptureHtml,
+        }));
+        return;
+      }
+
+      const nextDraft = { title: '', body: scriptureHtml, tags: '' };
+      setSelectedNoteId(null);
+      setEditorMode('create');
+      setDraft(nextDraft);
+      setDraftBaseline(nextDraft);
+    };
+
+    const handleStudyTab = (event: Event) => {
+      const detail = (event as CustomEvent<{ tab: StudyWorkspaceTabId }>).detail;
+      if (!detail?.tab) return;
+      setActiveTab(detail.tab);
+    };
+
+    window.addEventListener(SCRIPTURE_INSERT_EVENT, handleInsertScripture);
+    window.addEventListener(SCRIPTURE_STUDY_TAB_EVENT, handleStudyTab);
+    return () => {
+      window.removeEventListener(SCRIPTURE_INSERT_EVENT, handleInsertScripture);
+      window.removeEventListener(SCRIPTURE_STUDY_TAB_EVENT, handleStudyTab);
+    };
+  }, []);
 
   const hasDraftChanges = useMemo(
     () =>
