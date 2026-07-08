@@ -1,5 +1,5 @@
 import { ArrowLeft } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ReadingPanelChrome } from '@/components/workspace/ReadingPanelChrome';
 import { VerticallyResizable } from '@/components/workspace/VerticallyResizable';
 import { getEgwBookById } from '@/data/resources/catalog/egwBooks';
@@ -17,6 +17,7 @@ interface EgwBookReaderProps {
 
 export function EgwBookReader({ bookId, onClose }: EgwBookReaderProps) {
   const book = getEgwBookById(bookId);
+  const articleRef = useRef<HTMLElement | null>(null);
   const [bookText, setBookText] = useState<EgwBookText | null>(null);
   const [loading, setLoading] = useState(true);
   const [loadFailed, setLoadFailed] = useState(false);
@@ -51,6 +52,10 @@ export function EgwBookReader({ bookId, onClose }: EgwBookReaderProps) {
     };
   }, [bookId]);
 
+  useEffect(() => {
+    articleRef.current?.scrollTo({ top: 0, behavior: 'auto' });
+  }, [activeChapterId]);
+
   if (!book) {
     return null;
   }
@@ -59,6 +64,7 @@ export function EgwBookReader({ bookId, onClose }: EgwBookReaderProps) {
     bookText?.chapters.find((chapter) => chapter.id === activeChapterId) ??
     bookText?.chapters[0] ??
     null;
+  const chapterIds = new Set(bookText?.chapters.map((chapter) => chapter.id) ?? []);
 
   const missingText = !loading && (loadFailed || !bookText || !activeChapter);
 
@@ -140,10 +146,15 @@ export function EgwBookReader({ bookId, onClose }: EgwBookReaderProps) {
             className="egw-book-reader__resizable"
           >
             <article
+              ref={articleRef}
               className="egw-book-reader__article study-article"
               aria-label={activeChapter.title}
             >
-              {renderPlainText(activeChapter.content)}
+              {renderPlainText(activeChapter.content, {
+                chapterIds,
+                activeChapterId,
+                onChapterLinkClick: setActiveChapterId,
+              })}
             </article>
           </VerticallyResizable>
         </>

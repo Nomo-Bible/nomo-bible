@@ -111,6 +111,22 @@
   padding: var(--space-4) var(--space-5) var(--space-6);
 }
 
+.egw-book-reader__index-link {
+  border: none;
+  padding: 0;
+  background: transparent;
+  color: var(--color-accent);
+  font: inherit;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.egw-book-reader__index-link:hover {
+  color: var(--color-accent-hover);
+}
+
 .egw-book-reader__missing {
   margin: var(--space-3) var(--space-4);
   padding: var(--space-4);
