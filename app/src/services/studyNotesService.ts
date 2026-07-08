@@ -58,13 +58,20 @@ function generateId(): string {
   return crypto.randomUUID();
 }
 
+function sortNotesNewestFirst(notes: StudyNote[]): StudyNote[] {
+  return [...notes].sort(
+    (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
+  );
+}
+
+export function loadAllNotes(): StudyNote[] {
+  return sortNotesNewestFirst(readAll());
+}
+
 export function loadNotesForPassage(passageKey: PassageKey): StudyNote[] {
-  return readAll()
-    .filter((note) => noteMatchesPassage(note.passageKey, passageKey))
-    .sort(
-      (a, b) =>
-        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
-    );
+  return sortNotesNewestFirst(
+    readAll().filter((note) => noteMatchesPassage(note.passageKey, passageKey)),
+  );
 }
 
 export function getNoteById(id: string): StudyNote | undefined {

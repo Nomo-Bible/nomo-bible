@@ -45,6 +45,17 @@
   padding: var(--space-3) var(--space-4) 0;
 }
 
+.study-tab-content__all-notes-intro {
+  padding: var(--space-3) var(--space-4) 0;
+}
+
+.study-tab-content__all-notes-intro p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
 @media (max-width: 768px) {
   .study-tab-content__related-wrap {
     padding-inline: var(--space-3);

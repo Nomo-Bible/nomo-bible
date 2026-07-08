@@ -6,6 +6,7 @@ interface StudyNotesListProps {
   notes: StudyNote[];
   selectedNoteId: string | null;
   onSelect: (noteId: string) => void;
+  showPassage?: boolean;
 }
 
 function formatDate(iso: string): string {
@@ -20,6 +21,7 @@ export function StudyNotesList({
   notes,
   selectedNoteId,
   onSelect,
+  showPassage = false,
 }: StudyNotesListProps) {
   return (
     <ul className="study-notes-list" aria-label="Study notes for this passage">
@@ -38,6 +40,9 @@ export function StudyNotesList({
               aria-current={isSelected ? 'true' : undefined}
             >
               <span className="study-notes-list__title">{note.title}</span>
+              {showPassage ? (
+                <span className="study-notes-list__passage">{note.passageKey}</span>
+              ) : null}
               {note.body && (
                 <span className="study-notes-list__excerpt">
                   {noteExcerpt(note.body)}

@@ -49,6 +49,13 @@
   color: var(--color-text);
 }
 
+.study-notes-list__passage {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
 .study-notes-list__excerpt {
   font-size: var(--font-size-sm);
   line-height: 1.5;

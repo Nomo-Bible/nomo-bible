@@ -9,6 +9,8 @@ interface StudyNoteEditorProps {
   mode: 'create' | 'edit';
   onChange: (field: keyof StudyNoteDraft, value: string) => void;
   remountKey?: string;
+  savedNoteCount?: number;
+  onViewNotesList?: () => void;
 }
 
 export function StudyNoteEditor({
@@ -16,16 +18,30 @@ export function StudyNoteEditor({
   mode,
   onChange,
   remountKey,
+  savedNoteCount = 0,
+  onViewNotesList,
 }: StudyNoteEditorProps) {
   return (
     <form
       className="study-note-editor"
       aria-label={mode === 'create' ? 'Create study note' : 'Edit study note'}
+      autoComplete="off"
       onSubmit={(e) => e.preventDefault()}
     >
       <ReadingPanelChrome
         focusId="study-notes"
         title={mode === 'create' ? 'New Study Note' : 'Edit Study Note'}
+        actions={
+          savedNoteCount > 0 && onViewNotesList ? (
+            <button
+              type="button"
+              className="study-note-editor__back-btn"
+              onClick={onViewNotesList}
+            >
+              View saved notes ({savedNoteCount})
+            </button>
+          ) : null
+        }
       />
 
       <div className="study-note-editor__field">
@@ -34,12 +50,16 @@ export function StudyNoteEditor({
         </label>
         <input
           id="study-note-title"
+          name="study-note-title"
           type="text"
           className="study-note-editor__input"
           value={draft.title}
           onChange={(e) => onChange('title', e.target.value)}
           placeholder="Note title"
           maxLength={200}
+          autoComplete="off"
+          data-lpignore="true"
+          data-1p-ignore
         />
       </div>
 
@@ -70,11 +90,15 @@ export function StudyNoteEditor({
         </label>
         <input
           id="study-note-tags"
+          name="study-note-tags"
           type="text"
           className="study-note-editor__input"
           value={draft.tags}
           onChange={(e) => onChange('tags', e.target.value)}
           placeholder="creation, ex nihilo, theology"
+          autoComplete="off"
+          data-lpignore="true"
+          data-1p-ignore
         />
         <span className="study-note-editor__hint">Separate tags with commas</span>
       </div>

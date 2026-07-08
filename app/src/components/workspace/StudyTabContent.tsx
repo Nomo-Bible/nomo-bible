@@ -91,6 +91,8 @@ export function StudyTabContent({
 
     notes,
 
+    allNotes,
+
     crossReferences,
 
     selectedNote,
@@ -104,6 +106,10 @@ export function StudyTabContent({
     startCreate,
 
     updateDraftField,
+
+    viewNotesList,
+
+    openNote,
 
     studyResourceSection,
 
@@ -193,6 +199,10 @@ export function StudyTabContent({
 
               remountKey={selectedNoteId ?? 'create'}
 
+              savedNoteCount={allNotes.length}
+
+              onViewNotesList={viewNotesList}
+
             />
 
           </div>
@@ -204,6 +214,48 @@ export function StudyTabContent({
 
 
       if (notes.length === 0) {
+
+        if (allNotes.length > 0) {
+
+          return (
+
+            <div className="study-tab-content__notes nm-fade-in">
+
+              <div className="study-tab-content__all-notes-intro">
+
+                <p>
+
+                  No notes for {passageLabel}, but you have {allNotes.length} saved
+
+                  note{allNotes.length === 1 ? '' : 's'} on other passages.
+
+                </p>
+
+              </div>
+
+              <StudyNotesList
+
+                notes={allNotes}
+
+                selectedNoteId={selectedNoteId}
+
+                onSelect={openNote}
+
+                showPassage
+
+              />
+
+              {editorMode === 'view' && selectedNote && (
+
+                <StudyNoteDetail note={selectedNote} />
+
+              )}
+
+            </div>
+
+          );
+
+        }
 
         return (
 
@@ -344,11 +396,7 @@ export function StudyTabContent({
             onOpenStudyNotes={() => workspace.setActiveTab('study-notes')}
 
             onSelectNote={(noteId) => {
-
-              workspace.setActiveTab('study-notes');
-
-              workspace.selectNote(noteId);
-
+              openNote(noteId);
             }}
 
           />

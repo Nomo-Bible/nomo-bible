@@ -23,15 +23,17 @@ export function StudyWorkspaceBody({
   howToStudySectionId = null,
   onHowToStudySectionChange,
 }: StudyWorkspaceBodyProps) {
-  const { isAuthenticated, loading } = useAuth();
+  const { isAuthenticated, loading, isConfigured } = useAuth();
   const canViewTab =
-    isAuthenticated || PUBLIC_STUDY_TABS.includes(workspace.activeTab);
+    PUBLIC_STUDY_TABS.includes(workspace.activeTab) ||
+    !isConfigured ||
+    isAuthenticated;
   return (
     <>
       {showToolbar &&
         (workspace.activeTab === 'study-notes' ||
           workspace.activeTab === 'cross-references') &&
-        isAuthenticated && (
+        (isAuthenticated || !isConfigured) && (
           <StudyToolbar
             showNoteActions={workspace.activeTab === 'study-notes'}
             canSave={workspace.canSave}

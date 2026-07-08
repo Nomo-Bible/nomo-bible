@@ -11,12 +11,14 @@ import { loadCrossReferencesForSource } from '@/services/crossReferenceService';
 import {
   formatTagsForInput,
   passageKeyFromLocation,
+  parseScriptureReference,
   parseTagsInput,
 } from '@/services/passageKeyService';
 import {
   createNote,
   deleteNote,
   getNoteById,
+  loadAllNotes,
   loadNotesForPassage,
   updateNote,
 } from '@/services/studyNotesService';
@@ -60,8 +62,8 @@ function parseTab(value: string | null): StudyWorkspaceTabId | null {
 }
 
 export function useStudyWorkspace() {
-  const { location } = useReader();
-  const [searchParams] = useSearchParams();
+  const { location, goToPassage } = useReader();
+  const [searchParams, setSearchParams] = useSearchParams();
   const passageKey = passageKeyFromLocation(location);
   const requestedTab = parseTab(searchParams.get('tab'));
   const requestedNoteId = searchParams.get('note');
@@ -85,6 +87,8 @@ export function useStudyWorkspace() {
     editorModeRef.current = editorMode;
   }, [editorMode]);
 
+  const allNotes = useMemo(() => loadAllNotes(), [notes]);
+
   const selectedNote = useMemo(() => {
     if (!selectedNoteId) return null;
     const fromPassage = notes.find((note) => note.id === selectedNoteId);
@@ -103,11 +107,13 @@ export function useStudyWorkspace() {
   useEffect(() => {
     refreshNotes();
     refreshCrossReferences();
-    setSelectedNoteId(null);
-    setEditorMode('idle');
-    setDraft(EMPTY_DRAFT);
-    setDraftBaseline(EMPTY_DRAFT);
-  }, [passageKey, refreshNotes, refreshCrossReferences]);
+    if (!requestedNoteId) {
+      setSelectedNoteId(null);
+      setEditorMode('idle');
+      setDraft(EMPTY_DRAFT);
+      setDraftBaseline(EMPTY_DRAFT);
+    }
+  }, [passageKey, refreshNotes, refreshCrossReferences, requestedNoteId]);
 
   useEffect(() => {
     if (requestedTab) {
@@ -219,6 +225,35 @@ export function useStudyWorkspace() {
     setDraftBaseline(EMPTY_DRAFT);
   }, []);
 
+  const viewNotesList = useCallback(() => {
+    setEditorMode('idle');
+    setDraft(EMPTY_DRAFT);
+    setDraftBaseline(EMPTY_DRAFT);
+  }, []);
+
+  const openNote = useCallback(
+    (noteId: string) => {
+      const note = getNoteById(noteId);
+      if (!note) return;
+
+      const target = parseScriptureReference(note.passageKey);
+      if (target) {
+        goToPassage(target);
+      }
+
+      setSearchParams(
+        (current) => {
+          const next = new URLSearchParams(current);
+          next.set('tab', 'study-notes');
+          next.set('note', noteId);
+          return next;
+        },
+        { replace: true },
+      );
+    },
+    [goToPassage, setSearchParams],
+  );
+
   const cancelEditing = useCallback(() => {
     if (selectedNote) {
       setEditorMode('view');
@@ -292,6 +327,7 @@ export function useStudyWorkspace() {
     setActiveTab,
     passageKey,
     notes,
+    allNotes,
     crossReferences,
     selectedNote,
     selectedNoteId,
@@ -304,6 +340,8 @@ export function useStudyWorkspace() {
     startCreate,
     startEdit,
     selectNote,
+    openNote,
+    viewNotesList,
     cancelEditing,
     saveDraft,
     removeSelected,
