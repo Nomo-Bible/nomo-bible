@@ -91,11 +91,12 @@ export function EgwLibrarySection({
           ))}
         </ul>
         <p className="catalog-library-section__footnote">
-          Public-domain edition of <em>Steps to Christ</em> also at{' '}
+          Full public-domain editions are bundled for in-app reading. Additional reference
+          editions are available at{' '}
           <a href={EGW_CCEL_STEPS_URL} target="_blank" rel="noopener noreferrer">
             CCEL
           </a>
-          . The app includes a starter chapter bundled for in-app reading.
+          .
         </p>
       </section>
 

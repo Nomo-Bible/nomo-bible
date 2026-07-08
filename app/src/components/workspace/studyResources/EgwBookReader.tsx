@@ -1,13 +1,13 @@
 import { ArrowLeft } from 'lucide-react';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ReadingPanelChrome } from '@/components/workspace/ReadingPanelChrome';
 import { VerticallyResizable } from '@/components/workspace/VerticallyResizable';
 import { getEgwBookById } from '@/data/resources/catalog/egwBooks';
 import {
-  isEgwTextImported,
   loadEgwBookText,
+  type EgwBookText,
 } from '@/services/studyResources/egwTextService';
-import { renderArticleMarkdown } from '@/utils/renderArticleMarkdown';
+import { renderPlainText } from '@/utils/renderPlainText';
 import './EgwBookReader.css';
 
 interface EgwBookReaderProps {
@@ -17,12 +17,39 @@ interface EgwBookReaderProps {
 
 export function EgwBookReader({ bookId, onClose }: EgwBookReaderProps) {
   const book = getEgwBookById(bookId);
-  const bookText = useMemo(() => loadEgwBookText(bookId), [bookId]);
+  const [bookText, setBookText] = useState<EgwBookText | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [loadFailed, setLoadFailed] = useState(false);
   const [activeChapterId, setActiveChapterId] = useState<string | null>(null);
 
   useEffect(() => {
-    setActiveChapterId(bookText?.chapters[0]?.id ?? null);
-  }, [bookId, bookText]);
+    let cancelled = false;
+    setLoading(true);
+    setLoadFailed(false);
+    setBookText(null);
+    setActiveChapterId(null);
+
+    loadEgwBookText(bookId)
+      .then((text) => {
+        if (cancelled) return;
+        if (!text) {
+          setLoadFailed(true);
+          return;
+        }
+        setBookText(text);
+        setActiveChapterId(text.chapters[0]?.id ?? null);
+      })
+      .catch(() => {
+        if (!cancelled) setLoadFailed(true);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [bookId]);
 
   if (!book) {
     return null;
@@ -33,7 +60,7 @@ export function EgwBookReader({ bookId, onClose }: EgwBookReaderProps) {
     bookText?.chapters[0] ??
     null;
 
-  const hasImportedText = isEgwTextImported(bookId);
+  const missingText = !loading && (loadFailed || !bookText || !activeChapter);
 
   return (
     <div className="egw-book-reader">
@@ -61,14 +88,22 @@ export function EgwBookReader({ bookId, onClose }: EgwBookReaderProps) {
         </p>
       </div>
 
-      {!hasImportedText || !bookText || !activeChapter ? (
+      {loading ? (
+        <div className="egw-book-reader__loading" role="status">
+          Loading local text…
+        </div>
+      ) : null}
+
+      {missingText ? (
         <div className="egw-book-reader__missing" role="status">
-          <p className="egw-book-reader__missing-title">Local text not available</p>
+          <p className="egw-book-reader__missing-title">Full text not available</p>
           <p className="egw-book-reader__missing-body">
-            Local text for this resource has not been imported yet.
+            Full local text has not been imported yet.
           </p>
         </div>
-      ) : (
+      ) : null}
+
+      {!loading && bookText && activeChapter ? (
         <>
           {bookText.chapters.length > 1 ? (
             <div
@@ -108,11 +143,11 @@ export function EgwBookReader({ bookId, onClose }: EgwBookReaderProps) {
               className="egw-book-reader__article study-article"
               aria-label={activeChapter.title}
             >
-              {renderArticleMarkdown(activeChapter.content)}
+              {renderPlainText(activeChapter.content)}
             </article>
           </VerticallyResizable>
         </>
-      )}
+      ) : null}
     </div>
   );
 }

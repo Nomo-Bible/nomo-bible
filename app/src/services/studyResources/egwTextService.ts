@@ -1,14 +1,10 @@
+import { getEgwBookById } from '@/data/resources/catalog/egwBooks';
 import {
   EGW_TEXT_MANIFEST,
+  getEgwLocalTextPath,
   hasBundledEgwText,
-  type EgwTextChapterRef,
 } from '@/data/resources/egw/manifest';
-import stepsToChristChapter01 from '@/data/resources/egw/steps-to-christ/chapter-01.md?raw';
-import { getEgwBookById } from '@/data/resources/catalog/egwBooks';
-
-const CHAPTER_CONTENT: Record<string, string> = {
-  'steps-to-christ/chapter-01': stepsToChristChapter01,
-};
+import { parseEgwChapters } from '@/utils/parseEgwPlainText';
 
 export interface EgwBookChapter {
   id: string;
@@ -25,34 +21,74 @@ export interface EgwBookText {
   chapters: EgwBookChapter[];
 }
 
-function loadChapterContent(ref: EgwTextChapterRef): EgwBookChapter | null {
-  const content = CHAPTER_CONTENT[ref.contentKey];
-  if (!content) return null;
-  return {
-    id: ref.id,
-    title: ref.title,
-    content,
-  };
+const textCache = new Map<string, string>();
+const bookCache = new Map<string, EgwBookText | null>();
+
+async function fetchLocalText(path: string): Promise<string | null> {
+  if (textCache.has(path)) {
+    return textCache.get(path) ?? null;
+  }
+
+  const response = await fetch(path);
+  if (!response.ok) {
+    return null;
+  }
+
+  const text = await response.text();
+  if (!text.trim()) {
+    return null;
+  }
+
+  textCache.set(path, text);
+  return text;
 }
 
-export function isEgwTextImported(bookId: string): boolean {
-  if (!hasBundledEgwText(bookId)) return false;
-  const manifest = EGW_TEXT_MANIFEST[bookId];
-  return manifest.chapters.some((chapter) => Boolean(CHAPTER_CONTENT[chapter.contentKey]));
+export function isEgwTextConfigured(bookId: string): boolean {
+  return hasBundledEgwText(bookId);
 }
 
-export function loadEgwBookText(bookId: string): EgwBookText | null {
+export async function isEgwTextImported(bookId: string): Promise<boolean> {
+  const path = getEgwLocalTextPath(bookId);
+  if (!path) return false;
+
+  if (textCache.has(path)) {
+    return Boolean(textCache.get(path)?.trim());
+  }
+
+  try {
+    const response = await fetch(path, { method: 'HEAD' });
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
+
+export async function loadEgwBookText(bookId: string): Promise<EgwBookText | null> {
+  if (bookCache.has(bookId)) {
+    return bookCache.get(bookId) ?? null;
+  }
+
   const book = getEgwBookById(bookId);
   const manifest = EGW_TEXT_MANIFEST[bookId];
-  if (!book || !manifest) return null;
+  const path = manifest?.localTextPath;
+  if (!book || !path) {
+    bookCache.set(bookId, null);
+    return null;
+  }
 
-  const chapters = manifest.chapters
-    .map((ref) => loadChapterContent(ref))
-    .filter((chapter): chapter is EgwBookChapter => chapter !== null);
+  const rawText = await fetchLocalText(path);
+  if (!rawText) {
+    bookCache.set(bookId, null);
+    return null;
+  }
 
-  if (chapters.length === 0) return null;
+  const chapters = parseEgwChapters(rawText);
+  if (chapters.length === 0) {
+    bookCache.set(bookId, null);
+    return null;
+  }
 
-  return {
+  const bookText: EgwBookText = {
     bookId,
     title: book.title,
     author: book.author,
@@ -60,6 +96,9 @@ export function loadEgwBookText(bookId: string): EgwBookText | null {
     sourceUrl: book.sourceUrl,
     chapters,
   };
+
+  bookCache.set(bookId, bookText);
+  return bookText;
 }
 
-export { hasBundledEgwText };
+export { hasBundledEgwText, getEgwLocalTextPath };

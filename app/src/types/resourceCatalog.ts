@@ -15,8 +15,10 @@ export interface EgwBookCatalogEntry {
   sourceName: string;
   sourceUrl: string;
   licenseNotes: string;
-  /** Whether bundled local text has been imported for in-app reading. */
+  /** Whether full local text is bundled for in-app reading. */
   localTextAvailable: boolean;
+  /** Public path to the onboard text file, e.g. /resources/egw/steps-to-christ.txt */
+  localTextPath: string;
   relatedTopics: string[];
   relatedBibleRefs: string[];
 }

@@ -134,6 +134,12 @@
   color: var(--color-text-muted);
 }
 
+.egw-book-reader__loading {
+  margin: var(--space-3) var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
 @media (max-width: 768px) {
   .egw-book-reader__meta,
   .egw-book-reader__chapters,

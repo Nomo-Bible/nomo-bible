@@ -7,6 +7,7 @@
     "dev": "vite",
     "sync:how-to-study": "node ../scripts/sync-how-to-study-manuscript.mjs",
     "validate:how-to-study": "node ../scripts/generate-how-to-study-mobile-sections.mjs",
+    "download:egw-texts": "node ../scripts/reference/download-egw-texts.mjs",
     "prebuild": "npm run sync:how-to-study && npm run validate:how-to-study",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
