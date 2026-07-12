@@ -3,65 +3,70 @@ import { WordStudyProvider } from '@/context/WordStudyContext';
 import { AuthPromptOverlay } from '@/components/auth/AuthPromptOverlay';
 import { WorkspaceExpandProvider, useWorkspaceExpand } from '@/context/WorkspaceExpandContext';
 import { WorkspaceResizeProvider, useWorkspaceResize } from '@/context/WorkspaceResizeContext';
+import {
+  StudyWorkspaceProvider,
+  useStudyWorkspaceContext,
+} from '@/context/StudyWorkspaceContext';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { WorkspaceResizeHandle } from '@/components/workspace/WorkspaceResizeHandle';
 import { MobileScriptureWorkspace } from '@/components/mobile/MobileScriptureWorkspace';
 import { ScriptureNavigationPanel } from './ScriptureNavigationPanel';
 import { ScriptureReaderPanel } from './ScriptureReaderPanel';
+import { StudyToolsChrome } from './StudyToolsChrome';
 import { StudyWorkspacePanel } from './StudyWorkspacePanel';
 import { WordStudyPopover } from './WordStudyPopover';
 import './ScriptureWorkspace.css';
 
 function DesktopScriptureWorkspace() {
   const { expandedPanel } = useWorkspaceExpand();
-  const { resizeNavBy, resizeStudyBy, resizeStudyRowBy, style, isResizable } =
-    useWorkspaceResize();
-  const isStacked = useMediaQuery('(max-width: 1100px)');
+  const { resizeNavBy, resizeStudyRowBy, style, isResizable } = useWorkspaceResize();
+  const { studyPanelOpen } = useStudyWorkspaceContext();
 
-  const workspaceClassName = expandedPanel
-    ? `scripture-workspace scripture-workspace--expanded-${expandedPanel}`
-    : 'scripture-workspace';
+  const workspaceClassName = [
+    'scripture-workspace',
+    studyPanelOpen ? 'scripture-workspace--study-open' : '',
+    expandedPanel ? `scripture-workspace--expanded-${expandedPanel}` : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
-    <div className={workspaceClassName} style={style}>
-      <aside className="scripture-workspace__nav">
-        <ScriptureNavigationPanel />
-      </aside>
+    <div className="scripture-workspace-desktop">
+      {(!expandedPanel || expandedPanel === 'study') ? <StudyToolsChrome /> : null}
 
-      {isResizable && !expandedPanel ? (
-        <WorkspaceResizeHandle
-          axis="horizontal"
-          className="scripture-workspace__resize-nav"
-          label="Resize navigation panel"
-          onResize={resizeNavBy}
-        />
-      ) : null}
+      <div className={workspaceClassName} style={style}>
+        <aside className="scripture-workspace__nav">
+          <ScriptureNavigationPanel />
+        </aside>
 
-      <section className="scripture-workspace__scripture" aria-label="Scripture">
-        <ScriptureReaderPanel />
-      </section>
+        {isResizable && !expandedPanel ? (
+          <WorkspaceResizeHandle
+            axis="horizontal"
+            className="scripture-workspace__resize-nav"
+            label="Resize navigation panel"
+            onResize={resizeNavBy}
+          />
+        ) : null}
 
-      {isResizable && !expandedPanel && !isStacked ? (
-        <WorkspaceResizeHandle
-          axis="horizontal"
-          className="scripture-workspace__resize-study"
-          label="Resize study panel width"
-          onResize={resizeStudyBy}
-        />
-      ) : null}
+        <section className="scripture-workspace__scripture" aria-label="Scripture">
+          <ScriptureReaderPanel />
+        </section>
 
-      <aside className="scripture-workspace__study">
-        <StudyWorkspacePanel />
-      </aside>
+        {studyPanelOpen && isResizable && !expandedPanel ? (
+          <WorkspaceResizeHandle
+            axis="vertical"
+            className="scripture-workspace__resize-study-row"
+            label="Resize study panel height"
+            onResize={resizeStudyRowBy}
+          />
+        ) : null}
 
-      {isResizable && !expandedPanel && isStacked ? (
-        <WorkspaceResizeHandle
-          axis="vertical"
-          className="scripture-workspace__resize-study-row"
-          label="Resize study panel height"
-          onResize={resizeStudyRowBy}
-        />
-      ) : null}
+        {studyPanelOpen ? (
+          <aside className="scripture-workspace__study">
+            <StudyWorkspacePanel />
+          </aside>
+        ) : null}
+      </div>
     </div>
   );
 }
@@ -84,7 +89,9 @@ export function ScriptureWorkspace() {
       <WordStudyProvider>
         <WorkspaceResizeProvider>
           <WorkspaceExpandProvider>
-            <ScriptureWorkspaceLayout />
+            <StudyWorkspaceProvider>
+              <ScriptureWorkspaceLayout />
+            </StudyWorkspaceProvider>
           </WorkspaceExpandProvider>
         </WorkspaceResizeProvider>
       </WordStudyProvider>

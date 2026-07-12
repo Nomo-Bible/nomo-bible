@@ -197,11 +197,19 @@
   min-height: 0;
   overflow-x: hidden;
   overflow-y: auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.scripture-reader__measure {
+  width: 100%;
+  max-width: none;
+  margin: 0;
   padding: var(--space-5) var(--space-6);
   padding-bottom: var(--scroll-padding-bottom);
-  max-width: var(--max-width-reading);
-  margin: 0 auto;
-  width: 100%;
+  box-sizing: border-box;
 }
 
 .scripture-reader__verse {
@@ -549,6 +557,11 @@
   }
 
   .scripture-reader__text {
+    padding: 0;
+    max-width: none;
+  }
+
+  .scripture-reader__measure {
     padding: var(--space-3) var(--space-2-5);
     padding-bottom: var(--space-4);
     max-width: none;

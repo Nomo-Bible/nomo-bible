@@ -1,23 +1,37 @@
-import { BookOpen } from 'lucide-react';
+import { BookOpen, X } from 'lucide-react';
+import { useCallback } from 'react';
 import { useReader } from '@/context/ReaderContext';
+import { useStudyWorkspaceContext } from '@/context/StudyWorkspaceContext';
 import { useWorkspaceExpand } from '@/context/WorkspaceExpandContext';
-import { useStudyWorkspace } from '@/hooks/useStudyWorkspace';
 import { formatReaderLocation } from '@/types/bible';
 import { WorkspaceExpandButton } from '@/components/workspace/WorkspaceExpandButton';
 import { StudyWorkspaceBody } from './StudyWorkspaceBody';
-import { StudyWorkspaceTabs } from './StudyWorkspaceTabs';
 import './StudyWorkspacePanel.css';
 
 export function StudyWorkspacePanel() {
   const { location } = useReader();
-  const { isExpanded, collapsePanel, readingFocus } = useWorkspaceExpand();
-  const workspace = useStudyWorkspace();
+  const workspace = useStudyWorkspaceContext();
+  const { isExpanded, collapsePanel, togglePanel, readingFocus } = useWorkspaceExpand();
   const passageLabel = formatReaderLocation(location);
   const studyExpanded = isExpanded('study');
   const readingFocusActive = studyExpanded && readingFocus !== null;
 
+  const handleBackToBible = useCallback(() => {
+    collapsePanel();
+    workspace.closeStudyPanel();
+  }, [collapsePanel, workspace.closeStudyPanel]);
+
+  const handleExpandToggle = useCallback(() => {
+    if (studyExpanded) {
+      handleBackToBible();
+      return;
+    }
+    togglePanel('study');
+  }, [handleBackToBible, studyExpanded, togglePanel]);
+
   const workspaceClassName = [
     'study-workspace',
+    'study-workspace--docked',
     studyExpanded ? 'study-workspace--expanded' : '',
     readingFocusActive ? 'study-workspace--reading-focus' : '',
   ]
@@ -31,7 +45,7 @@ export function StudyWorkspacePanel() {
           <button
             type="button"
             className="study-workspace__return-link"
-            onClick={collapsePanel}
+            onClick={handleBackToBible}
           >
             <BookOpen size={15} strokeWidth={2} aria-hidden="true" />
             Back to Bible
@@ -51,21 +65,32 @@ export function StudyWorkspacePanel() {
             {passageLabel}
           </p>
         ) : null}
-        <WorkspaceExpandButton
-          panelId="study"
-          label="Study workspace"
-          restoreLabel="Back to Bible"
-        />
+        <div className="study-workspace__header-actions">
+          <WorkspaceExpandButton
+            panelId="study"
+            label="Study workspace"
+            restoreLabel="Back to Bible"
+            onToggle={handleExpandToggle}
+          />
+          {!studyExpanded ? (
+            <button
+              type="button"
+              className="study-workspace__close-btn"
+              onClick={workspace.closeStudyPanel}
+              title="Close study panel"
+              aria-label="Close study panel"
+            >
+              <X size={16} strokeWidth={2} aria-hidden="true" />
+            </button>
+          ) : null}
+        </div>
       </header>
 
-      <div className="study-workspace__tabs-wrap">
-        <StudyWorkspaceTabs
-          activeTab={workspace.activeTab}
-          onTabChange={workspace.setActiveTab}
-        />
-      </div>
-
-      <StudyWorkspaceBody workspace={workspace} passageLabel={passageLabel} />
+      <StudyWorkspaceBody
+        workspace={workspace}
+        passageLabel={passageLabel}
+        showToolbar={false}
+      />
     </aside>
   );
 }

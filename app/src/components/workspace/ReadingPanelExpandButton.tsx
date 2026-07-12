@@ -1,6 +1,8 @@
 import { Maximize2, Minimize2 } from 'lucide-react';
+import { useStudyWorkspaceContext } from '@/context/StudyWorkspaceContext';
 import { useWorkspaceExpand } from '@/context/WorkspaceExpandContext';
 import type { ReadingFocusId } from '@/types/workspaceExpand';
+import { READING_FOCUS_PANEL } from '@/types/workspaceExpand';
 import './ReadingPanelExpandButton.css';
 
 interface ReadingPanelExpandButtonProps {
@@ -17,7 +19,9 @@ export function ReadingPanelExpandButton({
   restoreLabel = 'Back',
 }: ReadingPanelExpandButtonProps) {
   const { isReadingFocus, expandReading, collapsePanel } = useWorkspaceExpand();
+  const { closeStudyPanel, openStudyPanel } = useStudyWorkspaceContext();
   const expanded = isReadingFocus(focusId);
+  const focusesStudy = READING_FOCUS_PANEL[focusId] === 'study';
 
   return (
     <button
@@ -28,8 +32,17 @@ export function ReadingPanelExpandButton({
           : 'reading-panel-expand-btn'
       }
       onClick={() => {
-        if (expanded) collapsePanel();
-        else expandReading(focusId);
+        if (expanded) {
+          collapsePanel();
+          if (focusesStudy) {
+            closeStudyPanel();
+          }
+          return;
+        }
+        if (focusesStudy) {
+          openStudyPanel();
+        }
+        expandReading(focusId);
       }}
       aria-pressed={expanded}
       aria-label={

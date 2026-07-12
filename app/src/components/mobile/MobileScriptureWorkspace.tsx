@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useStudyWorkspace } from '@/hooks/useStudyWorkspace';
+import { useStudyWorkspaceContext } from '@/context/StudyWorkspaceContext';
 import type { StudyWorkspaceTabId } from '@/types/studyWorkspace';
 import { MobileBibleNavigator } from './MobileBibleNavigator';
 import { MobileBibleReaderShell } from './MobileBibleReaderShell';
@@ -11,7 +11,7 @@ import { MobileWorkspaceTabs } from './MobileWorkspaceTabs';
 import './mobile-v3.css';
 
 export function MobileScriptureWorkspace() {
-  const workspace = useStudyWorkspace();
+  const workspace = useStudyWorkspaceContext();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const [navigatorOpen, setNavigatorOpen] = useState(false);

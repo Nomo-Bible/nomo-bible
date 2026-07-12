@@ -20,16 +20,26 @@ const TAB_READING_FOCUS: Partial<Record<StudyWorkspaceTabId, ReadingFocusId>> = 
 interface StudyWorkspaceTabsProps {
   activeTab: StudyWorkspaceTabId;
   onTabChange: (tabId: StudyWorkspaceTabId) => void;
+  /** When false, no tab appears selected (panel closed). Defaults to true. */
+  studyPanelOpen?: boolean;
+  /** Always open the panel and activate the tab (used by expand controls). */
+  onOpenTab?: (tabId: StudyWorkspaceTabId) => void;
 }
 
 export function StudyWorkspaceTabs({
   activeTab,
   onTabChange,
+  studyPanelOpen = true,
+  onOpenTab,
 }: StudyWorkspaceTabsProps) {
   const { expandReading } = useWorkspaceExpand();
 
   const handleExpandTab = (tabId: StudyWorkspaceTabId) => {
-    onTabChange(tabId);
+    if (onOpenTab) {
+      onOpenTab(tabId);
+    } else {
+      onTabChange(tabId);
+    }
     const focusId = TAB_READING_FOCUS[tabId] ?? 'study-notes';
     expandReading(focusId);
   };
@@ -41,7 +51,7 @@ export function StudyWorkspaceTabs({
       aria-label="Study workspace sections"
     >
       {STUDY_WORKSPACE_TABS.map((tab) => {
-        const isActive = tab.id === activeTab;
+        const isActive = studyPanelOpen && tab.id === activeTab;
         const Icon = STUDY_TAB_ICONS[tab.id];
         return (
           <div key={tab.id} className="study-tabs__item">

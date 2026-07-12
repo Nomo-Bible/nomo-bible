@@ -9,6 +9,8 @@ interface WorkspaceExpandButtonProps {
   compact?: boolean;
   restoreLabel?: string;
   readingFocusId?: ReadingFocusId;
+  /** When set, replaces the default expand/collapse toggle behavior. */
+  onToggle?: () => void;
 }
 
 export function WorkspaceExpandButton({
@@ -17,6 +19,7 @@ export function WorkspaceExpandButton({
   compact = false,
   restoreLabel = 'Restore layout',
   readingFocusId,
+  onToggle,
 }: WorkspaceExpandButtonProps) {
   const { isExpanded, togglePanel } = useWorkspaceExpand();
   const expanded = isExpanded(panelId);
@@ -29,7 +32,13 @@ export function WorkspaceExpandButton({
           ? 'workspace-expand-btn workspace-expand-btn--compact'
           : 'workspace-expand-btn'
       }
-      onClick={() => togglePanel(panelId, readingFocusId)}
+      onClick={() => {
+        if (onToggle) {
+          onToggle();
+          return;
+        }
+        togglePanel(panelId, readingFocusId);
+      }}
       aria-pressed={expanded}
       aria-label={expanded ? `${restoreLabel} from ${label}` : `Expand ${label} to full workspace`}
       title={expanded ? restoreLabel : `Expand ${label}`}

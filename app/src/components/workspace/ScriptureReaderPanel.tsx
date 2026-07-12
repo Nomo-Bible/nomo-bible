@@ -241,6 +241,7 @@ export function ScriptureReaderPanel({
 
   const verseContent = (
     <div className="scripture-reader__text">
+      <div className="scripture-reader__measure">
       {chapter.verses.map(({ number, text }) => {
         const isActive = location.verse === number;
         const tokenIdPrefix = `${location.book}:${location.chapter}:${number}`;
@@ -338,6 +339,7 @@ export function ScriptureReaderPanel({
           </p>
         );
       })}
+      </div>
 
       {contextMenu ? (
         <div
