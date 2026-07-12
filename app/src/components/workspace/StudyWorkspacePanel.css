@@ -92,7 +92,9 @@
   background: var(--color-bg-scripture);
 }
 
-.study-workspace__content:not(:has(.study-tab-content__body--how-to-study)),
+.study-workspace__content:not(:has(.study-tab-content__body--how-to-study)):not(
+    :has(.study-tab-content__body--kjv-word-guide)
+  ),
 .study-workspace__content:has(.study-tab-content__body--how-to-study-mobile) {
   overflow-x: hidden;
   overflow-y: auto;

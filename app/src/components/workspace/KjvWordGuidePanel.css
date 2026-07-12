@@ -1,75 +1,41 @@
 .kjv-word-guide {
   display: flex;
   flex-direction: column;
-  min-width: 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  background: var(--color-bg-scripture);
 }
 
-.kjv-word-guide__intro {
-  display: flex;
-  gap: var(--space-3);
-  align-items: flex-start;
-  padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid var(--color-border-subtle);
-  background: var(--color-bg-secondary);
-}
-
-.kjv-word-guide__intro-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: var(--radius-md);
-  background: var(--color-card);
-  border: 1px solid var(--color-border-subtle);
-  color: var(--color-gold-deep);
+.kjv-word-guide__chrome {
+  position: sticky;
+  top: 0;
+  z-index: 4;
   flex-shrink: 0;
-}
-
-.kjv-word-guide__title {
-  margin: 0 0 var(--space-1);
-  font-size: var(--font-size-lg);
-  font-weight: 650;
-  color: var(--color-text);
-}
-
-.kjv-word-guide__subtitle {
-  margin: 0;
-  font-size: var(--font-size-sm);
-  line-height: 1.5;
-  color: var(--color-text-muted);
+  background: color-mix(in srgb, var(--color-bg-scripture) 92%, var(--color-card));
+  border-bottom: 1px solid var(--color-border-subtle);
+  backdrop-filter: blur(8px);
 }
 
 .kjv-word-guide__search {
-  padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid var(--color-border-subtle);
-  background: var(--color-card);
-}
-
-.kjv-word-guide__search-label {
-  display: block;
-  margin-bottom: var(--space-2);
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--color-text-subtle);
+  padding: 0.5rem 0.75rem 0.35rem;
 }
 
 .kjv-word-guide__search-row {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: 0.5rem;
   min-width: 0;
-  padding: 0 var(--space-2-5);
-  border: var(--input-border);
-  border-radius: var(--input-radius);
-  background: var(--color-bg);
+  padding: 0 0.65rem;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  background: var(--color-card);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
 }
 
 .kjv-word-guide__search-row:focus-within {
-  border-color: var(--color-accent-light);
-  box-shadow: 0 0 0 2px var(--color-accent-glow);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 2px var(--color-gold-glow);
 }
 
 .kjv-word-guide__search-icon {
@@ -84,8 +50,8 @@
   background: transparent;
   color: var(--color-text);
   font-family: var(--font-sans);
-  font-size: var(--font-size-base);
-  padding: var(--input-padding-y) 0;
+  font-size: 0.875rem;
+  padding: 0.45rem 0;
 }
 
 .kjv-word-guide__search-input:focus {
@@ -97,10 +63,10 @@
   border: 0;
   background: transparent;
   color: var(--color-text-muted);
-  font-size: var(--font-size-xs);
+  font-size: 0.6875rem;
   font-weight: 600;
   cursor: pointer;
-  padding: var(--space-1);
+  padding: 0.25rem;
 }
 
 .kjv-word-guide__clear:hover {
@@ -110,27 +76,25 @@
 .kjv-word-guide__az {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-1);
-  padding: var(--space-2) var(--space-4);
-  border-bottom: 1px solid var(--color-border-subtle);
-  background: var(--color-bg);
+  gap: 0.2rem;
+  padding: 0.35rem 0.75rem 0.55rem;
 }
 
 .kjv-word-guide__az-btn {
-  min-width: 1.75rem;
-  height: 1.75rem;
-  padding: 0 var(--space-1);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-sm);
-  background: var(--color-card);
+  min-width: 1.4rem;
+  height: 1.4rem;
+  padding: 0 0.2rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  background: transparent;
   color: var(--color-text-muted);
-  font-size: var(--font-size-xs);
-  font-weight: 600;
+  font-size: 0.6875rem;
+  font-weight: 650;
   cursor: pointer;
 }
 
 .kjv-word-guide__az-btn:hover {
-  border-color: var(--color-accent-light);
+  background: var(--color-bg-secondary);
   color: var(--color-text);
 }
 
@@ -141,176 +105,350 @@
 }
 
 .kjv-word-guide__feedback,
-.kjv-word-guide__miss,
-.kjv-word-guide__count {
+.kjv-word-guide__miss {
   margin: 0;
-  padding: var(--space-2) var(--space-4);
-  font-size: var(--font-size-sm);
+  padding: 0.35rem 0.75rem 0.55rem;
+  font-size: 0.75rem;
+  border-top: 1px solid var(--color-border-subtle);
 }
 
 .kjv-word-guide__feedback {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
   color: var(--color-accent);
   background: var(--color-bg-secondary);
-  border-bottom: 1px solid var(--color-border-subtle);
 }
 
 .kjv-word-guide__miss {
   color: var(--color-text-muted);
   background: var(--color-bg-secondary);
-  border-bottom: 1px solid var(--color-border-subtle);
 }
 
-.kjv-word-guide__count {
-  color: var(--color-text-muted);
-  border-bottom: 1px solid var(--color-border-subtle);
+.kjv-word-guide__workspace {
+  display: grid;
+  grid-template-columns: minmax(9.5rem, 0.22fr) minmax(0, 1fr) minmax(9.5rem, 0.22fr);
+  gap: 0.65rem;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 0.65rem 0.75rem 0.85rem;
+  overflow: hidden;
 }
 
-.kjv-word-guide__body {
-  padding: var(--space-3) var(--space-4) var(--space-6);
+.kjv-word-guide__sidebar,
+.kjv-word-guide__main {
+  min-width: 0;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.kjv-word-guide__sidebar {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
-  min-width: 0;
+  gap: 0.5rem;
+}
+
+.kjv-word-guide__tool-card {
+  padding: 0.65rem 0.7rem;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 0.4rem;
+  background: var(--color-card);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.03);
+}
+
+.kjv-word-guide__tool-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0 0 0.45rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-gold-deep);
+}
+
+.kjv-word-guide__pronoun-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+}
+
+.kjv-word-guide__pronoun-label {
+  margin: 0 0 0.2rem;
+  font-size: 0.625rem;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-subtle);
+}
+
+.kjv-word-guide__pronoun-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  color: var(--color-text);
+}
+
+.kjv-word-guide__pronoun-list li {
+  padding: 0.1rem 0;
+}
+
+.kjv-word-guide__tip-list {
+  margin: 0;
+  padding-left: 0.95rem;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+.kjv-word-guide__tip-list li + li {
+  margin-top: 0.3rem;
+}
+
+.kjv-word-guide__tip-list strong,
+.kjv-word-guide__tip-list em {
+  color: var(--color-text);
+}
+
+.kjv-word-guide__stats {
+  margin: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.kjv-word-guide__stats div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.kjv-word-guide__stats dt {
+  color: var(--color-text-muted);
+}
+
+.kjv-word-guide__stats dd {
+  margin: 0;
+  font-weight: 650;
+  color: var(--color-text);
+  text-align: right;
+}
+
+.kjv-word-guide__jump-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.kjv-word-guide__jump-btn {
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+  font-size: 0.75rem;
+  text-align: left;
+  padding: 0.28rem 0.35rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.kjv-word-guide__jump-btn:hover {
+  background: var(--color-bg-secondary);
+  color: var(--color-accent);
+}
+
+.kjv-word-guide__chip-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.kjv-word-guide__chip {
+  border: 1px solid var(--color-gold-muted);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-secondary);
+  color: var(--color-gold-deep);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  cursor: pointer;
+}
+
+.kjv-word-guide__chip:hover {
+  border-color: var(--color-accent-light);
+  color: var(--color-accent);
+}
+
+.kjv-word-guide__tool-empty {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--color-text-subtle);
+  line-height: 1.4;
+}
+
+.kjv-word-guide__main {
+  padding: 0 0.15rem 0.5rem;
+}
+
+.kjv-word-guide__main-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.55rem;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.kjv-word-guide__main-meta-cat {
+  color: var(--color-gold-deep);
+  font-weight: 650;
 }
 
 .kjv-word-guide__section {
   min-width: 0;
+  margin-bottom: 0.85rem;
+  scroll-margin-top: 0.5rem;
 }
 
 .kjv-word-guide__section-title {
-  margin: 0 0 var(--space-2);
-  font-size: var(--font-size-md);
-  font-weight: 650;
+  margin: 0 0 0.4rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   color: var(--color-text);
 }
 
 .kjv-word-guide__section-desc {
-  margin: 0 0 var(--space-3);
-  font-size: var(--font-size-sm);
-  line-height: 1.55;
+  margin: 0 0 0.45rem;
+  font-size: 0.75rem;
+  line-height: 1.45;
   color: var(--color-text-muted);
-}
-
-.kjv-word-guide__compare {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-2);
-  margin-bottom: var(--space-3);
-}
-
-@media (min-width: 640px) {
-  .kjv-word-guide__compare {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.kjv-word-guide__compare-col {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1-5);
-  padding: var(--space-3);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-md);
-  background: var(--color-card);
-}
-
-.kjv-word-guide__compare-row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
-}
-
-.kjv-word-guide__compare-row strong {
-  color: var(--color-text);
-  font-weight: 650;
 }
 
 .kjv-word-guide__cards {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2-5);
+  gap: 0.4rem;
   min-width: 0;
 }
 
 .kjv-word-guide__card {
-  padding: var(--space-3);
+  padding: 0.55rem 0.7rem;
   border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-md);
+  border-radius: 0.4rem;
   background: var(--color-card);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.03);
   min-width: 0;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.kjv-word-guide__card:hover {
+  border-color: color-mix(in srgb, var(--color-gold) 45%, var(--color-border-subtle));
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
 }
 
 .kjv-word-guide__card-header {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: var(--space-2);
-  margin-bottom: var(--space-1-5);
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
 }
 
 .kjv-word-guide__word {
   margin: 0;
-  font-size: var(--font-size-base);
+  font-size: 1.125rem;
   font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   color: var(--color-text);
-  text-transform: lowercase;
 }
 
 .kjv-word-guide__category-pill {
-  font-size: 0.6875rem;
-  font-weight: 600;
+  flex-shrink: 0;
+  font-size: 0.625rem;
+  font-weight: 650;
   letter-spacing: 0.02em;
   color: var(--color-gold-deep);
   background: var(--color-bg-secondary);
   border: 1px solid var(--color-gold-muted);
   border-radius: var(--radius-pill);
-  padding: 0.15rem 0.55rem;
+  padding: 0.1rem 0.45rem;
+  max-width: 7.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .kjv-word-guide__meaning {
-  margin: 0 0 var(--space-2);
-  font-size: var(--font-size-sm);
-  line-height: 1.5;
-  color: var(--color-text);
-}
-
-.kjv-word-guide__note {
-  margin: 0 0 var(--space-2);
-  font-size: var(--font-size-xs);
-  line-height: 1.5;
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.4;
   color: var(--color-text-muted);
 }
 
-.kjv-word-guide__copy-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1-5);
-  padding: var(--space-1-5) var(--space-2-5);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-sm);
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-size: var(--font-size-xs);
-  font-weight: 600;
-  cursor: pointer;
+.kjv-word-guide__note {
+  margin: 0.25rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--color-text-subtle);
 }
 
-.kjv-word-guide__copy-btn:hover {
+.kjv-word-guide__mark {
+  background: color-mix(in srgb, var(--color-gold) 28%, transparent);
+  color: inherit;
+  border-radius: 0.15rem;
+  padding: 0 0.1rem;
+}
+
+.kjv-word-guide__card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.4rem;
+}
+
+.kjv-word-guide__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 0.3rem;
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.kjv-word-guide__icon-btn:hover {
   border-color: var(--color-accent-light);
   color: var(--color-accent);
+  background: var(--color-card);
+}
+
+.kjv-word-guide__icon-btn--active {
+  border-color: var(--color-gold-muted);
+  color: var(--color-gold-deep);
+  background: var(--color-bg-secondary);
 }
 
 .kjv-word-guide__examples {
-  margin: 0 0 var(--space-3);
-  padding-left: 1.1rem;
-  font-size: var(--font-size-sm);
-  line-height: 1.55;
+  margin: 0 0 0.5rem;
+  padding-left: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.45;
   color: var(--color-text-muted);
 }
 
@@ -320,34 +458,34 @@
 
 .kjv-word-guide__grammar,
 .kjv-word-guide__scripture {
-  padding: var(--space-3);
+  padding: 0.65rem 0.7rem;
   border: 1px solid var(--color-border-subtle);
-  border-radius: var(--radius-md);
+  border-radius: 0.4rem;
   background: var(--color-card);
-  margin-bottom: var(--space-3);
+  margin-bottom: 0.45rem;
 }
 
 .kjv-word-guide__grammar-title,
 .kjv-word-guide__scripture-ref {
-  margin: 0 0 var(--space-2);
-  font-size: var(--font-size-base);
+  margin: 0 0 0.35rem;
+  font-size: 0.8125rem;
   font-weight: 650;
   color: var(--color-text);
 }
 
 .kjv-word-guide__grammar-body {
-  margin: 0 0 var(--space-2);
-  font-size: var(--font-size-sm);
-  line-height: 1.55;
+  margin: 0 0 0.35rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
   color: var(--color-text-muted);
 }
 
 .kjv-word-guide__quote {
-  margin: 0 0 var(--space-3);
-  padding: var(--space-2-5) var(--space-3);
+  margin: 0 0 0.45rem;
+  padding: 0.45rem 0.6rem;
   border-left: 3px solid var(--color-gold-muted);
   background: var(--color-bg-secondary);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  border-radius: 0 0.3rem 0.3rem 0;
 }
 
 .kjv-word-guide__quote:last-child {
@@ -355,16 +493,16 @@
 }
 
 .kjv-word-guide__quote p {
-  margin: 0 0 var(--space-1-5);
-  font-size: var(--font-size-sm);
-  line-height: 1.55;
+  margin: 0 0 0.25rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
   color: var(--color-text);
   font-style: italic;
 }
 
 .kjv-word-guide__quote footer {
-  font-size: var(--font-size-xs);
-  line-height: 1.5;
+  font-size: 0.6875rem;
+  line-height: 1.4;
   color: var(--color-text-muted);
   font-style: normal;
 }
@@ -373,8 +511,44 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-3);
-  padding: var(--space-4) 0;
+  gap: 0.65rem;
+  padding: 1rem 0;
   color: var(--color-text-muted);
-  font-size: var(--font-size-sm);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 1100px) {
+  .kjv-word-guide__workspace {
+    grid-template-columns: minmax(8.5rem, 0.28fr) minmax(0, 1fr);
+  }
+
+  .kjv-word-guide__sidebar--right {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .kjv-word-guide {
+    height: auto;
+  }
+
+  .kjv-word-guide__workspace {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    padding: 0.55rem 0.65rem 0.85rem;
+  }
+
+  .kjv-word-guide__sidebar,
+  .kjv-word-guide__main {
+    overflow: visible;
+  }
+
+  .kjv-word-guide__sidebar--right {
+    display: flex;
+  }
+
+  .kjv-word-guide__sidebar--left {
+    order: -1;
+  }
 }

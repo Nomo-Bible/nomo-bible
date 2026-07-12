@@ -499,7 +499,7 @@ export function StudyTabContent({
 
       return (
 
-        <div className="study-tab-content__body nm-fade-in">
+        <div className="study-tab-content__body study-tab-content__body--kjv-word-guide nm-fade-in">
 
           <KjvWordGuidePanel />
 
