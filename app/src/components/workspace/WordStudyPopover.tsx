@@ -1,7 +1,8 @@
-import { Search, StickyNote, X } from 'lucide-react';
+import { BookText, Search, StickyNote, X } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { useWordStudy } from '@/context/WordStudyContext';
 import { useWordStudyPopoverPosition } from '@/hooks/useWordStudyPopoverPosition';
+import { hasKjvWordGuideEntry } from '@/services/kjvWordGuideService';
 import { isStrongsDataInstalled } from '@/services/strongsService';
 import { wordStudyStatusMessage } from '@/services/wordStudyService';
 import './WordStudyPopover.css';
@@ -56,6 +57,7 @@ export function WordStudyPopover() {
     closeWordStudy,
     searchWordInConcordance,
     searchPossibleMatches,
+    lookupInKjvWordGuide,
     insertWordStudyNote,
   } = useWordStudy();
   const popoverRef = useRef<HTMLDivElement>(null);
@@ -132,6 +134,8 @@ export function WordStudyPopover() {
       : null;
 
   const showPrimaryEntry = selection.status === 'found' && entry;
+  const guideLookupWord = selection.normalizedText || selection.word;
+  const hasGuideEntry = hasKjvWordGuideEntry(guideLookupWord);
 
   const popoverClassName = [
     'word-study-popover',
@@ -213,6 +217,20 @@ export function WordStudyPopover() {
             <Search size={14} strokeWidth={2} aria-hidden="true" />
             Search in Concordance
           </button>
+          {hasGuideEntry ? (
+            <button
+              type="button"
+              className="word-study-popover__btn word-study-popover__btn--secondary"
+              onClick={() => lookupInKjvWordGuide(guideLookupWord)}
+            >
+              <BookText size={14} strokeWidth={2} aria-hidden="true" />
+              Look up in KJV Word Guide
+            </button>
+          ) : (
+            <p className="word-study-popover__guide-hint">
+              No KJV glossary entry found
+            </p>
+          )}
           {selection.status === 'untagged' && (
             <button
               type="button"

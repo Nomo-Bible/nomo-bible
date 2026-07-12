@@ -4,6 +4,7 @@ export type StudyWorkspaceTabId =
   | 'concordance'
   | 'topics'
   | 'how-to-study'
+  | 'kjv-word-guide'
   | 'charts'
   | 'study-resources';
 
@@ -28,5 +29,6 @@ export const STUDY_WORKSPACE_TABS: StudyWorkspaceTab[] = [
   { id: 'concordance', label: 'Concordance' },
   { id: 'topics', label: 'Topics' },
   { id: 'how-to-study', label: 'How to Study the Bible' },
+  { id: 'kjv-word-guide', label: 'KJV Word Guide' },
   { id: 'charts', label: 'Charts' },
 ];

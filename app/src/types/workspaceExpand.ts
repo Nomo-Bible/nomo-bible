@@ -4,6 +4,7 @@ export type ReadingFocusId =
   | 'scripture-reader'
   | 'study-notes'
   | 'how-to-study'
+  | 'kjv-word-guide'
   | 'study-resources'
   | 'egw-reader'
   | 'concordance'
@@ -18,6 +19,7 @@ export const READING_FOCUS_PANEL: Record<
   'scripture-reader': 'scripture',
   'study-notes': 'study',
   'how-to-study': 'study',
+  'kjv-word-guide': 'study',
   'study-resources': 'study',
   'egw-reader': 'study',
   concordance: 'study',

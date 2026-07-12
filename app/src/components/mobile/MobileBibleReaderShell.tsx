@@ -1,5 +1,6 @@
 import {
   BookOpen,
+  BookText,
   ChevronLeft,
   ChevronRight,
   Compass,
@@ -13,12 +14,14 @@ import './mobile-v3.css';
 
 interface MobileBibleReaderShellProps {
   onOpenNavigator: () => void;
+  onOpenKjvWordGuide?: () => void;
   expanded?: boolean;
   onExpand?: () => void;
 }
 
 export function MobileBibleReaderShell({
   onOpenNavigator,
+  onOpenKjvWordGuide,
   expanded = false,
   onExpand,
 }: MobileBibleReaderShellProps) {
@@ -56,6 +59,17 @@ export function MobileBibleReaderShell({
                   <Maximize2 size={14} strokeWidth={2} aria-hidden="true" />
                 )}
                 {expanded ? 'Restore' : 'Expand'}
+              </button>
+            ) : null}
+            {onOpenKjvWordGuide ? (
+              <button
+                type="button"
+                className="mobile-v3-reader__action-btn"
+                onClick={onOpenKjvWordGuide}
+                title="Open KJV Word Guide"
+              >
+                <BookText size={14} strokeWidth={2} aria-hidden="true" />
+                KJV Word Guide
               </button>
             ) : null}
             <button

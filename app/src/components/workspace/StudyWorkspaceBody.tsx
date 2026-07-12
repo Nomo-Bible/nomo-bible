@@ -5,7 +5,7 @@ import type { StudyWorkspaceTabId } from '@/types/studyWorkspace';
 import { StudyTabContent } from './StudyTabContent';
 import { StudyToolbar } from './StudyToolbar';
 
-const PUBLIC_STUDY_TABS: StudyWorkspaceTabId[] = ['how-to-study'];
+const PUBLIC_STUDY_TABS: StudyWorkspaceTabId[] = ['how-to-study', 'kjv-word-guide'];
 type StudyWorkspaceState = ReturnType<typeof useStudyWorkspace>;
 
 interface StudyWorkspaceBodyProps {

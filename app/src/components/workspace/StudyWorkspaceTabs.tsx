@@ -9,6 +9,7 @@ import './StudyWorkspaceTabs.css';
 const TAB_READING_FOCUS: Partial<Record<StudyWorkspaceTabId, ReadingFocusId>> = {
   'study-notes': 'study-notes',
   'how-to-study': 'how-to-study',
+  'kjv-word-guide': 'kjv-word-guide',
   'study-resources': 'study-resources',
   concordance: 'concordance',
   'cross-references': 'cross-references',

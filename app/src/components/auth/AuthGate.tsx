@@ -25,8 +25,9 @@ export function AuthGate({ compact = false, onDismiss }: AuthGateProps) {
         Create a free account to use the study workspace.
       </p>
       <p className="auth-gate__hint">
-        Bible reading remains free. Sign in to unlock Strong&apos;s, Concordance,
-        Study Notes, Study Resources, Cross References, and more.
+        Bible reading and the KJV Word Guide remain free. Sign in to unlock
+        Strong&apos;s, Concordance, Study Notes, Study Resources, Cross
+        References, and more.
       </p>
       <div className="auth-gate__actions">
         <Link to="/login" className="nm-btn nm-btn--primary">

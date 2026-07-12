@@ -44,6 +44,7 @@ export const MORE_TAB_OPTIONS: { id: StudyWorkspaceTabId; label: string }[] = [
   { id: 'study-resources', label: 'Study Resources' },
   { id: 'topics', label: 'Topics' },
   { id: 'how-to-study', label: 'How to Study' },
+  { id: 'kjv-word-guide', label: 'KJV Word Guide' },
   { id: 'charts', label: 'Charts' },
 ];
 

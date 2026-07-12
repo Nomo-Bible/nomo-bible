@@ -71,6 +71,14 @@ export function MobileScriptureWorkspace() {
       <section className="mobile-stable__bible" aria-label="Bible reader">
         <MobileBibleReaderShell
           onOpenNavigator={() => setNavigatorOpen(true)}
+          onOpenKjvWordGuide={() => {
+            workspace.setActiveTab('kjv-word-guide');
+            setBibleExpanded(false);
+            setBottomNav('more');
+            document
+              .querySelector('.mobile-stable__study')
+              ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }}
           expanded={bibleExpanded}
           onExpand={() => {
             setBibleExpanded((current) => !current);

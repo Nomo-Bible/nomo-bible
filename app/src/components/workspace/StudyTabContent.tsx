@@ -26,6 +26,8 @@ import { HowToStudyBiblePanel } from './HowToStudyBiblePanel';
 
 import { HowToStudyMobilePanel } from './HowToStudyMobilePanel';
 
+import { KjvWordGuidePanel } from './KjvWordGuidePanel';
+
 import { ChartsPanel, TopicsPanel } from './studyResources/StudyResourcePanels';
 
 import {
@@ -488,6 +490,18 @@ export function StudyTabContent({
             <HowToStudyBiblePanel />
 
           )}
+
+        </div>
+
+      );
+
+    case 'kjv-word-guide':
+
+      return (
+
+        <div className="study-tab-content__body nm-fade-in">
+
+          <KjvWordGuidePanel />
 
         </div>
 

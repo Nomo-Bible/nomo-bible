@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useReader } from '@/context/ReaderContext';
 import { insertIntoStudyNoteEditor } from '@/services/studyNoteEditorBridge';
+import { KJV_WORD_GUIDE_INSERT_EVENT } from '@/services/kjvWordGuideService';
 import {
   SCRIPTURE_INSERT_EVENT,
   SCRIPTURE_STUDY_TAB_EVENT,
@@ -35,6 +36,7 @@ const STUDY_TABS: StudyWorkspaceTabId[] = [
   'concordance',
   'topics',
   'how-to-study',
+  'kjv-word-guide',
   'charts',
 ];
 
@@ -169,11 +171,46 @@ export function useStudyWorkspace() {
       setActiveTab(detail.tab);
     };
 
+    const handleInsertKjvWordGuide = (event: Event) => {
+      const detail = (event as CustomEvent<{ html: string }>).detail;
+      if (!detail?.html) return;
+
+      setActiveTab('study-notes');
+
+      if (
+        editorModeRef.current === 'create' ||
+        editorModeRef.current === 'edit'
+      ) {
+        if (insertIntoStudyNoteEditor(detail.html)) {
+          return;
+        }
+
+        setDraft((current) => ({
+          ...current,
+          body: current.body.trim()
+            ? `${current.body}<p></p>${detail.html}`
+            : detail.html,
+        }));
+        return;
+      }
+
+      const nextDraft = { title: '', body: detail.html, tags: 'kjv-word-guide' };
+      setSelectedNoteId(null);
+      setEditorMode('create');
+      setDraft(nextDraft);
+      setDraftBaseline(nextDraft);
+    };
+
     window.addEventListener(SCRIPTURE_INSERT_EVENT, handleInsertScripture);
     window.addEventListener(SCRIPTURE_STUDY_TAB_EVENT, handleStudyTab);
+    window.addEventListener(KJV_WORD_GUIDE_INSERT_EVENT, handleInsertKjvWordGuide);
     return () => {
       window.removeEventListener(SCRIPTURE_INSERT_EVENT, handleInsertScripture);
       window.removeEventListener(SCRIPTURE_STUDY_TAB_EVENT, handleStudyTab);
+      window.removeEventListener(
+        KJV_WORD_GUIDE_INSERT_EVENT,
+        handleInsertKjvWordGuide,
+      );
     };
   }, []);
 

@@ -36,6 +36,7 @@ interface WordStudyContextValue {
   closeWordStudy: () => void;
   searchWordInConcordance: (word: string) => void;
   searchPossibleMatches: () => void;
+  lookupInKjvWordGuide: (word: string) => void;
   insertWordStudyNote: (entry: StrongsEntry | null) => void;
 }
 
@@ -124,6 +125,21 @@ export function WordStudyProvider({ children }: { children: ReactNode }) {
     closeWordStudy();
   }, [closeWordStudy, selection, setSearchParams]);
 
+  const lookupInKjvWordGuide = useCallback(
+    (word: string) => {
+      const trimmed = word.trim();
+      if (!trimmed) return;
+      setSearchParams({
+        tab: 'kjv-word-guide',
+        q: trimmed,
+        lookup: trimmed,
+        run: Date.now().toString(),
+      });
+      closeWordStudy();
+    },
+    [closeWordStudy, setSearchParams],
+  );
+
   const insertWordStudyNote = useCallback(
     (noteEntry: StrongsEntry | null) => {
       if (!selection) return;
@@ -159,6 +175,7 @@ export function WordStudyProvider({ children }: { children: ReactNode }) {
       closeWordStudy,
       searchWordInConcordance,
       searchPossibleMatches,
+      lookupInKjvWordGuide,
       insertWordStudyNote,
     }),
     [
@@ -171,6 +188,7 @@ export function WordStudyProvider({ children }: { children: ReactNode }) {
       closeWordStudy,
       searchWordInConcordance,
       searchPossibleMatches,
+      lookupInKjvWordGuide,
       insertWordStudyNote,
     ],
   );

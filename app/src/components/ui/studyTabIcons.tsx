@@ -1,6 +1,7 @@
 import {
   BarChart3,
   BookOpen,
+  BookText,
   GraduationCap,
   Library,
   Link2,
@@ -17,6 +18,7 @@ export const STUDY_TAB_ICONS: Record<StudyWorkspaceTabId, LucideIcon> = {
   concordance: Search,
   topics: Tags,
   'how-to-study': GraduationCap,
+  'kjv-word-guide': BookText,
   charts: BarChart3,
 };
 

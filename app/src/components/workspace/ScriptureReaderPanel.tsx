@@ -1,5 +1,6 @@
-import { ChevronLeft, ChevronRight, Square, SquareCheck } from 'lucide-react';
+import { BookText, ChevronLeft, ChevronRight, Square, SquareCheck } from 'lucide-react';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '@/auth/useAuth';
 import { BibleSearch } from '@/components/layout/BibleSearch';
 import { useReader } from '@/context/ReaderContext';
@@ -45,6 +46,7 @@ export function ScriptureReaderPanel({
   const { isExpanded, collapsePanel } = useWorkspaceExpand();
   const scriptureExpanded = isExpanded('scripture');
   const { isAuthenticated, openAuthPrompt } = useAuth();
+  const [, setSearchParams] = useSearchParams();
   const {
     isVerseSelected,
     getVerseHighlightColor,
@@ -177,6 +179,27 @@ export function ScriptureReaderPanel({
           <BibleSearch variant="embedded" />
         </div>
         <div className="scripture-reader__header-meta">
+          <button
+            type="button"
+            className="scripture-reader__guide-btn"
+            onClick={() =>
+              setSearchParams(
+                (current) => {
+                  const next = new URLSearchParams(current);
+                  next.set('tab', 'kjv-word-guide');
+                  next.delete('q');
+                  next.delete('lookup');
+                  next.set('run', Date.now().toString());
+                  return next;
+                },
+                { replace: false },
+              )
+            }
+            title="Open KJV Word Guide"
+          >
+            <BookText size={14} strokeWidth={2} aria-hidden="true" />
+            <span>KJV Word Guide</span>
+          </button>
           <WorkspaceExpandButton
             panelId="scripture"
             label="Scripture reader"

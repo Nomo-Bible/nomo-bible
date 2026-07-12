@@ -117,6 +117,38 @@
   flex-shrink: 0;
 }
 
+.scripture-reader__guide-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-gold-muted);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-secondary);
+  color: var(--color-gold-deep);
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.scripture-reader__guide-btn:hover {
+  background: var(--color-card);
+  border-color: var(--color-accent-light);
+  color: var(--color-accent);
+}
+
+.scripture-reader__guide-btn:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
 .scripture-reader__badge {
   font-size: 0.625rem;
   font-weight: 600;

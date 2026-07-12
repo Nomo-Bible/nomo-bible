@@ -117,6 +117,14 @@
   font-style: italic;
 }
 
+.word-study-popover__guide-hint {
+  margin: 0;
+  padding: var(--space-1) var(--space-1);
+  font-size: var(--font-size-xs);
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
 .word-study-popover__matches-label {
   margin: 0 0 var(--space-2);
   font-size: var(--font-size-xs);
