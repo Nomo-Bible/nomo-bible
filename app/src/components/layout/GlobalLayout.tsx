@@ -1,10 +1,19 @@
 import { Home, BookOpen, Library, Users } from 'lucide-react';
+import { useEffect } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { AuthNav } from '@/components/auth/AuthNav';
+import { APP_TITLE } from '@/hooks/useDocumentTitle';
 import { BibleSearch } from './BibleSearch';
 import './GlobalLayout.css';
+
 export function GlobalLayout() {
-  const isReaderRoute = useLocation().pathname.startsWith('/reader');
+  const location = useLocation();
+  const isReaderRoute = location.pathname.startsWith('/reader');
+
+  useEffect(() => {
+    if (isReaderRoute) return;
+    document.title = APP_TITLE;
+  }, [isReaderRoute, location.pathname]);
 
   return (
     <div className={`global-layout${isReaderRoute ? ' global-layout--reader' : ''}`}>

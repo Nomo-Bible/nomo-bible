@@ -1,5 +1,6 @@
 import { ReaderProvider } from '@/context/ReaderContext';
 import { PageBanner } from '@/components/ui/PageBanner';
+import { ReaderDocumentTitle } from '@/components/workspace/ReaderDocumentTitle';
 import { ScriptureWorkspace } from '@/components/workspace/ScriptureWorkspace';
 import scriptureWorkspaceBanner from '@/assets/banners/scripture-workspace.png';
 import './BibleReaderPage.css';
@@ -7,6 +8,7 @@ import './BibleReaderPage.css';
 export function BibleReaderPage() {
   return (
     <ReaderProvider>
+      <ReaderDocumentTitle />
       <div className="bible-reader-page">
         <PageBanner
           imageSrc={scriptureWorkspaceBanner}

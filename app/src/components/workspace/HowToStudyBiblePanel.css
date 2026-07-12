@@ -33,7 +33,8 @@
   min-width: 0;
   min-height: 0;
   overflow-y: auto;
-  padding: var(--space-6) clamp(var(--space-4), 4vw, var(--space-6)) var(--space-8);
+  padding: var(--space-5) var(--space-5) var(--space-7);
+  box-sizing: border-box;
 }
 
 .study-article {
@@ -58,7 +59,7 @@
 }
 
 .study-article__h2 {
-  margin: var(--space-8) 0 var(--space-4);
+  margin: var(--space-7) 0 var(--space-4);
   padding-top: var(--space-4);
   border-top: 1px solid var(--color-border-subtle);
   font-family: var(--font-serif);
@@ -216,6 +217,6 @@
   }
 
   .how-to-study-panel__article {
-    padding: var(--space-5) var(--space-4) var(--space-6);
+    padding: var(--space-4) var(--space-4) var(--space-6);
   }
 }

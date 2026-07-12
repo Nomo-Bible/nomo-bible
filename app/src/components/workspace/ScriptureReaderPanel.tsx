@@ -149,32 +149,36 @@ export function ScriptureReaderPanel({
         </div>
       ) : null}
       <header className="scripture-reader__header">
-      <div className="scripture-reader__chapter-nav">
-        <button
-          type="button"
-          className="scripture-reader__chapter-btn"
-          onClick={goToPreviousChapter}
-          disabled={!canGoPrevious}
-          aria-label="Previous chapter"
-        >
-          <ChevronLeft size={16} strokeWidth={2} aria-hidden="true" />
-          Previous
-        </button>
-        <button
-          type="button"
-          className="scripture-reader__chapter-btn"
-          onClick={goToNextChapter}
-          disabled={!canGoNext}
-          aria-label="Next chapter"
-        >
-          Next
-          <ChevronRight size={16} strokeWidth={2} aria-hidden="true" />
-        </button>
+      <div className="scripture-reader__header-left">
+        <div className="scripture-reader__chapter-nav">
+          <button
+            type="button"
+            className="scripture-reader__chapter-btn"
+            onClick={goToPreviousChapter}
+            disabled={!canGoPrevious}
+            aria-label="Previous chapter"
+          >
+            <ChevronLeft size={16} strokeWidth={2} aria-hidden="true" />
+            Previous
+          </button>
+          <button
+            type="button"
+            className="scripture-reader__chapter-btn"
+            onClick={goToNextChapter}
+            disabled={!canGoNext}
+            aria-label="Next chapter"
+          >
+            Next
+            <ChevronRight size={16} strokeWidth={2} aria-hidden="true" />
+          </button>
+        </div>
       </div>
 
-      <h2 className="scripture-reader__heading">{heading}</h2>
+      <div className="scripture-reader__header-center">
+        <h2 className="scripture-reader__heading">{heading}</h2>
+      </div>
 
-      <div className="scripture-reader__header-tools">
+      <div className="scripture-reader__header-right">
         <div className="scripture-reader__header-search">
           <BibleSearch variant="embedded" />
         </div>
@@ -198,7 +202,10 @@ export function ScriptureReaderPanel({
             title="Open KJV Word Guide"
           >
             <BookText size={14} strokeWidth={2} aria-hidden="true" />
-            <span>KJV Word Guide</span>
+            <span className="scripture-reader__guide-btn-label">KJV Word Guide</span>
+            <span className="scripture-reader__guide-btn-label-short" aria-hidden="true">
+              Guide
+            </span>
           </button>
           <WorkspaceExpandButton
             panelId="scripture"

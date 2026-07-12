@@ -91,7 +91,7 @@ If Netlify reports *"Base directory does not exist"*, the site is missing those 
 
 ## Project structure
 
-- `app/` — React + Vite web application
+- `app/` — Nomomartyria Bible web application
 - `knowledge-base/` — Canonical Bible text and future knowledge content
 - `docs/` — Project governance and architecture documents
 - `scripts/kjv/` — KJV download and conversion tooling
